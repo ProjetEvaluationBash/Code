@@ -54,7 +54,7 @@ done
 # Le mot de passe est valide
 
 # Hashage du mot de passe
-password=`echo $password | openssl passwd -crypt -salt $username -stdin`
+password=`echo $password | openssl passwd -1 -salt $username -stdin`
 
 echo "$username|$password" >> utilisateurs.txt
 echo

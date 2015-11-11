@@ -28,7 +28,7 @@ while test "$usernameok" == "false"; do
 		exit 1
 	fi
 
-	password=`echo $password | openssl passwd -crypt -salt $username -stdin`
+	password=`echo $password | openssl passwd -1 -salt $username -stdin`
 	userpassword=`echo $result | cut -d "|" -f 2`
 
 	if test "$password" == "$userpassword"; then
