@@ -1,0 +1,21 @@
+=== type ===
+mcq
+
+=== difficulty ===
+
+
+=== isExamQuestion ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== availableAnswers ===
+  - 
+
+=== answer ===
+
+

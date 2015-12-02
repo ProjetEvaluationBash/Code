@@ -1,0 +1,17 @@
+=== type ===
+commandname
+
+=== difficulty ===
+
+
+=== isExamQuestion ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== answer ===
+

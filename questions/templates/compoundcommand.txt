@@ -1,0 +1,18 @@
+=== type ===
+compoundcommand
+
+=== difficulty ===
+
+
+=== isExamQuestion ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== evaluator ===
+
+

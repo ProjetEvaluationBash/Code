@@ -1,0 +1,18 @@
+=== type ===
+script
+
+=== difficulty ===
+
+
+=== isExamQuestion ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== evaluator ===
+
+
