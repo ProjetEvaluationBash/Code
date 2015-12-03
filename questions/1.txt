@@ -2,7 +2,7 @@
 mcq
 
 === difficulty ===
-1
+
 
 === isExamQuestion ===
 false

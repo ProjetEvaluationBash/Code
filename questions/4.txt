@@ -11,13 +11,12 @@ false
 0.3
 
 === question ===
-Quelle est la commande permettant d'afficher le manuel d'une commande ?
+Un processus se terminant normalement doit retourner un code de retour valant
 
 === availableAnswers ===
-  - help
-  - man
-  - describe
-  - pwd
+  - 0
+  - 1
+  - n'importe quelle valeur différente de 0
 
 === answer ===
-2
+1

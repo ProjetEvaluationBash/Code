@@ -11,13 +11,12 @@ false
 0.3
 
 === question ===
-Quelle est la commande permettant d'afficher le manuel d'une commande ?
+Dans quelle variable est mémorisé le code de retour du dernier processus terminé ?
 
 === availableAnswers ===
-  - help
-  - man
-  - describe
-  - pwd
+  - ?
+  - $
+  - !
 
 === answer ===
-2
+1
