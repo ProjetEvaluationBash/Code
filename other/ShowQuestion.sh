@@ -35,7 +35,7 @@ fi
 type=`parseQuestionFile "type" $QUESTIONID`
 
 if test $? -ne 0; then
-	echo "ShowQuestion: parseQuestFile: erreur rencontrée" >&2
+	echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
 	exit 4
 fi
 
@@ -44,9 +44,11 @@ fi
 question=`parseQuestionFile "question" $QUESTIONID`
 
 if test $? -ne 0; then
-        echo "ShowQuestion: parseQuestFile: erreur rencontrée" >&2
+        echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
         exit 4
 fi
+
+# On affiche la question
 
 echo "Question:"
 echo "$question"
@@ -57,6 +59,11 @@ if test "$type" = "mcq"; then
 	# Retrouver et afficher les reponses possibles
 	
 	availableAnswers=`parseQuestionFile "availableAnswers" $QUESTIONID`
+
+	if test $? -ne 0; then
+		echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
+		exit 4
+	do
 	
 	echo
 	echo "Reponses possibles:"
