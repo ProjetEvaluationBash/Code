@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source EvalLib.sh
+
 # Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
 if test -z $QUESTIONPATH; then
@@ -28,6 +30,47 @@ fi
 
 # Le fichier de la question existe
 
-echo $questionData
+# On retrouve le type de la question
+
+type=`parseQuestionFile "type" $QUESTIONID`
+
+if test $? -ne 0; then
+	echo "ShowQuestion: parseQuestFile: erreur rencontrée" >&2
+	exit 4
+fi
+
+# On retrouve la question
+
+question=`parseQuestionFile "question" $QUESTIONID`
+
+if test $? -ne 0; then
+        echo "ShowQuestion: parseQuestFile: erreur rencontrée" >&2
+        exit 4
+fi
+
+echo "Question:"
+echo "$question"
+
+# Si la question est de type QCM
+
+if test "$type" = "mcq"; then
+	# Retrouver et afficher les reponses possibles
+	
+	availableAnswers=`parseQuestionFile "availableAnswers" $QUESTIONID`
+	
+	echo
+	echo "Reponses possibles:"
+	echo "$availableAnswers" | gawk '
+		BEGIN {
+			counter=1
+		}
+
+		{
+			gsub(/  - /, "", $0)
+			print counter ".", $0
+			counter++
+		}
+	'
+fi
 
 exit 0
