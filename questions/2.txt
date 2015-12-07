@@ -20,3 +20,7 @@ Dans quelle variable est mémorisé le code de retour du dernier processus termi
 
 === answer ===
 1
+
+=== keywords ===
+
+variable 

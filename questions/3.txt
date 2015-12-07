@@ -20,3 +20,6 @@ Dans la commande "p1 || p2" où p1 et p2 sont deux processus, p2 sera exécuté 
 
 === answer ===
 2
+
+=== keywords ===
+ps or exec condition 

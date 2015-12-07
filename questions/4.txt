@@ -20,3 +20,6 @@ Un processus se terminant normalement doit retourner un code de retour valant
 
 === answer ===
 1
+
+=== keywords ===
+

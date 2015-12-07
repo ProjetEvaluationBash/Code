@@ -2,10 +2,11 @@
 mcq
 
 === difficulty ===
-
+1
 
 === isExamQuestion ===
 false
+
 
 === duration ===
 0.3
@@ -21,3 +22,6 @@ Quelle est la commande permettant d'afficher le manuel d'une commande ?
 
 === answer ===
 2
+
+=== keywords ===
+man 
