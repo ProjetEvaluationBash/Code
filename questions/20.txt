@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Quelle commande permet de modifier les droits d'un fichier ? 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - chmod
+  - chown
+  - chrights
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+chmod droit_fichier

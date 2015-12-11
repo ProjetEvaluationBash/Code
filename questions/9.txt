@@ -1,0 +1,25 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== isExamQuestion ===
+false
+
+=== duration ===
+0.3
+
+=== question ===
+Le jocker '*' représente ...
+
+=== availableAnswers ===
+  - n'importe quelle suite de caractères à l'exception du caractère l'espace
+  - n'importe quelle suite de caratères non vide
+  - n'importe quelle suite de caractères même vide
+
+=== answer ===
+3
+
+=== keywords ===
+regex

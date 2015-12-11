@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Sous less (le visualisateur de vos pages de manuel), quelle commande permet de chercher la prochaine occurence du mot “MOT” ? 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - ?MOT
+  - %MOT
+  - /MOT
 
 === answer ===
-1
+3
 
 === keywords ===
-code_retour
+less

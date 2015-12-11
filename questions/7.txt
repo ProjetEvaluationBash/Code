@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Les variables “exportées” d'un processus sont 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - les variables d'environnement
+  - les variables globales
+  - les variables locales
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+variable_environnement

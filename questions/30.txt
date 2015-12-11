@@ -1,0 +1,20 @@
+=== type ===
+commandname
+
+=== difficulty ===
+1
+
+=== isExamQuestion ===
+false
+
+=== duration ===
+0.3
+
+=== question ===
+Quelle commande permet d'afficher le nom du repertoire de travail en cours ? 
+
+=== answer ===
+pwd
+
+=== keywords ===
+pwd

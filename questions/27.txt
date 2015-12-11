@@ -11,15 +11,16 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Comment appelle ton le repertoire personnel d'un utilisateur ? 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - house
+  - home
+  - usr
+  - bash
 
 === answer ===
-1
+2
 
 === keywords ===
-code_retour
+home

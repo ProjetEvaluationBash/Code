@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+La commande permettant de lister TOUS les fichiers du répertoire courant est : 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - ls -t
+  - ls -a
+  - ls -l
 
 === answer ===
-1
+2
 
 === keywords ===
-code_retour
+ls

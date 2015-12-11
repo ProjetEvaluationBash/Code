@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+La commande “chmod 741 fic” est équivalente à : 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - chmod u=rwx,g=r,o=x fic
+  - chmod u+rwx,g=r,a+x fic
+  - chmod u=rwx,g=r,a=x fic
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+chmod droit_fichier

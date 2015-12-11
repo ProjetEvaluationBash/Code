@@ -1,0 +1,20 @@
+=== type ===
+commandname
+
+=== difficulty ===
+1
+
+=== isExamQuestion ===
+false
+
+=== duration ===
+0.3
+
+=== question ===
+Quelle est la commande permettant d'afficher le manuel d'une commande ? 
+
+=== answer ===
+man
+
+=== keywords ===
+man

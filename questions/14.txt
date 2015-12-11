@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Pour afficher un message sur la sortie d'erreurs standard il faut utiliser la redirection
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - >&2
+  - 2>
+  - >stderr
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+redirection

@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Si vous souhaitez que seul vous et ceux de votre groupe puissent lister le contenu de votre HOME vous fixez les droits à … 
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - 710
+  - 750
+  - 760
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+droit_fichier

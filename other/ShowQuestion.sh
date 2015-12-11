@@ -63,7 +63,7 @@ if test "$type" = "mcq"; then
 	if test $? -ne 0; then
 		echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
 		exit 4
-	do
+	fi
 	
 	echo
 	echo "Reponses possibles:"

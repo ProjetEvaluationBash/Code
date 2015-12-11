@@ -11,15 +11,15 @@ false
 0.3
 
 === question ===
-Un processus se terminant normalement doit retourner un code de retour valant
+Quelle commande permet d'afficher les processus
 
 === availableAnswers ===
-  - 0
-  - 1
-  - n'importe quelle valeur différente de 0
+  - ps
+  - ls
+  - process
 
 === answer ===
 1
 
 === keywords ===
-code_retour
+ps
