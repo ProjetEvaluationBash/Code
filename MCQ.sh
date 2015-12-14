@@ -33,7 +33,7 @@ exit  0
 	
 }
 
-addQuestion() {
+function addQuestion() {
 	nbAnswers=0
 
 	# Saisir la question
