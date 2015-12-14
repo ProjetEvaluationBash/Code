@@ -54,7 +54,7 @@ function parseQuestionFile {
 
 # getCourseKeywords(number)
 
-function getCourseKeyword{
+function getCourseKeyword {
 	
 	#On verifie si la fonction a bien été appellée avec 1 argument
 	if test $# -ne 1; then
@@ -74,10 +74,6 @@ function getCourseKeyword{
 	fi
 
 	# On extrait les données souhaitées
-	elementData=`cat 
-
-	
-
-	
+	elementData=`cat /dev/null`
 
 }
