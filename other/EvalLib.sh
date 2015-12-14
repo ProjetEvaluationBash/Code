@@ -69,11 +69,12 @@ function getCourseKeyword {
 	fi
 
 	# On vérifie que $COURSESFILE est un fichier
-	if test ! -f "$COURSESPATH/$COURSESFILE"; then
+	if test ! -f "$COURSESPATH/$COURSESFILE.txt"; then
 		echo "getCourseKeywords : COURSESFILE inconnu" >&2
 	fi
 
 	# On extrait les données souhaitées
-	elementData=`cat /dev/null`
-
+	`awk  -F ":" '{ print $0}' $COURSESPATH/$COURSESFILE.txt`
 }
+
+getCourseKeyword 3
