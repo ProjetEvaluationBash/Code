@@ -25,8 +25,11 @@ function EvalAnswer() {
 		exit 1
 	fi
 	
-	if test $answer -e $1; then
+	
+	if test $answer -eq $rightAnswer; then
 		echo "Bonne réponse !"
+		
+	else 	echo " Mauvaise réponse "
 	fi
 		
 	return 0	
