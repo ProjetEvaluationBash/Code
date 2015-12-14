@@ -9,14 +9,19 @@ source other/EvalLib.sh
 function EvalAnswer() {
 
 	# $1
+	# Verification des paramêtres
 	
 	if test $# -ne 1; then
 		echo "Usage: EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
+	# Saisie de la réponse
+	
 	echo "Veuillez rentrer une réponse"
 	read answer
+	
+	# Récuperation de la bonne réponse
 	
 	rightAnswer=`parseQuestionFile "answer" $1`
 	
@@ -25,7 +30,7 @@ function EvalAnswer() {
 		exit 1
 	fi
 	
-	
+	# Comparaison entre les deux réponses
 	if test $answer -eq $rightAnswer; then
 		echo "Bonne réponse !"
 		
