@@ -1,0 +1,13 @@
+1 : generalities echo man filesystemHierarchy fileTypes path ls cd cp mv chmod chown mkdir mkfifo pwd rm rmdir apropos cat df du file less more locate alias
+
+2 : vi chmod chown rights jockers redirections pipes cat column cut grep ehad join less more paste printf sed sort tail tr uniq find 
+
+3 : PID PPID ps symbolicLinks SIGHUP SIGINT SIGQUIT SIGILL SIGABRT SIGFPE SIGKILL SIGSEG SIGPIPE SIGALRM SIGTERM SIGUSR1 SIGUSR2 SIGCHLD SIGSTOP SIGTSTP SIGCONT SIGTTIN SIGTTOU SIGIO SIGURG SIGWINCH kill 
+
+4 : regularExpressions grep sed awk [:alnum:] [:digit:] [:xdigit:] [:lower:] [:upper:] [:alpha:] [:space:] gawk last export grep sed tr
+
+5 : set quote scriptShell find argumentsScript if then fi while until do done for done read 
+
+6 : script for break continue case select functions alias variable cat
+
+7 : encryption decoding binary calcul hexadecimal flags
