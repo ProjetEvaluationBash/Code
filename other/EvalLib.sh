@@ -12,19 +12,19 @@ function parseQuestionFile {
 	fi
 
 	# On verifie si le fichier existe et si c'est un fichier ordinaire
-	if test ! -f "$QUESTIONPATH/$2"; then
+	if test ! -f "$QUESTIONPATH/$2.txt"; then
                 echo "parseQuestionFile: Fichier non trouvé / n'est pas un fichier ordinaire." >&2
                 return 2
         fi
 
 	# On verifie si le fichier est lisible par l'utilisateur courant
-	if test ! -r "$QUESTIONPATH/$2"; then
+	if test ! -r "$QUESTIONPATH/$2.txt"; then
 		echo "parseQuestionFile: Fichier non lisible" >&2
 		return 3
 	fi
 
 	# On extrait les données souhaitées
-	elementData=`cat "$QUESTIONPATH/$2" | gawk '
+	elementData=`cat "$QUESTIONPATH/$2.txt" | gawk '
 	BEGIN {
 		show=0
 	}
