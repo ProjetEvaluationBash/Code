@@ -69,7 +69,7 @@ function getCourseKeyword{
 	fi
 
 	# On vérifie que $COURSESFILE est un fichier
-	if test ! -f "$COURSESATH/$COURSESFILE"; then
+	if test ! -f "$COURSESPATH/$COURSESFILE"; then
 		echo "getCourseKeywords : COURSESFILE inconnu" >&2
 	fi
 
