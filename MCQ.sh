@@ -27,10 +27,9 @@ function EvalAnswer() {
 	
 	if test $answer -e $1; then
 		echo "Bonne réponse !"
+	fi
 		
-exit  0
-	
-	
+	return 0	
 }
 
 function addQuestion() {

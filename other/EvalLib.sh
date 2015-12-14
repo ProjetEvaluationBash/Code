@@ -54,7 +54,7 @@ function parseQuestionFile {
 
 # getCourseKeywords(number)
 
-function getCourseKeyword{
+function getCourseKeyword {
 	
 	#On verifie si la fonction a bien été appellée avec 1 argument
 	if test $# -ne 1; then
@@ -69,15 +69,11 @@ function getCourseKeyword{
 	fi
 
 	# On vérifie que $COURSESFILE est un fichier
-	if test ! -f "$COURSESATH/$COURSESFILE"; then
+	if test ! -f "$COURSESPATH/$COURSESFILE"; then
 		echo "getCourseKeywords : COURSESFILE inconnu" >&2
 	fi
 
 	# On extrait les données souhaitées
-	elementData=`cat 
-
-	
-
-	
+	elementData=`cat /dev/null`
 
 }
