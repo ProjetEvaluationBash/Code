@@ -1,8 +1,9 @@
 #! /bin/bash
 
-source EvalLib.sh
+. EvalLib.sh
 
-#Si le module n'est pas définie
+# Si le module n'est pas défini
+
 if test -z $MODULE; then
 	echo "CreateTest : Module inconnu" >&2
 	exit 1
