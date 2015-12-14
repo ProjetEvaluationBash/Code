@@ -35,7 +35,7 @@ function EvalAnswer() {
 	return 0	
 }
 
-addQuestion() {
+function addQuestion() {
 	nbAnswers=1
 	i=0
 

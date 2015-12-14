@@ -4,6 +4,19 @@
 
 # parseQuestionFile(element, questionId)
 
+# error(message, returnCode = 1)
+
+function error {
+	if test $# -eq 2; then
+		returnCode=$2
+	else
+		returnCode=$1
+	fi
+
+	echo "$1" >&2
+	return $returnCode
+}
+
 function parseQuestionFile {
 	# On verifie si la fonction a bien été appellée avec 2 arguments
 	if test $# -ne 2; then
@@ -77,4 +90,4 @@ function getCourseKeyword {
 	`awk  -F ":" '{ print $0}' $COURSESPATH/$COURSESFILE.txt`
 }
 
-getCourseKeyword 3
+
