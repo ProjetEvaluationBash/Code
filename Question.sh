@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# ID (integer)
+ID=""
+
+# QUESTION (string)
+QUESTION=""
+
+# DIFFICULTY (integer)
+DIFFICULTY=""
+
+# ISEXAMQUESTION (boolean)
+ISEXAMQUESTION=""
+
+# DURATION (float)
+DURATION=""
+
+# showQuestion(question : Question)
+function showQuestion {
+	return 0
+}
+
 function addQuestion() {
 	# Lister les types de questions possibles
 	
