@@ -24,13 +24,23 @@ fi
 
 #Variables env definies: MODULE , COURSES et KEYWORDS
 
+#Pour chaque mot clé dans KEYWORDS
 for keyword  in $KEYWORDS; do
+
 	echo $keyword
+	#Pour chaque question présente dans le dossier question
 	for question in `ls $QUESTIONPATH`; do
+
+		#Si question est un fichier
 		if [ -f "$QUESTIONPATH/$question" ]; then
-			
-  			QKeywords=`parseQuestionFile "keywords" $question`
+
+			#Récupère les mot clés de la question
+			questionId=`echo $question|cut -d . -f 1`
+  			QKeywords=`parseQuestionFile "keywords" $questionId`
+			#Pour chaque mot clé de la question
 			for Qkeyword in $QKeywords; do
+
+				#Si QKeyword est égal au mot clé recherché
 				if [ $Qkeyword = $keyword ] ; then
 					echo $question
 					echo $Qkeyword
