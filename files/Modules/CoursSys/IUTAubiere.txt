@@ -1,4 +1,4 @@
-1 : generalities echo man filesystemHierarchy fileTypes path ls cd cp mv chmod chown mkdir mkfifo pwd rm rmdir apropos cat df du file less more locate alias
+1 generalities echo man filesystemHierarchy fileTypes path ls cd cp mv chmod chown mkdir mkfifo pwd rm rmdir apropos cat df du file less more locate alias
 
 2 : vi chmod chown rights jockers redirections pipes cat column cut grep ehad join less more paste printf sed sort tail tr uniq find 
 

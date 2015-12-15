@@ -9,5 +9,4 @@ LOGFILE=$CODEROOT/log.txt
 
 # Definition des administrateurs du système
 
-ADMINS[0]="admin1"
-ADMINS[1]="admin2"
+ADMINS="admin1 admin2"

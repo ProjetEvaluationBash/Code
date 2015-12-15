@@ -9,14 +9,19 @@ source other/EvalLib.sh
 function EvalAnswer() {
 
 	# $1
+	# Verification des paramêtres
 	
 	if test $# -ne 1; then
 		echo "Usage: EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
+	# Saisie de la réponse
+	
 	echo "Veuillez rentrer une réponse"
 	read answer
+	
+	# Récuperation de la bonne réponse
 	
 	rightAnswer=`parseQuestionFile "answer" $1`
 	
@@ -25,15 +30,19 @@ function EvalAnswer() {
 		exit 1
 	fi
 	
-	if test $answer -e $1; then
+	# Comparaison entre les deux réponses
+	if test $answer -eq $rightAnswer; then
 		echo "Bonne réponse !"
+		
+	else 	echo " Mauvaise réponse "
 	fi
 		
 	return 0	
 }
 
 function addQuestion() {
-	nbAnswers=0
+	nbAnswers=1
+	i=0
 
 	# Saisir la question
 	echo "Question:"
@@ -45,25 +54,39 @@ function addQuestion() {
 		read question
 	done
 	
+	
 	# Ajouter les reponses possibles
 	while test 1; do
 		# Saisie d'une reponse possible
+		echo ""
 		echo "Saisir une reponse possible"
 		read answers[nbAnswers]
 		
 		# Validation de la reponse possible saisie
-		# A FAIRE
-		
+		while test "${#question}" -lt 1 -o "${#question}" -gt 512; do
+			echo "Reponse invalide. Resaisir la reponse:"
+			read question
+		done
+				
 		# Incrementer le nombre de reponses possibles
 		nbAnswers=$(($nbAnswers + 1))
 		
 		# Demander si il y a d'autres reponses possibles à ajouter
-		echo -n "Ajouter une autre reponse ? [O/n]: "
-		read -s -n 1 key
-		
-		if test "$key" = "\n" -a "$key" != "o" -a "$key" != "O"; then
-			break
+		if test $nbAnswers -gt 2; then 
+			echo ""
+			echo -n "Ajouter une autre reponse ? [O/n]: "
+			read -s -n 1 key
+			if test $key = "n" -a  $key != "o" -a $key != "O"; then
+				break
+			fi
 		fi
 	done
 }
+<<<<<<< HEAD
 
+=======
+# TEST
+
+EvalAnswer 1
+	
+>>>>>>> 14ddef76be1aea519280f885250419068a722cb5
