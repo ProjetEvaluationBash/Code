@@ -67,7 +67,3 @@ function addQuestion() {
 	done
 }
 
-# TEST
-
-EvalAnswer 1
-	

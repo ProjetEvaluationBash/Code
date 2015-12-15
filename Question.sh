@@ -56,12 +56,19 @@ function addQuestion() {
 
 	read -r response
 	response=${response,,} # Mettre la reponse en minuscule
-	
-	if test $response =~ ^(oui|o)$; then
+
+	if [[ $response =~ ^(oui|o)$ ]]; then
 		isExamQuestion="true"
 	else
 		isExamQuestion="false"
 	fi
+
+	# Saisie de la durée de la question
+
+	echo "Saisir la durée de la question (en minutes) (float): "
+	read duration
+
+	if test $duration -lt 0	
 
 	# Test	
 	echo "isExamQuestion: $isExamQuestion"	
