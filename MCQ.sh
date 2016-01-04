@@ -1,7 +1,10 @@
 #!/bin/bash
 
-source Question.sh
-source other/EvalLib.sh
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(readlink -m $(dirname $0))
+
+source "$CODEROOT/Question.sh"
+source "$CODEROOT/other/EvalLib.sh"
 
 # AVAILABLEANSWERS (string[])
 AVAILABLEANSWERS=""
@@ -10,8 +13,18 @@ AVAILABLEANSWERS=""
 ANSWER=""
 
 # Necessite QUESTIONPATH et QUESTIONID
-function loadQuestion() {
+function loadMcq() {
+	loadQuestion
+
+	ANSWER=`getElement "$questionFileContents" answer`
+
+	tempAvailableAnswers=`getElement "$questionFileContents" availableAnswers`
 	
+	i=1
+	
+	while read line; do
+		echo $line
+	done < "$tempAvailableAnswers"
 }
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM

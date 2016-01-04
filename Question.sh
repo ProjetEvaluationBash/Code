@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source Code/other/EvalLib.sh
+source "$CODEROOT/other/EvalLib.sh"
 
 # ID (integer)
 ID=""
@@ -27,7 +27,7 @@ function addQuestion() {
 	select questionType in 'MCQ' 'CommandName' 'SimpleCommand' 'CompoundCommand' 'Script' 'FreeQuestion'; do
 		case $questionType in
 			'MCQ')
-				source Code/MCQ.sh
+				source "$CODEROOT/MCQ.sh"
 				addQuestion
 				break;;
 			'CommandName')
