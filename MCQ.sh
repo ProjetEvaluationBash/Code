@@ -6,6 +6,7 @@ source other/EvalLib.sh
 
 # EvalAnswer QUESTIONID
 
+set -x
 function EvalAnswer() {
 
 	# $1
@@ -40,20 +41,9 @@ function EvalAnswer() {
 	return 0	
 }
 
-function addQuestion() {
-	nbAnswers=1
-	i=0
 
-	# Saisir la question
-	echo "Question:"
-	read question
-	
-	# Validation de la question
-	while test "${#question}" -lt 5 -o "${#question}" -gt 512; do
-		echo "Question invalide. Resaisir la question:"
-		read question
-	done
-	
+function addQuestion() {
+	nbAnswers=0;
 	
 	# Ajouter les reponses possibles
 	while test 1; do
@@ -72,7 +62,7 @@ function addQuestion() {
 		nbAnswers=$(($nbAnswers + 1))
 		
 		# Demander si il y a d'autres reponses possibles à ajouter
-		if test $nbAnswers -gt 2; then 
+		if test $nbAnswers -gt 1; then 
 			echo ""
 			echo -n "Ajouter une autre reponse ? [O/n]: "
 			read -s -n 1 key
