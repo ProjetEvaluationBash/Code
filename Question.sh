@@ -20,11 +20,6 @@ DURATION=""
 # TYPE (string)
 TYPE=""
 
-# showQuestion(question : Question)
-#function showQuestion {
-#	return 0
-#}
-
 function addQuestion() {
 	# Lister les types de questions possibles
 	
@@ -125,41 +120,35 @@ function getElement() {
 }
 
 # loadQuestion(questionId)
-
+# necessite QUESTIONPATH et QUESTIONID
 function loadQuestion() {
-	questionId=$1
-	
-	# Si l'ID de la question n'est pas passée en argument
-
-	if test $# -eq 0; then
-		fatalError "loadQuestion: questionId non defini."	
-	fi
-
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
         if test -z $QUESTIONPATH; then
-                echo "loadQuestion: QUESTIONPATH non definie !" >&2
-                exit 1
-		fatal
+		fatalError "loadQuestion: QUESTIONPATH non definie !" 1
         fi
+
+	# Si la variable d'environnement "QUESTIONID" n'est pas definie
+
+        if test -z $QUESTIONID; then
+        	fatalError "loadQuestion: QUESTIONID non definie !" 2
+	fi 
 
 	# On verifie si le fichier existe et si c'est un fichier ordinaire
-        if test ! -f "$QUESTIONPATH/$questionId.txt"; then
-                echo "loadQuestion: Fichier non trouvé / n'est pas un fichier ordinaire." >&2
-                return 2
-        fi
+        if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
+        	fatalError "loadQuestion: Le fichier de la question n'existe pas !" 3
+	fi
 
 	# On verifie si le fichier est lisible par l'utilisateur courant
-        if test ! -r "$QUESTIONPATH/$questionId.txt"; then
-                echo "loadQuestion: Fichier non lisible" >&2
-                return 3
-        fi
+        if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
+        	fatalError "loadQuestion: Fichier illisible (droits de fichier) !" 4
+	fi
 
 	# Lecture du fichier de la question
-	questionFileContents=`cat $QUESTIONPATH/$questionId.txt`
+	questionFileContents=`cat $QUESTIONPATH/$QUESTIONID.txt`
 
 	# Lecture de la question
-	ID=$questionId
+	ID=$QUESTIONID
 	QUESTION=`getElement "$questionFileContents" question`
 	DIFFICULTY=`getElement "$questionFileContents" difficulty`
 	ISEXAMQUESTION=`getElement "$questionFileContents" isExamQuestion`
@@ -168,32 +157,7 @@ function loadQuestion() {
 }
 
 function showQuestion() {
-	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
-
-	if test -z $QUESTIONPATH; then
-        	echo "ShowQuestion: QUESTIONPATH non definie !" >&2
-        	exit 1
-	fi
-
-	# Si la variable d'environnement "QUESTIONID" n'est pas definie
-
-	if test -z $QUESTIONID; then
-        	echo "ShowQuestion: QUESTIONID non definie !" >&2
-        	exit 2
-	fi
-
-	# La variable d'environnement "QUESTIONID" est definie
-	# Lire le fichier de la question
-
-	questionData=`cat $QUESTIONPATH/$QUESTIONID.txt`
-
-	# Si le fichier de la question n'existe pas
-
-	if test $? -ne 0; then
-        	echo "ShowQuestion: Le fichier de la question $QUESTIONID n'existe pas" >&2
-        	exit 3
-	fi
-
+	
 	# Le fichier de la question existe
 
 	# On retrouve le type de la question
@@ -215,10 +179,34 @@ function showQuestion() {
 	fi		
 }
 
+function getId() {
+	echo "$ID"
+}
+
+function getQuestion() {
+	echo "$QUESTION"
+}
+
+function getDifficulty() {
+	echo "$DIFFICULTY"
+}
+
+function isExamQuestion() {
+	echo "$ISEXAMQUESTION"
+}
+
+function getDuration() {
+	echo "$DURATION"
+}
+
+function getType() {
+	echo "$TYPE"
+}
 function toString() {
 	echo "id: $ID"
 	echo "question: $QUESTION"
 	echo "difficulty: $DIFFICULTY"
 	echo "isExamQuestion: $ISEXAMQUESTION"
 	echo "duration: $DURATION"
+	echo "type: $TYPE"
 }
