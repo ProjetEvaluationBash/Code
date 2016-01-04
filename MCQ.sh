@@ -7,7 +7,7 @@ source other/EvalLib.sh
 # EvalAnswer QUESTIONID
 
 set -x
-function EvalAnswer() {
+function evaluateAnswer() {
 
 	# $1
 	# Verification des paramêtres
