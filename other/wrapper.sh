@@ -14,7 +14,6 @@ err_nbarg(){
 	exit 1;
 }
 
-set -x
 
 while [ $# -gt 1 ]; do
 	eval "export $1" || err_nbarg
