@@ -18,12 +18,7 @@ function loadQuestion() {
 
 # EvalAnswer QUESTIONID
 
-set -x
-<<<<<<< HEAD
-function EvaluateAnswer() {
-=======
 function evaluateAnswer() {
->>>>>>> 64a4c59507712ca994fece343cba766f7acf5cd3
 
 	# $1
 	# Verification des paramêtres
@@ -89,9 +84,4 @@ function addQuestion() {
 		fi
 	done
 }
-<<<<<<< HEAD
 
-addQuestion 
-EvaluateAnswer 1
-=======
->>>>>>> 64a4c59507712ca994fece343cba766f7acf5cd3
