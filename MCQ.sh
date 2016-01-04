@@ -7,13 +7,13 @@ source other/EvalLib.sh
 # EvalAnswer QUESTIONID
 
 set -x
-function EvalAnswer() {
+function EvaluateAnswer() {
 
 	# $1
 	# Verification des paramêtres
 	
 	if test $# -ne 1; then
-		echo "Usage: EvalAnswer QUESTIONID" >&2
+		echo "Usage: MCQ : EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
@@ -41,6 +41,7 @@ function EvalAnswer() {
 	return 0	
 }
 
+# Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
 function addQuestion() {
 	nbAnswers=0;
@@ -74,4 +75,4 @@ function addQuestion() {
 }
 
 addQuestion 
-EvalAnswer 1
+EvaluateAnswer 1
