@@ -1,6 +1,18 @@
 #!/bin/bash
 
+source Question.sh
 source other/EvalLib.sh
+
+# AVAILABLEANSWERS (string[])
+AVAILABLEANSWERS=""
+
+# ANSWER (integer)
+ANSWER=""
+
+# Necessite QUESTIONPATH et QUESTIONID
+function loadQuestion() {
+	
+}
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM
 
