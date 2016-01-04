@@ -6,16 +6,20 @@
 
 # error(message, returnCode = 1)
 
-function error {
+# fatalError(message, exitCode)
+# fatalError(exitCode)
+
+function fatalError {
 	if test $# -eq 2; then
-		returnCode=$2
+		exitCode=$2
 	else
-		returnCode=$1
+		exitCode=$1
 	fi
 
 	echo "$1" >&2
-	return $returnCode
+	exit $returnCode
 }
+
 
 function parseQuestionFile {
 	# On verifie si la fonction a bien été appellée avec 2 arguments

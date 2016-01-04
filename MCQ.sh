@@ -82,11 +82,3 @@ function addQuestion() {
 		fi
 	done
 }
-<<<<<<< HEAD
-
-=======
-# TEST
-
-EvalAnswer 1
-	
->>>>>>> 14ddef76be1aea519280f885250419068a722cb5
