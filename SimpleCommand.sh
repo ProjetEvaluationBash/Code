@@ -4,16 +4,6 @@
 
 # addQuestion()
 function addQuestion {
-
-	# Saisie de la question à ajouter
-	
-	echo "Saisir la question"
-	read question
-	
-	while test "${#question}" -lt 15 -o "${#question}" -gt 512; do
-		echo "Usage : Question : taille comprise entre 15 et 512 caractères"
-		read question
-	done
 	
 	#Saisie de la réponse
 	
@@ -25,6 +15,7 @@ function addQuestion {
 		read answer
 	done
 	
+	echo answer
 	
         return 0
 }
