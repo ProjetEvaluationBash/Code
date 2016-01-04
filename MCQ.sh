@@ -31,14 +31,13 @@ function loadMcq() {
 
 # EvalAnswer QUESTIONID
 
-set -x
 function evaluateAnswer() {
 
 	# $1
 	# Verification des paramêtres
 	
 	if test $# -ne 1; then
-		echo "Usage: EvalAnswer QUESTIONID" >&2
+		echo "Usage: MCQ : EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
@@ -66,6 +65,7 @@ function evaluateAnswer() {
 	return 0	
 }
 
+# Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
 function addQuestion() {
 	nbAnswers=0;
@@ -97,3 +97,4 @@ function addQuestion() {
 		fi
 	done
 }
+
