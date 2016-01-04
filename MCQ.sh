@@ -1,13 +1,29 @@
 #!/bin/bash
 
+source Question.sh
 source other/EvalLib.sh
+
+# AVAILABLEANSWERS (string[])
+AVAILABLEANSWERS=""
+
+# ANSWER (integer)
+ANSWER=""
+
+# Necessite QUESTIONPATH et QUESTIONID
+function loadQuestion() {
+	
+}
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM
 
 # EvalAnswer QUESTIONID
 
 set -x
+<<<<<<< HEAD
 function EvaluateAnswer() {
+=======
+function evaluateAnswer() {
+>>>>>>> 64a4c59507712ca994fece343cba766f7acf5cd3
 
 	# $1
 	# Verification des paramêtres
@@ -73,6 +89,9 @@ function addQuestion() {
 		fi
 	done
 }
+<<<<<<< HEAD
 
 addQuestion 
 EvaluateAnswer 1
+=======
+>>>>>>> 64a4c59507712ca994fece343cba766f7acf5cd3
