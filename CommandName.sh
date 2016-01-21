@@ -1,6 +1,6 @@
 #!/bin/bash
 
-addQuestion() {
+function addQuestion() {
 	# Saisir la question
 	echo "Question:"
 	read question

@@ -4,6 +4,23 @@
 
 # parseQuestionFile(element, questionId)
 
+# error(message, returnCode = 1)
+
+# fatalError(message, exitCode)
+# fatalError(exitCode)
+
+function fatalError {
+	if test $# -eq 2; then
+		exitCode=$2
+	else
+		exitCode=$1
+	fi
+
+	echo "$1" >&2
+	exit $returnCode
+}
+
+
 function parseQuestionFile {
 	# On verifie si la fonction a bien été appellée avec 2 arguments
 	if test $# -ne 2; then

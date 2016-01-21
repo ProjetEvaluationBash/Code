@@ -1,22 +1,52 @@
 #!/bin/bash
 
-source other/EvalLib.sh
+readonly PROGNAME=$(basename $0)
+readonly PROGDIR=$(readlink -m $(dirname $0))
+
+source "$CODEROOT/Question.sh"
+source "$CODEROOT/other/EvalLib.sh"
+
+# AVAILABLEANSWERS (string[])
+AVAILABLEANSWERS=""
+
+# ANSWER (integer)
+ANSWER=""
+
+# Necessite QUESTIONPATH et QUESTIONID
+function loadMcq() {
+	loadQuestion
+
+	ANSWER=`getElement "$questionFileContents" answer`
+
+	tempAvailableAnswers=`getElement "$questionFileContents" availableAnswers`
+	
+	i=1
+	
+	while read line; do
+		echo $line
+	done < "$tempAvailableAnswers"
+}
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM
 
 # EvalAnswer QUESTIONID
 
-function EvalAnswer() {
+function evaluateAnswer() {
 
 	# $1
+	# Verification des paramêtres
 	
 	if test $# -ne 1; then
-		echo "Usage: EvalAnswer QUESTIONID" >&2
+		echo "Usage: MCQ : EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
+	# Saisie de la réponse
+	
 	echo "Veuillez rentrer une réponse"
 	read answer
+	
+	# Récuperation de la bonne réponse
 	
 	rightAnswer=`parseQuestionFile "answer" $1`
 	
@@ -25,7 +55,7 @@ function EvalAnswer() {
 		exit 1
 	fi
 	
-	
+	# Comparaison entre les deux réponses
 	if test $answer -eq $rightAnswer; then
 		echo "Bonne réponse !"
 		
@@ -35,20 +65,10 @@ function EvalAnswer() {
 	return 0	
 }
 
-addQuestion() {
-	nbAnswers=1
-	i=0
+# Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
-	# Saisir la question
-	echo "Question:"
-	read question
-	
-	# Validation de la question
-	while test "${#question}" -lt 5 -o "${#question}" -gt 512; do
-		echo "Question invalide. Resaisir la question:"
-		read question
-	done
-	
+function addQuestion() {
+	nbAnswers=0;
 	
 	# Ajouter les reponses possibles
 	while test 1; do
@@ -67,7 +87,7 @@ addQuestion() {
 		nbAnswers=$(($nbAnswers + 1))
 		
 		# Demander si il y a d'autres reponses possibles à ajouter
-		if test $nbAnswers -gt 2; then 
+		if test $nbAnswers -gt 1; then 
 			echo ""
 			echo -n "Ajouter une autre reponse ? [O/n]: "
 			read -s -n 1 key
@@ -77,7 +97,4 @@ addQuestion() {
 		fi
 	done
 }
-# TEST
 
-EvalAnswer 1
-	
