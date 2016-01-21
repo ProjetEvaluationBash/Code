@@ -10,9 +10,13 @@ if test -z $MODULE; then
 fi
 
 echo "veuillez donner les numéros de cours sur lesquels vous voulez génerer un test :"
-read courses
+read COURSES
+for course in $COURSES; do
+	if [ "$(echo $var | grep "^[ [:digit:] ]*$")"]; then
+		echo "c'est un chiffre"
+	fi
+done 
 
-for course in $courses 
-	if
+export COURSES
 
 

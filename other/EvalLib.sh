@@ -77,4 +77,4 @@ function getCourseKeyword {
 	`awk  -F ":" '{ print $0}' $COURSESPATH/$COURSESFILE.txt`
 }
 
-getCourseKeyword 3
+
