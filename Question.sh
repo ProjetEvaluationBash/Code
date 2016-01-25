@@ -20,37 +20,24 @@ DURATION=""
 # TYPE (string)
 TYPE=""
 
+function dokuwikiAddQuestion() {
+	# Extraire parametres POST avec param
+
+	# TEST=
+	# QUESTION=
+	# VISIBILITY=
+	# DURATION=
+	
+}
+
 function mainAddQuestion() {
 	# Lister les types de questions possibles
 	
 	echo "Type de question:"
-	select questionType in 'MCQ' 'CommandName' 'SimpleCommand' 'CompoundCommand' 'Script' 'FreeQuestion'; do
-		case $questionType in
-			'MCQ')
-				source "$CODEROOT/MCQ.sh"
-				addQuestion
-				break;;
-			'CommandName')
-
-				break;;
-			'SimpleCommand')
-				
-				break;;
-			'CompoundCommand')
-				
-				break;;
-			'Script')
-				
-				break;;
-			'FreeQuestion')
-							
-				break;;
-			*)
-				# Saisie invalide
-				
-				echo "Saisie invalide."
-				;;
-		esac
+	select TYPE in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
+		if test includeSubType; then
+			break
+		fi	
 	done
 
 	# Saisie de la difficulté de la question
@@ -208,9 +195,11 @@ function includeSubType() {
                         ;;
                 *)
                         echo "[EXCEPTION] Unknown question type" >&2
-                        exit 1
+                        return 1
 			;;
-        esac	
+        esac
+
+	return 0
 }
 
 function getId() {
