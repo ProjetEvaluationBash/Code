@@ -4,7 +4,7 @@ mcq
 === difficulty ===
 
 
-=== isExamQuestion ===
+=== visibility ===
 
 
 === duration ===

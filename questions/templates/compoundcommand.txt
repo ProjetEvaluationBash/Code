@@ -4,7 +4,7 @@ compoundcommand
 === difficulty ===
 
 
-=== isExamQuestion ===
+=== visibility ===
 
 
 === duration ===

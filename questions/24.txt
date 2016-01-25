@@ -4,8 +4,8 @@ commandname
 === difficulty ===
 1
 
-=== isExamQuestion ===
-false
+=== visibility ===
+training
 
 === duration ===
 0.3
