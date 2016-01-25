@@ -13,18 +13,16 @@ AVAILABLEANSWERS=""
 ANSWER=""
 
 # Necessite QUESTIONPATH et QUESTIONID
-function loadMcq() {
-	loadQuestion
-
+function loadQuestion() {
 	ANSWER=`getElement "$questionFileContents" answer`
 
 	tempAvailableAnswers=`getElement "$questionFileContents" availableAnswers`
 	
 	i=1
 	
-	while read line; do
-		echo $line
-	done < "$tempAvailableAnswers"
+	#while read line; do
+	#	echo $line
+	#done < "$tempAvailableAnswers"
 }
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM

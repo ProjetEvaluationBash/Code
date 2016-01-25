@@ -20,7 +20,7 @@ DURATION=""
 # TYPE (string)
 TYPE=""
 
-function addQuestion() {
+function mainAddQuestion() {
 	# Lister les types de questions possibles
 	
 	echo "Type de question:"
@@ -121,7 +121,7 @@ function getElement() {
 
 # loadQuestion(questionId)
 # necessite QUESTIONPATH et QUESTIONID
-function loadQuestion() {
+function mainLoadQuestion() {
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
         if test -z $QUESTIONPATH; then
@@ -151,9 +151,16 @@ function loadQuestion() {
 	ID=$QUESTIONID
 	QUESTION=`getElement "$questionFileContents" question`
 	DIFFICULTY=`getElement "$questionFileContents" difficulty`
-	ISEXAMQUESTION=`getElement "$questionFileContents" isExamQuestion`
+	VISIBILITY=`getElement "$questionFileContents" visibility`
 	DURATION=`getElement "$questionFileContents" duration`		
 	TYPE=`getElement "$questionFileContents" type`
+
+	includeSubType
+
+	# On appelle la fonction loadQuestion du type de la question
+	loadQuestion
+
+	return 0
 }
 
 function showQuestion() {
@@ -177,6 +184,33 @@ function showQuestion() {
       		echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
         	exit 4
 	fi		
+}
+
+# Inclut "la classe" du type de question
+# Necessite $TYPE
+
+function includeSubType() {
+	case $TYPE in
+                'mcq')
+                        source "$CODEROOT/MCQ.sh"
+                        ;;
+                'commandname')
+                        source "$CODEROOT/CommandName.sh"
+                        ;;
+                'compoundcommand')
+                        source "$CODEROOT/CompoundCommand.sh"
+                        ;;
+                'freequestion')
+                        source "$CODEROOT/FreeQuestion.sh"
+                        ;;
+                'script')
+                        source "$CODEROOT/Script.sh"
+                        ;;
+                *)
+                        echo "[EXCEPTION] Unknown question type" >&2
+                        exit 1
+			;;
+        esac	
 }
 
 function getId() {
