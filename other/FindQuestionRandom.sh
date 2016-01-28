@@ -14,7 +14,7 @@ if test -z $MODULE; then
 	exit 1
 fi
 
-nbDoss=`cd ../questions; ls -l | grep .txt  | wc -l`
+nbDoss=`cd ../Module/$MODULE/questions; ls -l | grep .txt  | wc -l`
 
 
 while [ $i -lt $nbQS ]
