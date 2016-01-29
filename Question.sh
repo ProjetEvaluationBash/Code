@@ -3,22 +3,16 @@
 source "$CODEROOT/other/EvalLib.sh"
 
 # ID (integer)
-ID=""
 
 # QUESTION (string)
-QUESTION=""
 
 # DIFFICULTY (integer)
-DIFFICULTY=""
 
 # ISEXAMQUESTION (boolean)
-ISEXAMQUESTION=""
 
 # DURATION (float)
-DURATION=""
 
 # TYPE (string)
-TYPE=""
 
 function dokuwikiAddQuestion() {
 	# Extraire parametres POST avec param
@@ -27,7 +21,8 @@ function dokuwikiAddQuestion() {
 	# QUESTION=
 	# VISIBILITY=
 	# DURATION=
-	
+
+	return 0	
 }
 
 function mainAddQuestion() {
@@ -106,29 +101,29 @@ function getElement() {
 
 }
 
-# loadQuestion(questionId)
+# mainLoadQuestion(questionId)
 # necessite QUESTIONPATH et QUESTIONID
 function mainLoadQuestion() {
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
         if test -z $QUESTIONPATH; then
-		fatalError "loadQuestion: QUESTIONPATH non definie !" 1
+		fatalError "mainLoadQuestion: QUESTIONPATH non definie !" 1
         fi
 
 	# Si la variable d'environnement "QUESTIONID" n'est pas definie
 
         if test -z $QUESTIONID; then
-        	fatalError "loadQuestion: QUESTIONID non definie !" 2
+        	fatalError "mainLoadQuestion: QUESTIONID non definie !" 2
 	fi 
 
 	# On verifie si le fichier existe et si c'est un fichier ordinaire
         if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
-        	fatalError "loadQuestion: Le fichier de la question n'existe pas !" 3
+        	fatalError "mainLoadQuestion: Le fichier de la question n'existe pas !" 3
 	fi
 
 	# On verifie si le fichier est lisible par l'utilisateur courant
         if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
-        	fatalError "loadQuestion: Fichier illisible (droits de fichier) !" 4
+        	fatalError "mainLoadQuestion: Fichier illisible (droits de fichier) !" 4
 	fi
 
 	# Lecture du fichier de la question
@@ -150,27 +145,11 @@ function mainLoadQuestion() {
 	return 0
 }
 
-function showQuestion() {
-	
-	# Le fichier de la question existe
+function mainShowQuestion() {
+	echo "Question: $QUESTION"
 
-	# On retrouve le type de la question
-
-	type=`parseQuestionFile "type" $QUESTIONID`
-
-	if test $? -ne 0; then
-        	echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
-        	exit 4
-	fi
-
-	# On retrouve la question
-
-	question=`parseQuestionFile "question" $QUESTIONID`
-
-	if test $? -ne 0; then
-      		echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
-        	exit 4
-	fi		
+	includeSubType
+	showQuestion	
 }
 
 # Inclut "la classe" du type de question
@@ -194,42 +173,22 @@ function includeSubType() {
                         source "$CODEROOT/Script.sh"
                         ;;
                 *)
-                        echo "[EXCEPTION] Unknown question type" >&2
-                        return 1
+			fatalError "includeSubType: Incorrect question type." 1
 			;;
         esac
 
 	return 0
 }
 
-function getId() {
-	echo "$ID"
-}
-
-function getQuestion() {
-	echo "$QUESTION"
-}
-
-function getDifficulty() {
-	echo "$DIFFICULTY"
-}
-
-function isExamQuestion() {
-	echo "$ISEXAMQUESTION"
-}
-
-function getDuration() {
-	echo "$DURATION"
-}
-
-function getType() {
-	echo "$TYPE"
-}
-function toString() {
+function mainToString() {
 	echo "id: $ID"
 	echo "question: $QUESTION"
 	echo "difficulty: $DIFFICULTY"
 	echo "isExamQuestion: $ISEXAMQUESTION"
 	echo "duration: $DURATION"
 	echo "type: $TYPE"
+
+	includeSubType
+	toString
 }
+

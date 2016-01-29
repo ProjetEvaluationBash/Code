@@ -1,6 +1,6 @@
 # Definition des paths
 
-CODEROOT=/home/cuonic/Git/Code
+CODEROOT=/home/lijack/Code
 QUESTIONPATH=$CODEROOT/questions
 
 # Definition du logfile
