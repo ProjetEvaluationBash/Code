@@ -9,14 +9,12 @@ if test -z $MODULE; then
 	exit 1
 fi
 
-echo "veuillez donner les numéros de cours sur lesquels vous voulez génerer un test :"
-read COURSES
-for course in $COURSES; do
-	if [ "$(echo $var | grep "^[ [:digit:] ]*$")"]; then
-		echo "c'est un chiffre"
-	fi
-done 
+#export QUESTIONPATH="$PWD/../Modules/$MODULE/questions"
+echo $QUESTIONPATH
+listQ="`./FindQuestionRandom.sh`"
 
-export COURSES
-
-
+for question in $listeQ; do
+	
+	echo `parseQuestionFile 1 $question`
+		
+done	
