@@ -34,7 +34,8 @@ DOKU_USERS_DIR=$HOME/wiki-data/pages/users
 # L'URL point d'entrée
 DOKU_URL=https://fraise.u-clermont1.fr/info/dokuwiki/doku.php
 
-DOKU_EVAL=$HOME/dokuwiki
+# Répertoire de Code dédié à Dokuwiki (bin + bin/requests)
+DOKU_EVAL=$CODE_DIR/dokuwiki
 
 # Le fichier des logs
 LOG_FILE=$HOME/db-log
