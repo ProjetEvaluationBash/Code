@@ -6,6 +6,8 @@ set -a
 . $HOME/Code/.evalrc
 set +a
 
+CGI_HEADER=0
+
 # Suppression des fichiers temporaires à la fin du script
 # Motif : /tmp/*-$$.tmp ($$ = pid du processus)
 
@@ -38,8 +40,11 @@ userIsProf() {
 
 
 cgiHeader() {
-        echo Content-type: text/html
-        echo 
+	if [ $CGI_HEADER = 0 ]; then
+		CGI_HEADER=1
+        	echo Content-type: text/html
+        	echo 
+	fi
 }
 
 redirect() {
@@ -58,10 +63,41 @@ EOF
 
 }
 
+run() {
+
+        cat << EOF
+<html>
+<head>
+<title></title>
+<meta http-equiv="refresh" content="0; URL=$@">
+</head>
+<body>
+</body>
+ 
+</html>
+EOF
+
+}
+
+
+dokuError() {
+	local out=$DOKU_USERS_DIR/$DokuUser/error.txt
+	local module=$(param module)
+
+	cat << EOF > $out
+====== Erreur ======
+
+$@
+EOF
+	cgiHeader
+        redirect users:$DokuUser:error
+}
+	
 
 # main
 
 . $DOKU_EVAL/bin/bashlib
+. $DOKU_EVAL/bin/libQuestion.sh
 
 if [ -z "$RUN_BIN" ]; then
 	echo "Error : init : variable RUN_BIN is empty !" >&2
