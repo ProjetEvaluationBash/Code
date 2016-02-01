@@ -7,7 +7,9 @@ runRequest() {
 
 	cat << EOF > $out
 ====== Générer un test a propros du module $module ======
-
+	
+	<html
+	
 	* [[$DOKU_CGI?module=$module&action=createTest|Générer mon test]]
 
 EOF
