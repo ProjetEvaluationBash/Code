@@ -21,10 +21,12 @@ Opérations réservées :
 
 Tests :
 
-  * [[https://fraise.u-clermont1.fr/info/cgi-bin/run.sh?module=$module&action=questionsList|Lister les questions]]
-  * [[https://fraise.u-clermont1.fr/info/cgi-bin/run.sh?module=$module&action=executeCommand|Executer une commande]]
-  * [[https://fraise.u-clermont1.fr/info/cgi-bin/run.sh?module=$module&action=executeScript|Executer un script]]
+  * [[$DOKU_CGI?module=$module&action=questionsList|Lister les questions]]
+  * [[$DOKU_CGI?module=$module&action=executeCommand|Executer une commande]]
+  * [[$DOKU_CGI?module=$module&action=executeScript|Executer un script]]
 
+  * [[$DOKU_CGI?module=$module&action=manageExamTest|Gérer les examens]]
+ 
 EOF
 
 fi
