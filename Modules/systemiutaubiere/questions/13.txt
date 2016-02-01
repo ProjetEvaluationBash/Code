@@ -1,0 +1,20 @@
+=== type ===
+compoundcommand
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.5
+
+=== question ===
+Comment afficher tous les processus de l'utilisateur root
+
+=== answer ===
+ps aux | grep root
+
+=== keywords ===
+ps grep

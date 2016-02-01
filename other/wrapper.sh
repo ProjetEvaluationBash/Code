@@ -15,12 +15,18 @@ err_nbarg(){
 }
 
 
+
 while [ $# -gt 1 ]; do
-	eval "export $1" || err_nbarg
+	system "export $1" || err_nbarg
 	shift
 done
+
+<<<<<<< HEAD
 
 $1
 
 
-
+=======
+env
+echo $1
+>>>>>>> 463ce4ca61089e2129e4103c80f1fffcc68ac154

@@ -1,19 +1,42 @@
 #!/bin/bash
 
-source other/EvalLib.sh
+PROGNAME=$(basename $0)
+PROGDIR=$(readlink -m $(dirname $0))
+
+source "$CODEROOT/Question.sh"
+source "$CODEROOT/other/EvalLib.sh"
+
+# AVAILABLEANSWERS (string[])
+
+# ANSWER (integer)
+
+# Necessite QUESTIONPATH et QUESTIONID
+function loadQuestion() {
+	ANSWER=`getElement "$questionFileContents" answer`
+	AVAILABLEANSWERS=()
+
+	local tempAvailableAnswers=`getElement "$questionFileContents" availableAnswers`
+	local i=1
+	
+	while read line; do
+		line=`echo $line | cut -c 3-`
+		
+		AVAILABLEANSWERS+=("$i. $line")
+		i=$(($i + 1))	
+	done <<< "$tempAvailableAnswers"
+}
 
 #Fonction permettant d'évaluer la réponse à une question de type QCM
 
 # EvalAnswer QUESTIONID
 
-set -x
 function evaluateAnswer() {
 
 	# $1
 	# Verification des paramêtres
 	
 	if test $# -ne 1; then
-		echo "Usage: EvalAnswer QUESTIONID" >&2
+		echo "Usage: MCQ : EvalAnswer QUESTIONID" >&2
 		return 1
 	fi
 
@@ -41,6 +64,7 @@ function evaluateAnswer() {
 	return 0	
 }
 
+# Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
 function addQuestion() {
 	nbAnswers=0;
@@ -71,4 +95,24 @@ function addQuestion() {
 			fi
 		fi
 	done
+}
+
+function showQuestion() {
+	echo "=== Reponses possibles ==="
+	
+	for answer in "${AVAILABLEANSWERS[@]}"; do
+		echo "  - $answer"
+	done
+}
+
+function toString() {
+	echo "availableAnswers:"
+	
+	for answer in "${AVAILABLEANSWERS[@]}"; do
+		echo $answer
+	done
+
+	echo "answer: $ANSWER"
+
+	return 0
 }

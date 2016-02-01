@@ -1,0 +1,3 @@
+#!/bin/bash
+
+scp -o NoHostAuthenticationForLocalhost=yes -P 2222 $@

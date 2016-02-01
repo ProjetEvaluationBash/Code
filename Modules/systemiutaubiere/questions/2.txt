@@ -1,0 +1,26 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Dans quelle variable est mémorisé le code de retour du dernier processus terminé ?
+
+=== availableAnswers ===
+  - ?
+  - $
+  - !
+
+=== answer ===
+1
+
+=== keywords ===
+
+variable 

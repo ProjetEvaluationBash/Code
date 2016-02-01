@@ -1,0 +1,26 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Comment appelle ton le repertoire personnel d'un utilisateur ? 
+
+=== availableAnswers ===
+  - house
+  - home
+  - usr
+  - bash
+
+=== answer ===
+2
+
+=== keywords ===
+home

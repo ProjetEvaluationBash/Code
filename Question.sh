@@ -1,61 +1,38 @@
 #!/bin/bash
 
-source Code/other/EvalLib.sh
+source "$CODEROOT/other/EvalLib.sh"
 
 # ID (integer)
-ID=""
 
 # QUESTION (string)
-QUESTION=""
 
 # DIFFICULTY (integer)
-DIFFICULTY=""
 
 # ISEXAMQUESTION (boolean)
-ISEXAMQUESTION=""
 
 # DURATION (float)
-DURATION=""
 
 # TYPE (string)
-TYPE=""
 
-# showQuestion(question : Question)
-#function showQuestion {
-#	return 0
-#}
+function dokuwikiAddQuestion() {
+	# Extraire parametres POST avec param
 
-function addQuestion() {
+	# TEST=
+	# QUESTION=
+	# VISIBILITY=
+	# DURATION=
+
+	return 0	
+}
+
+function mainAddQuestion() {
 	# Lister les types de questions possibles
 	
 	echo "Type de question:"
-	select questionType in 'MCQ' 'CommandName' 'SimpleCommand' 'CompoundCommand' 'Script' 'FreeQuestion'; do
-		case $questionType in
-			'MCQ')
-				source Code/MCQ.sh
-				addQuestion
-				break;;
-			'CommandName')
-
-				break;;
-			'SimpleCommand')
-				
-				break;;
-			'CompoundCommand')
-				
-				break;;
-			'Script')
-				
-				break;;
-			'FreeQuestion')
-							
-				break;;
-			*)
-				# Saisie invalide
-				
-				echo "Saisie invalide."
-				;;
-		esac
+	select TYPE in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
+		if test includeSubType; then
+			break
+		fi	
 	done
 
 	# Saisie de la difficulté de la question
@@ -124,101 +101,95 @@ function getElement() {
 
 }
 
-# loadQuestion(questionId)
-
-function loadQuestion() {
-	questionId=$1
-	
-	# Si l'ID de la question n'est pas passée en argument
-
-	if test $# -eq 0; then
-		fatalError "loadQuestion: questionId non defini."	
-	fi
-
+# mainLoadQuestion(questionId)
+# necessite QUESTIONPATH et QUESTIONID
+function mainLoadQuestion() {
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
         if test -z $QUESTIONPATH; then
-                echo "loadQuestion: QUESTIONPATH non definie !" >&2
-                exit 1
-		fatal
+		fatalError "mainLoadQuestion: QUESTIONPATH non definie !" 1
         fi
-
-	# On verifie si le fichier existe et si c'est un fichier ordinaire
-        if test ! -f "$QUESTIONPATH/$questionId.txt"; then
-                echo "loadQuestion: Fichier non trouvé / n'est pas un fichier ordinaire." >&2
-                return 2
-        fi
-
-	# On verifie si le fichier est lisible par l'utilisateur courant
-        if test ! -r "$QUESTIONPATH/$questionId.txt"; then
-                echo "loadQuestion: Fichier non lisible" >&2
-                return 3
-        fi
-
-	# Lecture du fichier de la question
-	questionFileContents=`cat $QUESTIONPATH/$questionId.txt`
-
-	# Lecture de la question
-	ID=$questionId
-	QUESTION=`getElement "$questionFileContents" question`
-	DIFFICULTY=`getElement "$questionFileContents" difficulty`
-	ISEXAMQUESTION=`getElement "$questionFileContents" isExamQuestion`
-	DURATION=`getElement "$questionFileContents" duration`		
-	TYPE=`getElement "$questionFileContents" type`
-}
-
-function showQuestion() {
-	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
-
-	if test -z $QUESTIONPATH; then
-        	echo "ShowQuestion: QUESTIONPATH non definie !" >&2
-        	exit 1
-	fi
 
 	# Si la variable d'environnement "QUESTIONID" n'est pas definie
 
-	if test -z $QUESTIONID; then
-        	echo "ShowQuestion: QUESTIONID non definie !" >&2
-        	exit 2
+        if test -z $QUESTIONID; then
+        	fatalError "mainLoadQuestion: QUESTIONID non definie !" 2
+	fi 
+
+	# On verifie si le fichier existe et si c'est un fichier ordinaire
+        if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
+        	fatalError "mainLoadQuestion: Le fichier de la question n'existe pas !" 3
 	fi
 
-	# La variable d'environnement "QUESTIONID" est definie
-	# Lire le fichier de la question
-
-	questionData=`cat $QUESTIONPATH/$QUESTIONID.txt`
-
-	# Si le fichier de la question n'existe pas
-
-	if test $? -ne 0; then
-        	echo "ShowQuestion: Le fichier de la question $QUESTIONID n'existe pas" >&2
-        	exit 3
+	# On verifie si le fichier est lisible par l'utilisateur courant
+        if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
+        	fatalError "mainLoadQuestion: Fichier illisible (droits de fichier) !" 4
 	fi
 
-	# Le fichier de la question existe
+	# Lecture du fichier de la question
+	questionFileContents=`cat $QUESTIONPATH/$QUESTIONID.txt`
 
-	# On retrouve le type de la question
+	# Lecture de la question
+	ID=$QUESTIONID
+	QUESTION=`getElement "$questionFileContents" question`
+	DIFFICULTY=`getElement "$questionFileContents" difficulty`
+	VISIBILITY=`getElement "$questionFileContents" visibility`
+	DURATION=`getElement "$questionFileContents" duration`		
+	TYPE=`getElement "$questionFileContents" type`
 
-	type=`parseQuestionFile "type" $QUESTIONID`
+	includeSubType
 
-	if test $? -ne 0; then
-        	echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
-        	exit 4
-	fi
+	# On appelle la fonction loadQuestion du type de la question
+	loadQuestion
 
-	# On retrouve la question
-
-	question=`parseQuestionFile "question" $QUESTIONID`
-
-	if test $? -ne 0; then
-      		echo "ShowQuestion: parseQuestionFile: erreur rencontrée" >&2
-        	exit 4
-	fi		
+	return 0
 }
 
-function toString() {
+function mainShowQuestion() {
+	echo "=== Question ==="
+	echo "$QUESTION"
+
+	includeSubType
+	showQuestion	
+}
+
+# Inclut "la classe" du type de question
+# Necessite $TYPE
+
+function includeSubType() {
+	case $TYPE in
+                'mcq')
+                        source "$CODEROOT/MCQ.sh"
+                        ;;
+                'commandname')
+                        source "$CODEROOT/CommandName.sh"
+                        ;;
+                'compoundcommand')
+                        source "$CODEROOT/CompoundCommand.sh"
+                        ;;
+                'freequestion')
+                        source "$CODEROOT/FreeQuestion.sh"
+                        ;;
+                'script')
+                        source "$CODEROOT/Script.sh"
+                        ;;
+                *)
+			fatalError "includeSubType: Incorrect question type." 1
+			;;
+        esac
+
+	return 0
+}
+
+function mainToString() {
 	echo "id: $ID"
 	echo "question: $QUESTION"
 	echo "difficulty: $DIFFICULTY"
 	echo "isExamQuestion: $ISEXAMQUESTION"
 	echo "duration: $DURATION"
+	echo "type: $TYPE"
+
+	includeSubType
+	toString
 }
+

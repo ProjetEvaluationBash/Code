@@ -1,0 +1,26 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Quelle commande permet de supprimer un repertoire vide ? 
+
+=== availableAnswers ===
+  - rmdir
+  - rm
+  - mv
+  - pwd
+
+=== answer ===
+1
+
+=== keywords ===
+rmdir

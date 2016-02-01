@@ -2,18 +2,44 @@
 
 . other/EvalLib.sh
 
-# addQuestion()
-function addQuestion {
+# Fonction permettant l'évaluation d'une réponse à une question de type SimpleCommand
+#EvalAnswer QUESTION ID
 
-	# Saisie de la question à ajouter
+
+#set -x
+function EvaluateAnswer() {
 	
-	echo "Saisir la question"
-	read question
+	# Vérif des paramêtres
 	
-	while test "${#question}" -lt 15 -o "${#question}" -gt 512; do
-		echo "Usage : Question : taille comprise entre 15 et 512 caractères"
-		read question
-	done
+	if test $# -ne 1; then
+		echo "Usage : SimpleCommand : EvalAnswer QUESTION ID" >&2
+		return 1
+	fi
+	
+	# saisie de la réponse
+	
+	echo "Veuillez rentrer une réponse"
+	read answer
+	
+	# Récupération de la bonne réponse
+	
+	rightAnswer=`parseQuestionFile "answer" $1`
+	
+	# Comparaison entre les deux réponses
+	if test "$answer" = "$rightAnswer"; then
+		echo "Bonne réponse !"
+		
+	else 	echo " Mauvaise réponse "
+	fi
+		
+	return 0
+	
+}
+
+# Appelé par la fonction "AddQuestion" de Question.sh
+# Permet de récuperé la réponse à une question SimpleCommand lors de l'ajout
+# addQuestion()
+function addQuestion() {
 	
 	#Saisie de la réponse
 	
@@ -25,7 +51,11 @@ function addQuestion {
 		read answer
 	done
 	
+	echo answer
 	
         return 0
 }
 
+function showQuestion() {
+	return 0
+}

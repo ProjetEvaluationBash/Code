@@ -1,6 +1,6 @@
 # Definition des paths
 
-CODEROOT=/home/cuonic/Git/Code
+CODEROOT=/home/lijack/Code
 QUESTIONPATH=$CODEROOT/questions
 
 # Definition du logfile
@@ -10,3 +10,44 @@ LOGFILE=$CODEROOT/log.txt
 # Definition des administrateurs du système
 
 ADMINS="admin1 admin2"
+
+## Ajouts
+
+# Les utilisateurs PROFS
+PROFS="gudavala prof1 prof2 prof3 prof4 prof5 prof6"
+
+# Le répertoire du projet
+CODE_DIR=$HOME/Code
+
+# Le répertoire des exécutables du projets
+RUN_BIN=$CODE_DIR/bin
+
+# Le répertoire des données dokuwiki
+DOKU_DATA_DIR=$HOME/wiki-data
+
+# Le répertoire de la configuration de dokuwiki
+DOKU_CONF_DIR=$HOME/wiki-conf
+
+# Le répertoire des pages dynamiques des utilisateurs
+DOKU_USERS_DIR=$HOME/wiki-data/pages/users
+
+# L'URL point d'entrée
+DOKU_URL=https://fraise.u-clermont1.fr/info/dokuwiki/doku.php
+
+# L'URL du CGI
+DOKU_CGI=https://fraise.u-clermont1.fr/info/cgi-bin/run.sh
+
+# Répertoire de Code dédié à Dokuwiki (bin + bin/requests)
+DOKU_EVAL=$CODE_DIR/dokuwiki
+
+# Le fichier des logs
+LOG_FILE=$HOME/db-log
+
+# Le fichier des utilisateurs connectés
+DB_FILE=$HOME/db
+
+# Le répertoire des utilisateurs (modèle)
+DB_USERS_DIR=$HOME/db-users
+
+# Le répertoire des modules
+DB_MODULES_DIR=$CODE_DIR/Modules

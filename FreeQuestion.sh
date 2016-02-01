@@ -62,4 +62,6 @@ function addQuestion {
 	done
 }
 
-	
+function showQuestion() {
+	return 0
+}	

@@ -9,10 +9,12 @@ if test -z $MODULE; then
 	exit 1
 fi
 
-echo "veuillez donner les numéros de cours sur lesquels vous voulez génerer un test :"
-read courses
+#export QUESTIONPATH="$PWD/../Modules/$MODULE/questions"
+echo $QUESTIONPATH
+listQ="`./FindQuestionRandom.sh`"
 
-for course in $courses 
-	if
-
-
+for question in $listeQ; do
+	
+	echo `parseQuestionFile 1 $question`
+		
+done	
