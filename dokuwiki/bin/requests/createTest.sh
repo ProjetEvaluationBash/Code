@@ -24,7 +24,8 @@ EOF
 
 
 	done
-
+	
+	cgiHeader
 	redirect users:$DokuUser:$dokuName
 }
 
