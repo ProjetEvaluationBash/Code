@@ -29,7 +29,7 @@ if [ ! -d $DOKU_USERS_DIR/$user ]; then
 	file="$DOKU_CONF_DIR/acl.auth.php"
 	grep -v "users:$user " $file >> $tmp
 	echo "users:$user:* @ALL 0" >> $tmp
-	echo "users:$user:* $user 1" >> $tmp
+	echo "users:$user:* $user 2" >> $tmp
 	mv $tmp $file
 fi
 
