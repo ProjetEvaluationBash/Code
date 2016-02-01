@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#
+
 
 runRequest(){
 	local dokuName=create_exam

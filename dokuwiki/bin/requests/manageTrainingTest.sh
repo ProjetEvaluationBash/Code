@@ -11,7 +11,7 @@ runRequest() {
 	* [[$DOKU_CGI?module=$module&action=createTest|Générer mon test]]
 
 EOF
-		
+	cgi-Header		
 	redirect users:$DokuUser:$dokuName
 
 }
