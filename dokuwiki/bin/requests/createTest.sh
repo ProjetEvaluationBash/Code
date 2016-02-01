@@ -12,7 +12,7 @@ runRequest(){
 
 	
 
-	listQ="`./$HOME/Code/other/FindQuestionRandom.sh`"
+	listQ="`cd $HOME/Code/other; ./FindQuestionRandom.sh`"
 	
 
 
