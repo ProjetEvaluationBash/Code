@@ -1,7 +1,7 @@
 #! /bin/bash
 
 runRequest() {
-	local dokuName=manangeTrainingTest
+	local dokuName=manaage_training_test
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 
@@ -9,8 +9,7 @@ runRequest() {
 
 	* [[$DOKU_CGI?module=$module&action=createTest|Générer mon test]]
 
-
-	EOF
+EOF
 	
 	redirect users:$DokuUser:$dokuName
 
