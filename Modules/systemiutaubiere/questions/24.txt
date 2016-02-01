@@ -5,7 +5,7 @@ commandname
 1
 
 === visibility ===
-training
+exam
 
 === duration ===
 0.3
