@@ -20,6 +20,7 @@ runRequest() {
 Nom de l'examem: $DokuUser-
 <input type="text" name="name" value="">
 <p>
+</br></br>
 Liste des questions :
 <input type="text" name="list" value="">
 <p>
