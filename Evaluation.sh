@@ -7,7 +7,8 @@ SCORE=""
 MAXSCORE=""
 
 # COMMENT (string)
-COMMENT=""
+echo "Commentaire :"
+read commentaire
 
 # evaluateAnswer(answer : string)
 function evaluateAnswer {
