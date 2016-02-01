@@ -97,6 +97,14 @@ function addQuestion() {
 	done
 }
 
+function showQuestion() {
+	echo "=== Reponses possibles ==="
+	
+	for answer in "${AVAILABLEANSWERS[@]}"; do
+		echo "  - $answer"
+	done
+}
+
 function toString() {
 	echo "availableAnswers:"
 	

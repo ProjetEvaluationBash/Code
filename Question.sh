@@ -146,7 +146,8 @@ function mainLoadQuestion() {
 }
 
 function mainShowQuestion() {
-	echo "Question: $QUESTION"
+	echo "=== Question ==="
+	echo "$QUESTION"
 
 	includeSubType
 	showQuestion	

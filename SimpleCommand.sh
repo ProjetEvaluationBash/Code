@@ -56,4 +56,6 @@ function addQuestion() {
         return 0
 }
 
-EvaluateAnswer 29
+function showQuestion() {
+	return 0
+}

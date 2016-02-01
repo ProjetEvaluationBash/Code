@@ -24,3 +24,7 @@ function addQuestion() {
 	echo "$question\n$answer"
 	return 0		
 }
+
+function showQuestion() {
+	return 0
+}
