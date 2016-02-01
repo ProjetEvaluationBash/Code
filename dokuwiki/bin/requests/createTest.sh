@@ -14,8 +14,8 @@ runRequest(){
 
 	listQ="`./$HOME/Code/other/FindQuestionRandom.sh`"
 	
-<<<<<<< HEAD
-=======
+
+
 	mkdir -p $testsDir/$name
 	echo "$listQ" > $testsDir/$name/list
 	mkdir $testsDir/$name/questions
@@ -25,7 +25,7 @@ runRequest(){
 	done
 
 	
->>>>>>> 511dae262189cc010ab62445894c4738301ca191
+
 	cat << EOF > $out
 
 ====== Création d'un entraînement du module $module ======
