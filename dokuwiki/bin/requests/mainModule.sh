@@ -15,7 +15,7 @@ if userIsProf; then
 
 Opérations réservées :
 
-  * Ajouter des questions
+  * [[$DOKU_CGI?module=$module&action=addQuestionForm|Ajouter une question]]
   * Consulter les notes
   * Créer un examen
 
