@@ -11,7 +11,7 @@ runRequest(){
 
 	
 
-	listQ="`./$DB_USERS_DIR/$DokuUser/other/FindQuestionRandom.sh`"
+	listQ="`./$HOME/Code/other/FindQuestionRandom.sh`"
 
 	cat << EOF > $out
 
@@ -19,7 +19,8 @@ runRequest(){
 
 EOF
 	for question in $listeQ; do
-
+		
+		
         	showQuestionItem $DB_USERS_DIR/$DokuUser/$module/exams/$exam/questions/$question.txt
 
 
