@@ -6,7 +6,7 @@ runRequest() {
 
         cat << EOF > $out
 ====== Module ($module) ======
-  * [[$DOKU_CGI?module=$module&action=manageTrainingTest|Faire un entrainement]]
+  * [[$DOKU_CGI?module=$module&action=manageTrainingTest| Faire un entraînement]]
   * Faire un examen
 EOF
 
