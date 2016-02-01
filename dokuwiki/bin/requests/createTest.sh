@@ -10,9 +10,9 @@ runRequest(){
 
 	local testsDir=$DB_USERS_DIR/$DokuUser/$module/tests
 
-	
+	export MODULE="$module"
 
-	listQ="`cd $HOME/Code/other; ./FindQuestionRandom.sh`"
+	listQ="`./FindQuestionRandom.sh`"
 	
 
 

@@ -29,7 +29,7 @@ fi
 
 
 #Calcule le nombre de questions présentent dans le dossier questions
-nbDoss=`cd ../Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
+nbDoss=`cd $HOME/Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
 
 
 #Boucle permettant l'ajout dans la liste
