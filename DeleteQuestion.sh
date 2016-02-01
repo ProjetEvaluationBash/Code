@@ -10,6 +10,6 @@ if nbr > nbDoss ; then
 	exit (1)
 fi
 
-system("rm nbr.txt")
+system("rm $nbr.txt")
 
 
