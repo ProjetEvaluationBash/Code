@@ -2,7 +2,7 @@
 
 runRequest() {
 	local dokuName=manange_training
-	local out=$DOKU_USER_DIR/$dokuName.txt
+	local out=$DOKU_USERS_DIR/DokuUser/$dokuName.txt
 	local module=$(param module)
 
 	cat << EOF > $out
