@@ -2,7 +2,8 @@
 
 runRequest() {
 	local out=$DOKU_USERS_DIR/$DokuUser/modules.txt
-	local list="Unix-01 C-01 C++-01"
+	#local list="Unix-01 C-01 C++-01"
+	local list=$(ls $DB_MODULES_DIR)
 
         cat << EOF > $out
 ====== Choix du module ======
