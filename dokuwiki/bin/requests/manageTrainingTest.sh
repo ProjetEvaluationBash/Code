@@ -11,6 +11,7 @@ runRequest() {
 
 
 	EOF
-
+	
+	redirect users:$DokuUser:$dokuName
 
 }
