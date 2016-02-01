@@ -1,9 +1,12 @@
-#!/bin/sh
-
-
-### FIXME
+#!/bin/bash
 
 runRequest() {
+	local dokuName=questions_list
+	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+        local module=$(param module)
+
+	local dbQuestionsDir=$DB_MODULES_DIR/$module/questions
+	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
 
         if ! userIsProf; then
                 cgiHeader
@@ -11,24 +14,24 @@ runRequest() {
                 return 1
         fi
 
-        local out=$DOKU_USERS_DIR/$DokuUser/questions.txt
-        local list="1 2 3 4 5 6 7 8 9 10 11"
-	local module=$(param module)
-
         cat << EOF > $out
 ====== Liste des questions du module $module ======
 EOF
 
-        for q in $list; do
+        # Importe les questions (liens symboliques)
 
-                echo "  * [[https://fraise.u-clermont1.fr/info/cgi-bin/run.sh?module=$module&question=$q&maction=showQuestion|$q]]" >> $out
+        rm -Rf $dokuUserQuestionsDir
+        mkdir $dokuUserQuestionsDir
+        for i in $(cd $dbQuestionsDir; ls *.txt); do
+                ln -sf $dbQuestionsDir/$i $dokuUserQuestionsDir/$i
         done
 
+        for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
+                showQuestionItem $dokuUserQuestionsDir/$i.txt
+        done
 
         cgiHeader
-        redirect users:$DokuUser:questions
+	redirect users:$DokuUser:$dokuName
 
 }
-
-
 
