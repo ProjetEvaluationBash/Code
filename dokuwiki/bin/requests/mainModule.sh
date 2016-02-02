@@ -6,7 +6,7 @@ runRequest() {
 
         cat << EOF > $out
 ====== Module ($module) ======
-  * Faire un entrainement
+  * [[$DOKU_CGI?module=$module&action=manageTrainingTest| Faire un entraînement]]
   * Faire un examen
 EOF
 
@@ -15,8 +15,8 @@ if userIsProf; then
 
 Opérations réservées :
 
-  * Ajouter des questions
-  * Consulter les notes
+  * [[$DOKU_CGI?module=$module&action=addQuestionForm|Ajouter une question]]
+  * [[$DOKU_CGI?module=$module&action=consultMark|Consulter les notes]]
   * Créer un examen
 
 Tests :

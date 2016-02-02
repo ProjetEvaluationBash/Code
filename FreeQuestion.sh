@@ -2,6 +2,23 @@
 
 source other/EvalLib.sh
 
+#Fonction permettant d'evaluer la reponse à une question de type FreeQuestion
+
+set -x
+function evaluateAnswer(){
+	#Verification des paramètres
+	if test $# -ne 1; then
+		echo "Usage: EvalAnswer QUESTIONID" >&2
+		return 1
+	fi
+
+	#Saisie de la réponse
+	echo "Veuillez rentrer une réponse"
+	read answer
+
+	# Récuperation des mots clés 
+
+
 #Fonction permettant l'ajout du'une question de type FreeQuestion
 
 function addQuestion {

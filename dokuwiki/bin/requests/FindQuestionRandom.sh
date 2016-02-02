@@ -8,7 +8,7 @@
 
 PROGNAME=$(basename $(readlink -f $0))
 
-. EvalLib.sh
+
 
 
 
@@ -27,9 +27,13 @@ if test -z $MODULE; then
 	exit 1
 fi
 
+if test -z $HOME; then
+	echo $PROGNAME": Home non défini" >&2
+	exit 1	
+fi
 
 #Calcule le nombre de questions présentent dans le dossier questions
-nbDoss=`cd ../Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
+nbDoss=`cd $HOME/Code/Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
 
 
 #Boucle permettant l'ajout dans la liste
