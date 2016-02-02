@@ -14,66 +14,151 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # TYPE (string)
 
+# Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
 function dokuwikiAddQuestion() {
-	# Extraire parametres POST avec param
+	local question=$(param question)
+    local duration=$(param duration)
+    local difficulty=$(param difficulty)
+    local visibility=$(param visibility)
+    local type=$(param type)
 
-	# TEST=
-	# QUESTION=
-	# VISIBILITY=
-	# DURATION=
+    if test ! validateType $type; then
+        dokuError $ERROR_MESSAGE
+    fi
 
-	return 0	
+    if test ! validateQuestion $question; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateDifficulty $difficulty; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateVisibility $visibility; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateDuration $duration; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    return 0
+}
+
+# Permet d'ajouter une question en ligne de commande
+function cliAddQuestion() {
+    # Choix du type de la question
+
+    echo "Type de question:"
+
+    select type in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
+        if test validateType $type; then
+            break
+        else
+            echo "[ERREUR] $ERROR_MESSAGE" >&2
+        fi
+    done
+
+    # Choix de la difficulté
+
+    echo "Difficultés possible:"
+    echo "1. Debutant"
+    echo "2. Intermediaire"
+    echo "3. Expert"
+
+    echo "Choisir la difficulté de la question: "
+    read difficulty
+
+    while test ! validateDifficulty $difficulty; do
+        echo "[ERREUR] $ERROR_MESSAGE" >&2
+        echo "Choisir la difficulté de la question: "
+        read difficulty 
+    done
+
+    # Choix de la visibilité
+
+    echo "Visibilité de la question:"
+
+    select visibility in 'hidden' 'exam' 'training'; do
+        if test validateVisibility $visibility; then
+            break
+        else
+            echo "[ERREUR] $ERROR_MESSAGE" >&2
+        fi
+    done
+
+    # Choix de la durée
+
+    echo "Saisir la durée de la question (en minutes) (float): "
+    read duration
+
+    while test ! validateDuration $duration; do
+        echo "[ERREUR] $ERROR_MESSAGE" >&2
+        echo "Saisir la durée de la question (en minutes) (float): "
+        read duration
+    done
+}
+
+# Verifie que le type de la question est correct
+function validateType() {
+    local type=$1
+
+    if test "$type" != "mcq" -a "$type" != "commandname" -a "$type" != "simplecommand" -a "$type" != "compoundcommand" -a "$type" != "script" -a "$type" != "freequestion"; then
+        ERROR_MESSAGE="Type invalide."
+        return 1
+    fi
+}
+
+# Verifie la longueur de la question
+function validateQuestion() {
+    local question=$1
+
+    if test ${#question} -le 5; then
+        ERROR_MESSAGE="Question trop court."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la difficulté de la question est valide
+function validateDifficulty() {
+    local difficulty=$1
+
+    if test $difficulty -lt 1 -o $difficulty -gt 3; then
+        ERROR_MESSAGE="Difficulté invalide."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la visibilité de la question est valide
+function validateVisibility() {
+    local visibility=$1
+
+    if test "$visibility" != "hidden" -a "$visibility" != "training" -a "$visibility" != "exam"; then
+        ERROR_MESSAGE="Visibilité invalide."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la durée de la question est valide
+function validateDuration() {
+    local duration=$1
+
+    if test $duration -lt 0 -o $duration -gt 120; then
+        ERROR_MESSAGE="Durée invalide."
+        return 1
+    fi
+
+    return 0
 }
 
 function mainAddQuestion() {
-	# Lister les types de questions possibles
-	
-	echo "Type de question:"
-	select TYPE in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
-		if test includeSubType; then
-			break
-		fi	
-	done
-
-	# Saisie de la difficulté de la question
-	
-	echo "Difficultés possible:"
-	echo "1. Debutant"
-	echo "2. Intermediaire"
-	echo "3. Expert"
-
-	echo "Choisir la difficulté de la question: "
-	read difficulty
-
-	# Validation de la difficulté
-
-	while test $difficulty -lt 1 -o $difficulty -gt 3; do
-		echo "Difficulté invalide." >&2
-		read difficulty	
-	done
-
-	# On indique si la question est une question d'examen ou pas
-
-	echo "La question est-elle une question d'examen ? [o/N]"
-
-	read -r response
-	response=${response,,} # Mettre la reponse en minuscule
-
-	if [[ $response =~ ^(oui|o)$ ]]; then
-		isExamQuestion="true"
-	else
-		isExamQuestion="false"
-	fi
-
-	# Saisie de la durée de la question
-
-	echo "Saisir la durée de la question (en minutes) (float): "
-	read duration
-
-	#if test $duration -lt 0	
-
-	# Test	
-	echo "isExamQuestion: $isExamQuestion"	
+    # TODO
 }
 
 # getElement(questionFileContents, element)
