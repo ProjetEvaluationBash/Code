@@ -15,7 +15,7 @@ source "$CODEROOT/other/EvalLib.sh"
 # TYPE (string)
 
 # Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
-function dokuwikiAddQuestion() {
+function mainDokuwikiAddQuestion() {
 	local question=$(param question)
     local duration=$(param duration)
     local difficulty=$(param difficulty)
@@ -42,11 +42,18 @@ function dokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
+    ID=`getNextId`
+    QUESTION=$question
+    DIFFICULTY=$difficulty
+    DURATION=$duration
+    VISIBILITY=$visibility
+    TYPE=$type
+
     return 0
 }
 
 # Permet d'ajouter une question en ligne de commande
-function cliAddQuestion() {
+function mainCliAddQuestion() {
     # Choix du type de la question
 
     echo "Type de question:"
@@ -157,6 +164,10 @@ function validateDuration() {
     return 0
 }
 
+function getNextId() {
+    return $RANDOM
+}
+
 function mainAddQuestion() {
     # TODO
 }
@@ -244,19 +255,19 @@ function mainShowQuestion() {
 function includeSubType() {
 	case $TYPE in
                 'mcq')
-                        source "$CODEROOT/MCQ.sh"
+                        source "$CODE_DIR/MCQ.sh"
                         ;;
                 'commandname')
-                        source "$CODEROOT/CommandName.sh"
+                        source "$CODE_DIR/CommandName.sh"
                         ;;
                 'compoundcommand')
-                        source "$CODEROOT/CompoundCommand.sh"
+                        source "$CODE_DIR/CompoundCommand.sh"
                         ;;
                 'freequestion')
-                        source "$CODEROOT/FreeQuestion.sh"
+                        source "$CODE_DIR/FreeQuestion.sh"
                         ;;
                 'script')
-                        source "$CODEROOT/Script.sh"
+                        source "$CODE_DIR/Script.sh"
                         ;;
                 *)
 			fatalError "includeSubType: Incorrect question type." 1
