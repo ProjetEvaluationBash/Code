@@ -256,25 +256,25 @@ function mainShowQuestion() {
 
 function includeSubType() {
 	case $TYPE in
-                'mcq')
-                        source "$CODE_DIR/MCQ.sh"
-                        ;;
-                'commandname')
-                        source "$CODE_DIR/CommandName.sh"
-                        ;;
-                'compoundcommand')
-                        source "$CODE_DIR/CompoundCommand.sh"
-                        ;;
-                'freequestion')
-                        source "$CODE_DIR/FreeQuestion.sh"
-                        ;;
-                'script')
-                        source "$CODE_DIR/Script.sh"
-                        ;;
-                *)
-			fatalError "includeSubType: Incorrect question type." 1
-			;;
-        esac
+        'mcq')
+            source "$CODE_DIR/MCQ.sh"
+            ;;
+        'commandname')
+            source "$CODE_DIR/CommandName.sh"
+            ;;
+        'compoundcommand')
+            source "$CODE_DIR/CompoundCommand.sh"
+            ;;
+        'freequestion')
+            source "$CODE_DIR/FreeQuestion.sh"
+            ;;
+        'script')
+            source "$CODE_DIR/Script.sh"
+            ;;
+        *)
+	       dokuError "TYPE invalide: $TYPE"
+	       ;;
+    esac
 
 	return 0
 }
