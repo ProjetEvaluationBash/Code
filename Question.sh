@@ -42,11 +42,10 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
-    ISQUESTIONCALLED="YES2"
-    return 0
-
-
     TYPE=$type
+
+    ISQUESTIONCALLED="YES3"
+    return 0
 
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
