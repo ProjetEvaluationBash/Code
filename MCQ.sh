@@ -11,10 +11,11 @@ function dokuwikiAddQuestion() {
 	local availableAnswers=$(param availableAnswers)
 	local availableAnswersTrue=$(param availableAnswersTrue)
 
-	ISQUESTIONCALLED="YES5"
-    return 0
+	ISMCQCALLED="YES"
 
-	ISMCQCALLED="YES !"
+	ISQUESTIONCALLED="YES4"
+    return 0
+    
 	AVAILABLEANSWERS=$availableAnswers
 	AVAILABLEANSWERSTRUE=$availableAnswersTrue
 
