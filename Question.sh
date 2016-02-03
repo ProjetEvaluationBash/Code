@@ -42,7 +42,7 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
-    ID=`getNextId`
+    ID=$RANDOM
     QUESTION=$question
     DIFFICULTY=$difficulty
     DURATION=$duration
@@ -162,10 +162,6 @@ function validateDuration() {
     fi
 
     return 0
-}
-
-function getNextId() {
-    return $RANDOM
 }
 
 function mainAddQuestion() {
