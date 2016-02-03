@@ -16,14 +16,14 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
 function mainDokuwikiAddQuestion() {
-	ISQUESTIONCALLED="YES"
-    return 0
-
     local question=$(param question)
     local duration=$(param duration)
     local difficulty=$(param difficulty)
     local visibility=$(param visibility)
     local type=$(param type)
+
+    ISQUESTIONCALLED="YES"
+    return 0
 
     if test ! validateType $type; then
         dokuError $ERROR_MESSAGE
