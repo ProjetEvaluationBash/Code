@@ -22,9 +22,6 @@ function mainDokuwikiAddQuestion() {
     local visibility=$(param visibility)
     local type=$(param type)
 
-    ISQUESTIONCALLED="YES"
-    return 0
-
     if test ! validateType $type; then
         dokuError $ERROR_MESSAGE
     fi
@@ -44,6 +41,9 @@ function mainDokuwikiAddQuestion() {
     if test ! validateDuration $duration; then
         dokuError $ERROR_MESSAGE
     fi
+
+    ISQUESTIONCALLED="YES2"
+    return 0
 
 
     TYPE=$type
