@@ -42,11 +42,17 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
+    dokuError "Test 1!!!!"
+
     TYPE=$type
+
+    dokuError "Test 2 !!!!"
 
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
     dokuwikiAddQuestion
+
+    dokuError "Test 3 !!!!"
 
     ID=$RANDOM
     QUESTION=$question
@@ -257,7 +263,6 @@ function mainShowQuestion() {
 function includeSubType() {
 	case $TYPE in
         'mcq')
-            dokuError "MCQ appellé !!!!"
             source "$CODE_DIR/MCQ.sh"
             ;;
         'commandname')
