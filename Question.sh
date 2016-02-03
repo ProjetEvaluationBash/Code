@@ -44,9 +44,6 @@ function mainDokuwikiAddQuestion() {
 
     TYPE=$type
 
-    ISQUESTIONCALLED="YES3"
-    return 0
-
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
     dokuwikiAddQuestion
@@ -171,10 +168,6 @@ function validateDuration() {
     fi
 
     return 0
-}
-
-function mainAddQuestion() {
-    # TODO
 }
 
 # getElement(questionFileContents, element)
