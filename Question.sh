@@ -42,6 +42,8 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
+    TYPE=$type
+
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
     dokuwikiAddQuestion
@@ -51,7 +53,7 @@ function mainDokuwikiAddQuestion() {
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility
-    TYPE=$type
+    
 
     return 0
 }
