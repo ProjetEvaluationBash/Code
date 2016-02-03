@@ -3,16 +3,15 @@
 PROGNAME=$(basename $0)
 PROGDIR=$(readlink -m $(dirname $0))
 
-source "$CODEROOT/Question.sh"
-source "$CODEROOT/other/EvalLib.sh"
-
 # AVAILABLEANSWERS (string[])
 
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
-	local availableAnswer=$(param availableAnswers)
+	local availableAnswers=$(param availableAnswers)
 	local availableAnswersTrue=$(param availableAnswersTrue)
+
+	dokuError "MCQ appellé !!!!"
 
 	ISMCQCALLED="YES !"
 	AVAILABLEANSWERS=$availableAnswers
