@@ -257,6 +257,7 @@ function mainShowQuestion() {
 function includeSubType() {
 	case $TYPE in
         'mcq')
+            dokuError "MCQ appellé !!!!"
             source "$CODE_DIR/MCQ.sh"
             ;;
         'commandname')
