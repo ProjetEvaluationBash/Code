@@ -27,4 +27,6 @@ Visibility: $VISIBILITY
 Type: $TYPE
 
 EOF
+
+    redirect users:$DokuUser:$dokuName
 }
