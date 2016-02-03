@@ -46,7 +46,6 @@ Type:
         <option value="freequestion">Question libre</option>
         <option value="script">Script</option>
 </select><br><br>
-<input type="submit" value="Créer"><br><br>
 
 <h3>QCM</h3>
 
@@ -57,6 +56,7 @@ Reponses possibles:<br>
 4: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
 5: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br><br>
 
+<input type="submit" value="Créer"><br><br>
 </form>
 </html>
 EOF
