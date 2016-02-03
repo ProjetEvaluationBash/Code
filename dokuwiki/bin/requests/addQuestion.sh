@@ -26,6 +26,7 @@ Difficulty: $DIFFICULTY
 Visibility: $VISIBILITY
 Type: $TYPE
 
+isQuestionCalled: $ISQUESTIONCALLED
 isMcqCalled: $ISMCQCALLED
 availableAnswers: $AVAILABLEANSWERS
 availableAnswersTrue: $AVAILABLEANSWERSTRUE

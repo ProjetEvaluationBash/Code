@@ -16,7 +16,10 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
 function mainDokuwikiAddQuestion() {
-	local question=$(param question)
+	ISQUESTIONCALLED="YES"
+    return 0
+
+    local question=$(param question)
     local duration=$(param duration)
     local difficulty=$(param difficulty)
     local visibility=$(param visibility)
@@ -42,17 +45,12 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
-    dokuError "Test 1!!!!"
 
     TYPE=$type
-
-    dokuError "Test 2 !!!!"
 
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
     dokuwikiAddQuestion
-
-    dokuError "Test 3 !!!!"
 
     ID=$RANDOM
     QUESTION=$question
