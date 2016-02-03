@@ -14,6 +14,7 @@ function dokuwikiAddQuestion() {
 	local availableAnswer=$(param availableAnswers)
 	local availableAnswersTrue=$(param availableAnswersTrue)
 
+	ISMCQCALLED="YES !"
 	AVAILABLEANSWERS=$availableAnswers
 	AVAILABLEANSWERSTRUE=$availableAnswersTrue
 
