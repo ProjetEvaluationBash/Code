@@ -4,7 +4,7 @@
 # Appelé lorsque le formulaire d'ajout de question est soumis
 
 runRequest() {
-    local dokuName=add_question_form
+    local dokuName=add_question
     local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
     local module=$(param module)
 
