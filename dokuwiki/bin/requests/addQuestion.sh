@@ -26,6 +26,9 @@ Difficulty: $DIFFICULTY
 Visibility: $VISIBILITY
 Type: $TYPE
 
+availableAnswers: $AVAILABLEANSWERS
+availableAnswersTrue: $AVAILABLEANSWERSTRUE
+
 EOF
 
     redirect users:$DokuUser:$dokuName

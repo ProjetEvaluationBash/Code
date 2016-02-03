@@ -10,6 +10,16 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # ANSWER (integer)
 
+function dokuwikiAddQuestion() {
+	local availableAnswer=$(param availableAnswers)
+	local availableAnswersTrue=$(param availableAnswersTrue)
+
+	AVAILABLEANSWERS=$availableAnswers
+	AVAILABLEANSWERSTRUE=$availableAnswersTrue
+
+	return 0
+}
+
 # Necessite QUESTIONPATH et QUESTIONID
 function loadQuestion() {
 	ANSWER=`getElement "$questionFileContents" answer`
@@ -66,7 +76,7 @@ function evaluateAnswer() {
 
 # Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
-function addQuestion() {
+function cliAddQuestion() {
 	nbAnswers=0;
 	
 	# Ajouter les reponses possibles
@@ -74,12 +84,12 @@ function addQuestion() {
 		# Saisie d'une reponse possible
 		echo ""
 		echo "Saisir une reponse possible"
-		read answers[nbAnswers]
-		
-		# Validation de la reponse possible saisie
-		while test "${#question}" -lt 1 -o "${#question}" -gt 512; do
-			echo "Reponse invalide. Resaisir la reponse:"
-			read question
+		read answers[$nbAnswers]
+
+		while test not validateAvailableAnswer $answers[$nbAnswers]; do
+			echo "[ERREUR] Response possible invalide."
+			echo "Saisir une reponse possible: "
+			read answers[$nbAnswers]
 		done
 				
 		# Incrementer le nombre de reponses possibles
@@ -95,6 +105,16 @@ function addQuestion() {
 			fi
 		fi
 	done
+}
+
+function validateAvailableAnswer() {
+	local availableAnswer=$1
+
+	if test "${#question}" -lt 1 -o "${#question}" -gt 512; then
+		return 1
+	fi
+
+	return 0
 }
 
 function showQuestion() {

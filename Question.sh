@@ -42,6 +42,10 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
+    # Inclure le sous-type en question et appeller la methode correspondante
+    includeSubType
+    dokuwikiAddQuestion
+
     ID=$RANDOM
     QUESTION=$question
     DIFFICULTY=$difficulty
