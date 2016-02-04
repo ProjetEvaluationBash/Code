@@ -1,8 +1,8 @@
 #!/bin/bash
 
 runRequest() {
-	local dokuName=displayTrainingForm
-    local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+	local dokuName=display_training_form
+	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local train=$(param exam)
 
@@ -23,13 +23,8 @@ Liste des question de l entrainement $exam:
 
 </html>
 
-<<<<<<< HEAD
-		EOF
 
-		cgiHeader	
-        redirect users:$DokuUser:$dokuName
 =======
 EOF
 	redirect users:$DokuUser:$dokuName
->>>>>>> f068ba9597950995cbaa7521b75b1d9d314e18b0
 }
