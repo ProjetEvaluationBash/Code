@@ -115,8 +115,6 @@ function validateAvailableAnswer() {
 }
 
 function showQuestion() {
-	echo "TESTSHOWQUESTION"
-	return 0
 	#echo "=== Reponses possibles ==="
 	
 	#for answer in "${AVAILABLEANSWERS[@]}"; do
