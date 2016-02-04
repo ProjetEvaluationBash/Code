@@ -22,6 +22,7 @@ runRequest() {
 		for i in list; do
 			echo i;
 		done
+		test
 		</html>
 
 		EOF
