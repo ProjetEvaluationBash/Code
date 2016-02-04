@@ -21,7 +21,7 @@ Liste des question de l entrainement $exam:
 </html>
 EOF
 
-	source "$CODE_DIR/Question.sh"
+	#source "$CODE_DIR/Question.sh"
 
 	#QUESTIONPATH=$trainsDir
 
