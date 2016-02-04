@@ -24,8 +24,8 @@ EOF
 	source "$CODE_DIR/Question.sh"
 
 	echo "Test2" >> $out
-	for i in list; do
-		echo i >> $out;
+	for i in $list; do
+		echo $i >> $out;
 	done
 
 
