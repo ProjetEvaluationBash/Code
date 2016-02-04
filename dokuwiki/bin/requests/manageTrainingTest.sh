@@ -20,17 +20,17 @@ runRequest() {
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="createTest">
 <p>
-Nom de l\'entrainement:
+Nom de l'entrainement:
 <input type="text" name="name" value="">
 <p>
-</br></br>
+</br>
 <p>
 <input type="submit" value="Générer mon test">
 </form>
 </html>
 
 
-	* [[$DOKU_CGI?module=$module&action=createTest| Générer mon test]]
+
 
 ====== Liste des entraînements en cours ======
 
