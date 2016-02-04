@@ -5,7 +5,7 @@ runRequest() {
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 
-	if userIsProf;tjen
+	if userIsProf;then
 		dokuError "Désolé, fonction réservée aux enseignants !"
 	fi
 
