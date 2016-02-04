@@ -21,14 +21,15 @@ Liste des question de l entrainement $exam:
 </html>
 EOF
 
-	#source "$CODE_DIR/Question.sh"
+	source "$CODE_DIR/Question.sh"
 
 	#QUESTIONPATH=$trainsDir
-
+	echo "Test2" >> $out
 	for i in $list; do		
 		#QUESTIONID=$i
 		#mainLoadQuestion
 		#mainShowQuestion >> $out
+		echo "test" >> $out
 	done
 
 
