@@ -7,7 +7,7 @@ runRequest() {
 	local train=$(param exam)
 
 	local trainsDir=$DB_USERS_DIR/$DokuUser/$module/tests
-    if [ ! -e $examsDir/$train ]; then
+    if [ ! -e $trainsDir/$train ]; then
             dokuError "L'examen $exam n'existe pas !"
             return 1
     fi
