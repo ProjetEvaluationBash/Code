@@ -12,7 +12,7 @@ runRequest(){
 
 	export MODULE="$module"
 
-	listQ="`./FindQuestionRandom.sh`"
+	listQ= findQuestionRandom
 	
 
 
