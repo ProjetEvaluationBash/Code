@@ -5,7 +5,7 @@ runRequest(){
 	local dokuName=create_exam
         local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
         local module=$(param module)
-	local name="test1"
+	local name=$(param name)
 
 	local testsDir=$DB_USERS_DIR/$DokuUser/$module/tests
 
