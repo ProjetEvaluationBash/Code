@@ -19,12 +19,15 @@ runRequest() {
 
 <html>
 Liste des question de l entrainement $exam:
-
+		for i in list; do
+			echo i;
+		done
 
 </html>
 
 
 =======
 EOF
+	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
