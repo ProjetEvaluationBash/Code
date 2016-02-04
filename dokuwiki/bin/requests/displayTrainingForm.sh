@@ -6,13 +6,13 @@ runRequest() {
 	local module=$(param module)
 	local train=$(param exam)
 
-	local examsDir=$DB_USERS_DIR/$DokuUser/$module/tests
+	local trainsDir=$DB_USERS_DIR/$DokuUser/$module/tests
     if [ ! -e $examsDir/$train ]; then
             dokuError "L'examen $exam n'existe pas !"
             return 1
     fi
 
-	list="$(cat $examsDir/$exam/list)"
+	list="$(cat $trainsDir/$train/list)"
 
 	cat << EOF > $out
 ====== Affichage d'un examen (module $module) ======
