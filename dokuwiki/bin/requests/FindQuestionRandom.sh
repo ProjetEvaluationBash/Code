@@ -18,6 +18,8 @@ if [ "$1" == "" ] ; then
 else 
 	nbQS=$1
 fi
+
+
 i=0
 
 
