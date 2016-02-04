@@ -18,7 +18,11 @@ runRequest() {
 ====== Liste des questions du module $module ======
 EOF
 
-	. $HOME/Code/Question.sh
+	
+	# Inclure Question.sh
+	source "$CODE_DIR/Question.sh"
+
+	echo "Test" >> $out
         # Importe les questions (liens symboliques)
 
         rm -Rf $dokuUserQuestionsDir
