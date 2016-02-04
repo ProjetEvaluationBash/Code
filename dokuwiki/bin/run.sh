@@ -48,7 +48,7 @@ cgiHeader() {
 }
 
 redirect() {
-
+	cgiHeader
         cat << EOF
 <html>
 <head>
@@ -89,7 +89,6 @@ dokuError() {
 
 $@
 EOF
-	cgiHeader
         redirect users:$DokuUser:error
 }
 	
