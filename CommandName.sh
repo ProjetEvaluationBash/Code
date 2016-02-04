@@ -27,14 +27,14 @@ function addQuestion() {
 
 function showQuestion() {
 
-	echo"<html>"
-	echo"<form name=\"userAnswer\"  method=\"POST\">"
-	echo"<p>"
-	echo"Votre réponse : <br>"
-	echo"<input type="text" value=""><br>"
-	echo"</p>"
-	echo"</form>"
-	echo"</html>"
+	echo "<html>"
+	echo "<form name=\"userAnswer\"  method=\"POST\">"
+	echo "<p>"
+	echo "Votre réponse : <br>"
+	echo "<input type="text" value=""><br>"
+	echo "</p>"
+	echo "</form>"
+	echo "</html>"
 	
 	return 0
 }

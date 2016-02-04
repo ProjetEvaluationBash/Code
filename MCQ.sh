@@ -131,7 +131,7 @@ function showQuestion() {
 	echo "<p>"
 	echo "Cocher la bonne réponse : <br>"
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "<input type=\"radio\" value="$i"> $answer<br>"
+		echo "<input type=\"radio\" name="selectedAnswer" value="$i"> $answer<br>"
 		i=$(($i + 1))
 	done
 	echo "</p>"
