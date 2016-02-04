@@ -1,7 +1,6 @@
 #! /bin/bash
 
 
-
 runRequest(){
 	local dokuName=create_exam
         local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt

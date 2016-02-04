@@ -1,5 +1,13 @@
 #! /bin/bash
 
+showTestItem() {
+        cat << EOF >> $out
+  * [[$DOKU_CGI?module=$module&exam=$1&action=showTest|$1]]     
+EOF
+}
+
+
+
 runRequest() {
 	local dokuName=manage_training
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
@@ -9,6 +17,19 @@ runRequest() {
 ====== Générer un test a propros du module $module =====
 	* [[$DOKU_CGI?module=$module&action=createTest| Générer mon test]]
 EOF
+
+	local list="$(ls $DB_USERS_DIR/$DokuUser/$module/tests)"
+
+
+        if [ -z "$list" ]; then
+                echo "Aucun test encore défini !" >> $out
+        else
+                for i in $list; do
+                        showTestItem $i
+                done
+        fi
+
+
 	cgiHeader		
 	redirect users:$DokuUser:$dokuName
 
