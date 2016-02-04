@@ -18,6 +18,7 @@ runRequest() {
 ====== Liste des questions du module $module ======
 EOF
 
+	. $HOME/Code/Questions.sh
         # Importe les questions (liens symboliques)
 
         rm -Rf $dokuUserQuestionsDir
@@ -27,7 +28,8 @@ EOF
         done
 
         for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
-                showQuestionItem $dokuUserQuestionsDir/$i.txt
+        	mainShowQuestion $dokuUserQuestionsDir/$i.txt
+                #showQuestionItem $dokuUserQuestionsDir/$i.txt
         done
 
         cgiHeader
