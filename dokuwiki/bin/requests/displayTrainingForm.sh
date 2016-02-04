@@ -15,19 +15,20 @@ runRequest() {
 	list="$(cat $trainsDir/$train/list)"
 
 	cat << EOF > $out
-====== Affichage d'un examen (module $module) ======
-
+====== Affichage d un examen (module $module) ======
 <html>
 Liste des question de l entrainement $exam:
 </html>
-
-=======
 EOF
+
+	source "$CODE_DIR/Question.sh"
+
+	echo "Test2" >> $out
 	for i in list; do
-		echo i;
+		echo i >> $out;
 	done
 
-	
+
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
