@@ -2,10 +2,9 @@
 
 showTestItem() {
         cat << EOF >> $out
-  * [[$DOKU_CGI?module=$module&exam=$1&action=showTest|$1]]     
-EOF
+  * [[$DOKU_CGI?module=$module&exam=$1&action=displayTrainingForm|$1]]     
+        EOF
 }
-
 
 
 runRequest() {

@@ -29,14 +29,8 @@ runRequest(){
 ====== Création d'un entraînement du module $module ======
 
 EOF
-	for question in $listeQ; do
-		
-		
-        	showQuestionItem $testsDir/$name/questions/$question.txt
 
 
-	done
-	
 	cgiHeader
 	redirect users:$DokuUser:$dokuName
 }

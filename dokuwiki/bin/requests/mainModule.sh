@@ -17,8 +17,6 @@ Opérations réservées :
 
   * [[$DOKU_CGI?module=$module&action=addQuestionForm|Ajouter une question]]
   * [[$DOKU_CGI?module=$module&action=consultMark|Consulter les notes]]
-  * [[$DOKU_CGI?module=$module&action=displayTrainingForm|Afficher un Test]]
-  * [[$DOKU_CGI?module=$module&action=displayExam|Afficher un Exam]]
   * Créer un examen
 
 Tests :

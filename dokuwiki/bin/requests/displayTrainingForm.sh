@@ -4,11 +4,10 @@ runRequest() {
 	local dokuName=displayTrainingForm
     local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
-	local exam=$(param exam)
+	local train=$(param exam)
 
-	local examsDir=$DB_USERS_DIR/$DokuUser/$module/exams
-
-    if [ ! -e $examsDir/$exam ]; then
+	local examsDir=$DB_USERS_DIR/$DokuUser/$module/tests
+    if [ ! -e $examsDir/$train ]; then
             dokuError "L'examen $exam n'existe pas !"
             return 1
     fi
@@ -18,15 +17,12 @@ runRequest() {
 	cat << EOF > $out
 ====== Affichage d'un examen (module $module) ======
 
-Examen $exam:
+		<html>
+		Liste des question de l entrainement $exam:
 
 
-<p>
-Liste des questions 
-<p>
-</form>
-</html>
+		</html>
 
-EOF
-        redirect users:$DokuUser:$dokuName
+		EOF
+		        redirect users:$DokuUser:$dokuName
 }
