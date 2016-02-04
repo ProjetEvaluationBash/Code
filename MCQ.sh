@@ -3,12 +3,19 @@
 PROGNAME=$(basename $0)
 PROGDIR=$(readlink -m $(dirname $0))
 
-source "$CODEROOT/Question.sh"
-source "$CODEROOT/other/EvalLib.sh"
-
 # AVAILABLEANSWERS (string[])
 
 # ANSWER (integer)
+
+function dokuwikiAddQuestion() {
+	local availableAnswers=$(param availableAnswers)
+	local availableAnswersTrue=$(param availableAnswersTrue)
+
+	AVAILABLEANSWERS=$availableAnswers
+	AVAILABLEANSWERSTRUE=$availableAnswersTrue
+
+	return 0
+}
 
 # Necessite QUESTIONPATH et QUESTIONID
 function loadQuestion() {
@@ -66,7 +73,7 @@ function evaluateAnswer() {
 
 # Permet de récuperé la réponse à une question MCQ lors de l'ajout
 
-function addQuestion() {
+function cliAddQuestion() {
 	nbAnswers=0;
 	
 	# Ajouter les reponses possibles
@@ -74,12 +81,12 @@ function addQuestion() {
 		# Saisie d'une reponse possible
 		echo ""
 		echo "Saisir une reponse possible"
-		read answers[nbAnswers]
-		
-		# Validation de la reponse possible saisie
-		while test "${#question}" -lt 1 -o "${#question}" -gt 512; do
-			echo "Reponse invalide. Resaisir la reponse:"
-			read question
+		read answers[$nbAnswers]
+
+		while test not validateAvailableAnswer $answers[$nbAnswers]; do
+			echo "[ERREUR] Response possible invalide."
+			echo "Saisir une reponse possible: "
+			read answers[$nbAnswers]
 		done
 				
 		# Incrementer le nombre de reponses possibles
@@ -97,12 +104,36 @@ function addQuestion() {
 	done
 }
 
+function validateAvailableAnswer() {
+	local availableAnswer=$1
+
+	if test "${#question}" -lt 1 -o "${#question}" -gt 512; then
+		return 1
+	fi
+
+	return 0
+}
+
 function showQuestion() {
-	echo "=== Reponses possibles ==="
+	#echo "=== Reponses possibles ==="
 	
+	#for answer in "${AVAILABLEANSWERS[@]}"; do
+	#	echo "  - $answer"
+	#done
+	i=1
+	
+	echo"<html>"
+	echo"<form name=\"userAnswer\"  method=\"POST\">"
+	echo"<p>"
+	echo"Cocher la bonne réponse : <br>"
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "  - $answer"
+		echo"<input type=\"radio\" value="$i"> $answer<br>"
+		i=$(($i + 1))
 	done
+	echo"</p>"
+	echo"</form>"
+	echo"</html>"
+	
 }
 
 function toString() {

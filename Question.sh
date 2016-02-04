@@ -14,66 +14,160 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # TYPE (string)
 
-function dokuwikiAddQuestion() {
-	# Extraire parametres POST avec param
+# Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
+function mainDokuwikiAddQuestion() {
+    local question=$(param question)
+    local duration=$(param duration)
+    local difficulty=$(param difficulty)
+    local visibility=$(param visibility)
+    local type=$(param type)
 
-	# TEST=
-	# QUESTION=
-	# VISIBILITY=
-	# DURATION=
+    if test ! validateType $type; then
+        dokuError $ERROR_MESSAGE
+    fi
 
-	return 0	
+    if test ! validateQuestion $question; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateDifficulty $difficulty; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateVisibility $visibility; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    if test ! validateDuration $duration; then
+        dokuError $ERROR_MESSAGE
+    fi
+
+    TYPE=$type
+
+    # Inclure le sous-type en question et appeller la methode correspondante
+    includeSubType
+    dokuwikiAddQuestion
+
+    ID=$RANDOM
+    QUESTION=$question
+    DIFFICULTY=$difficulty
+    DURATION=$duration
+    VISIBILITY=$visibility
+    
+
+    return 0
 }
 
-function mainAddQuestion() {
-	# Lister les types de questions possibles
-	
-	echo "Type de question:"
-	select TYPE in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
-		if test includeSubType; then
-			break
-		fi	
-	done
+# Permet d'ajouter une question en ligne de commande
+function mainCliAddQuestion() {
+    # Choix du type de la question
 
-	# Saisie de la difficulté de la question
-	
-	echo "Difficultés possible:"
-	echo "1. Debutant"
-	echo "2. Intermediaire"
-	echo "3. Expert"
+    echo "Type de question:"
 
-	echo "Choisir la difficulté de la question: "
-	read difficulty
+    select type in 'mcq' 'commandname' 'simplecommand' 'compoundcommand' 'script' 'freequestion'; do
+        if test validateType $type; then
+            break
+        else
+            echo "[ERREUR] $ERROR_MESSAGE" >&2
+        fi
+    done
 
-	# Validation de la difficulté
+    # Choix de la difficulté
 
-	while test $difficulty -lt 1 -o $difficulty -gt 3; do
-		echo "Difficulté invalide." >&2
-		read difficulty	
-	done
+    echo "Difficultés possible:"
+    echo "1. Debutant"
+    echo "2. Intermediaire"
+    echo "3. Expert"
 
-	# On indique si la question est une question d'examen ou pas
+    echo "Choisir la difficulté de la question: "
+    read difficulty
 
-	echo "La question est-elle une question d'examen ? [o/N]"
+    while test ! validateDifficulty $difficulty; do
+        echo "[ERREUR] $ERROR_MESSAGE" >&2
+        echo "Choisir la difficulté de la question: "
+        read difficulty 
+    done
 
-	read -r response
-	response=${response,,} # Mettre la reponse en minuscule
+    # Choix de la visibilité
 
-	if [[ $response =~ ^(oui|o)$ ]]; then
-		isExamQuestion="true"
-	else
-		isExamQuestion="false"
-	fi
+    echo "Visibilité de la question:"
 
-	# Saisie de la durée de la question
+    select visibility in 'hidden' 'exam' 'training'; do
+        if test validateVisibility $visibility; then
+            break
+        else
+            echo "[ERREUR] $ERROR_MESSAGE" >&2
+        fi
+    done
 
-	echo "Saisir la durée de la question (en minutes) (float): "
-	read duration
+    # Choix de la durée
 
-	#if test $duration -lt 0	
+    echo "Saisir la durée de la question (en minutes) (float): "
+    read duration
 
-	# Test	
-	echo "isExamQuestion: $isExamQuestion"	
+    while test ! validateDuration $duration; do
+        echo "[ERREUR] $ERROR_MESSAGE" >&2
+        echo "Saisir la durée de la question (en minutes) (float): "
+        read duration
+    done
+}
+
+# Verifie que le type de la question est correct
+function validateType() {
+    local type=$1
+
+    if test "$type" != "mcq" -a "$type" != "commandname" -a "$type" != "simplecommand" -a "$type" != "compoundcommand" -a "$type" != "script" -a "$type" != "freequestion"; then
+        ERROR_MESSAGE="Type invalide."
+        return 1
+    fi
+}
+
+# Verifie la longueur de la question
+function validateQuestion() {
+    local question=$1
+
+    if test ${#question} -le 5; then
+        ERROR_MESSAGE="Question trop court."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la difficulté de la question est valide
+function validateDifficulty() {
+    local difficulty=$1
+
+    if test $difficulty -lt 1 -o $difficulty -gt 3; then
+        ERROR_MESSAGE="Difficulté invalide."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la visibilité de la question est valide
+function validateVisibility() {
+    local visibility=$1
+
+    if test "$visibility" != "hidden" -a "$visibility" != "training" -a "$visibility" != "exam"; then
+        ERROR_MESSAGE="Visibilité invalide."
+        return 1
+    fi
+
+    return 0
+}
+
+# Verifie que la durée de la question est valide
+function validateDuration() {
+    local duration=$1
+
+    if test $duration -lt 0 -o $duration -gt 120; then
+        ERROR_MESSAGE="Durée invalide."
+        return 1
+    fi
+
+    return 0
 }
 
 # getElement(questionFileContents, element)
@@ -158,25 +252,25 @@ function mainShowQuestion() {
 
 function includeSubType() {
 	case $TYPE in
-                'mcq')
-                        source "$CODEROOT/MCQ.sh"
-                        ;;
-                'commandname')
-                        source "$CODEROOT/CommandName.sh"
-                        ;;
-                'compoundcommand')
-                        source "$CODEROOT/CompoundCommand.sh"
-                        ;;
-                'freequestion')
-                        source "$CODEROOT/FreeQuestion.sh"
-                        ;;
-                'script')
-                        source "$CODEROOT/Script.sh"
-                        ;;
-                *)
-			fatalError "includeSubType: Incorrect question type." 1
-			;;
-        esac
+        'mcq')
+            source "$CODE_DIR/MCQ.sh"
+            ;;
+        'commandname')
+            source "$CODE_DIR/CommandName.sh"
+            ;;
+        'compoundcommand')
+            source "$CODE_DIR/CompoundCommand.sh"
+            ;;
+        'freequestion')
+            source "$CODE_DIR/FreeQuestion.sh"
+            ;;
+        'script')
+            source "$CODE_DIR/Script.sh"
+            ;;
+        *)
+	       dokuError "TYPE invalide: $TYPE"
+	       ;;
+    esac
 
 	return 0
 }

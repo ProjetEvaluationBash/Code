@@ -10,14 +10,14 @@ runRequest() {
 	fi
 
 	cat << EOF > $out
-====== Création d'un nouvel examen (module $module) ======
+====== Création d\'un nouvel examen (module $module) ======
 
 <html>
 <form name="myForm" action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="createExamTest">
 <p>
-Nom de l'examem: $DokuUser-
+Nom de l\'examem: $DokuUser-
 <input type="text" name="name" value="">
 <p>
 </br></br>

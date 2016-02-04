@@ -46,17 +46,17 @@ Type:
         <option value="freequestion">Question libre</option>
         <option value="script">Script</option>
 </select><br><br>
-<input type="submit" value="Créer"><br><br>
 
 <h3>QCM</h3>
 
 Reponses possibles:<br>
-1: <input type="text" name="availableanswer1"> <input type="checkbox" name="answer1true"><br>
-2: <input type="text" name="availableanswer2"> <input type="checkbox" name="answer2true"><br> 
-3: <input type="text" name="availableanswer3"> <input type="checkbox" name="answer3true"><br>
-4: <input type="text" name="availableanswer4"> <input type="checkbox" name="answer4true"><br>
-5: <input type="text" name="availableanswer5"> <input type="checkbox" name="answer5true"><br><br>
+1: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
+2: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br> 
+3: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
+4: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
+5: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br><br>
 
+<input type="submit" value="Créer"><br><br>
 </form>
 </html>
 EOF
