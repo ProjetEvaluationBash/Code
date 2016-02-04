@@ -116,7 +116,7 @@ function mainCliAddQuestion() {
 function validateType() {
     local type=$1
 
-    if test "$type" != "mcq" -a "$type" != "commandname" -a "$type" != "simplecommand" -a "$type" != "compoundcommand" -a "$type" != "script" -a "$type" != "freequestion"; then
+    if test "$type" != "mcq" -a "$type" != "simplecommand" -a "$type" != "commandname" -a "$type" != "simplecommand" -a "$type" != "compoundcommand" -a "$type" != "script" -a "$type" != "freequestion"; then
         ERROR_MESSAGE="Type invalide."
         return 1
     fi
