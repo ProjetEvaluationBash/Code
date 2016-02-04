@@ -18,7 +18,7 @@ runRequest() {
 ====== Liste des questions du module $module ======
 EOF
 
-	. $HOME/Code/Questions.sh
+	. $HOME/Code/Question.sh
         # Importe les questions (liens symboliques)
 
         rm -Rf $dokuUserQuestionsDir
@@ -29,8 +29,8 @@ EOF
 
 	QUESTIONPATH=$dokuUserQuestionsDir
 
-        for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
-        	QUESTIONID=$i
+        for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
+		QUESTIONID=$i
 		
 		mainLoadQuestion
 		mainShowQuestion >> $out
