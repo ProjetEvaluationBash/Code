@@ -29,7 +29,7 @@ EOF
 		#QUESTIONID=$i
 		#mainLoadQuestion
 		#mainShowQuestion >> $out
-		echo $i + ".txt" >> $out
+		echo "$i.txt" >> $out
 	done
 
 
