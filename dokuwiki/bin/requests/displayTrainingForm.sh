@@ -1,8 +1,8 @@
 #!/bin/bash
 
 runRequest() {
-	local dokuName=disp_train_form
-        local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+	local dokuName=displayTrainingForm
+    local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local exam=$(param exam)
 
