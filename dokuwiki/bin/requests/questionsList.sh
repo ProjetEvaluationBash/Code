@@ -16,8 +16,14 @@ runRequest() {
 
         cat << EOF > $out
 ====== Liste des questions du module $module ======
+Test1
 EOF
 
+	
+	# Inclure Question.sh
+	source "$CODE_DIR/Question.sh"
+
+	echo "Test2" >> $out
         # Importe les questions (liens symboliques)
 
         rm -Rf $dokuUserQuestionsDir
@@ -26,8 +32,14 @@ EOF
                 ln -sf $dbQuestionsDir/$i $dokuUserQuestionsDir/$i
         done
 
-        for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
-                showQuestionItem $dokuUserQuestionsDir/$i.txt
+	QUESTIONPATH=$dokuUserQuestionsDir
+
+        for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
+		QUESTIONID=$i
+		
+		mainLoadQuestion
+		mainShowQuestion >> $out
+                #showQuestionItem $dokuUserQuestionsDir/$i.txt
         done
 
         cgiHeader

@@ -64,14 +64,14 @@ function addQuestion {
 
 # fonction generant un formulaire qui permet à l'utilisateur de répondre à une free question
 function showQuestion() {
-	echo"<html>"
-	echo"<form name=\"userAnswer\"  method=\"POST\">"
-	echo"<p>"
-	echo"Votre réponse : <br>"
-	echo"<textarea></textarea><br>"
-	echo"</p>"
-	echo"</form>"
-	echo"</html>"
+	echo "<html>"
+	echo "<form name=\"userAnswer\"  method=\"POST\">"
+	echo "<p>"
+	echo "Votre réponse : <br>"
+	echo "<textarea></textarea><br>"
+	echo "</p>"
+	echo "</form>"
+	echo "</html>"
 
 	return 0
 }	

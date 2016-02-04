@@ -1,7 +1,7 @@
 
 ===== Plate-forme de tests =====
 
-Ce logiciel intégré à Dokuwiki vous permet de vous entraînez dans différents modules (Unix, C, …) ([[eval:help|plus d'infos]]) ...
+Ce logiciel intégré à Dokuwiki vous permet de vous entraîner dans différents modules (Unix, C, …) ([[eval:help|plus d'infos]]) ...
 
   * <html>
 <form name="myForm" action="https://fraise.u-clermont1.fr/info/cgi-bin/run.sh" method="POST">

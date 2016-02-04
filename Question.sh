@@ -264,6 +264,9 @@ function includeSubType() {
         'freequestion')
             source "$CODE_DIR/FreeQuestion.sh"
             ;;
+	'simplecommand')
+	    source "$CODE_DIR/SimpleCommand.sh"
+	    ;;
         'script')
             source "$CODE_DIR/Script.sh"
             ;;
