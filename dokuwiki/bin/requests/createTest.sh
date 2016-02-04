@@ -11,7 +11,7 @@ runRequest(){
 	local testsDir=$DB_USERS_DIR/$DokuUser/$module/tests
 
 	export MODULE="$module"
-
+	
 	listQ="`findQuestionRandom`"	
 
 
@@ -20,7 +20,7 @@ runRequest(){
 	mkdir $testsDir/$name/questions
 	for i in $listQ; do
 
-		cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/$name/questions
+		cp $DB_MODULES_DIR/$module/questions/$i.txt $testsDir/$name/questions
 	done
 
 	
