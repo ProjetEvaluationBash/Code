@@ -122,17 +122,21 @@ function showQuestion() {
 	#done
 	i=1
 	
-	echo"<html>"
-	echo"<form name=\"userAnswer\"  method=\"POST\">"
-	echo"<p>"
-	echo"Cocher la bonne réponse : <br>"
+	echo "<html>"
+	echo "<h1>Test MCQ showQuestion</h1>"
+	echo "</html>"
+
+	#echo"<html>"
+	#echo"<form name=\"userAnswer\"  method=\"POST\">"
+	#echo"<p>"
+	#echo"Cocher la bonne réponse : <br>"
 	#for answer in "${AVAILABLEANSWERS[@]}"; do
 	#	echo"<input type=\"radio\" value="$i"> $answer<br>"
 	#	i=$(($i + 1))
 	#done
-	echo"</p>"
-	echo"</form>"
-	echo"</html>"
+	#echo"</p>"
+	#echo"</form>"
+	#echo"</html>"
 
 	return 0	
 }
