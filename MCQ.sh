@@ -126,14 +126,15 @@ function showQuestion() {
 	echo"<form name=\"userAnswer\"  method=\"POST\">"
 	echo"<p>"
 	echo"Cocher la bonne réponse : <br>"
-	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo"<input type=\"radio\" value="$i"> $answer<br>"
-		i=$(($i + 1))
-	done
+	#for answer in "${AVAILABLEANSWERS[@]}"; do
+	#	echo"<input type=\"radio\" value="$i"> $answer<br>"
+	#	i=$(($i + 1))
+	#done
 	echo"</p>"
 	echo"</form>"
 	echo"</html>"
-	
+
+	return 0	
 }
 
 function toString() {
