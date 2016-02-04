@@ -28,7 +28,7 @@ EOF
         done
 
         for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
-        	mainShowQuestion $dokuUserQuestionsDir/$i.txt
+        	mainShowQuestion $dokuUserQuestionsDir/$i.txt >> $out
                 #showQuestionItem $dokuUserQuestionsDir/$i.txt
         done
 
