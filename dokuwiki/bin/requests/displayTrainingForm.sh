@@ -24,5 +24,7 @@ runRequest() {
 		</html>
 
 		EOF
-		        redirect users:$DokuUser:$dokuName
+
+		cgiHeader	
+        redirect users:$DokuUser:$dokuName
 }
