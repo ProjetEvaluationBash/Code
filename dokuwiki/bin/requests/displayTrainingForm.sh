@@ -17,12 +17,12 @@ runRequest() {
 	cat << EOF > $out
 ====== Affichage d'un examen (module $module) ======
 
-		<html>
-		Liste des question de l entrainement $exam:
+<html>
+Liste des question de l entrainement $exam:
 
 
-		</html>
+</html>
 
-		EOF
-		        redirect users:$DokuUser:$dokuName
+EOF
+	redirect users:$DokuUser:$dokuName
 }
