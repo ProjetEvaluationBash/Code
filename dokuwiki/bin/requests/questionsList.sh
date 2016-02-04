@@ -27,8 +27,13 @@ EOF
                 ln -sf $dbQuestionsDir/$i $dokuUserQuestionsDir/$i
         done
 
+	QUESTIONPATH=$dokuUserQuestionsDir
+
         for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do
-        	mainShowQuestion $dokuUserQuestionsDir/$i.txt >> $out
+        	QUESTIONID=$i
+		
+		mainLoadQuestion
+		mainShowQuestion >> $out
                 #showQuestionItem $dokuUserQuestionsDir/$i.txt
         done
 
