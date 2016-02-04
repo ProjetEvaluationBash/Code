@@ -23,12 +23,12 @@ EOF
 
 	source "$CODE_DIR/Question.sh"
 
-	QUESTIONPATH=$trainsDir
-	
+	#QUESTIONPATH=$trainsDir
+
 	for i in $list; do		
-		QUESTIONID=$i
-		mainLoadQuestion
-		mainShowQuestion >> $out
+		#QUESTIONID=$i
+		#mainLoadQuestion
+		#mainShowQuestion >> $out
 	done
 
 
