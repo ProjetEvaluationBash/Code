@@ -35,7 +35,7 @@ if test -z $HOME; then
 fi
 
 #Calcule le nombre de questions présentent dans le dossier questions
-nbDoss=`cd $HOME/Code/Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
+nbDoss=`cd $HOME/Code/Modules/systemiutaubiere/questions; ls -l | grep .txt  | wc -l`
 
 
 #Boucle permettant l'ajout dans la liste
