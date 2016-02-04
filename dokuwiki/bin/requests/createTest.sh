@@ -12,8 +12,7 @@ runRequest(){
 
 	export MODULE="$module"
 
-	listQ= findQuestionRandom
-	
+	listQ="`findQuestionRandom`"	
 
 
 	mkdir -p $testsDir/$name
