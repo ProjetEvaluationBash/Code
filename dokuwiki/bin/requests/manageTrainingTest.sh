@@ -15,7 +15,25 @@ runRequest() {
 
 	cat << EOF > $out
 ====== Générer un test a propros du module $module =====
+<html>
+<form name="myForm" action="$DOKU_CGI" method="POST">
+<input type="hidden" name="module" value="$module">
+<input type="hidden" name="action" value="createTest">
+<p>
+Nom de l\'entrainement:
+<input type="text" name="name" value="">
+<p>
+</br></br>
+<p>
+<input type="submit" value="Générer mon test">
+</form>
+</html>
+
+
 	* [[$DOKU_CGI?module=$module&action=createTest| Générer mon test]]
+
+====== Liste des entraînements en cours ======
+
 EOF
 
 	local list="$(ls $DB_USERS_DIR/$DokuUser/$module/tests)"
