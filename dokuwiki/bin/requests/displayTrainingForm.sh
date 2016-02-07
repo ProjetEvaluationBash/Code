@@ -19,6 +19,7 @@ runRequest() {
 	cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
+
 	
 EOF
 
@@ -36,8 +37,6 @@ cat << EOF > $out
 		<input type="hidden" name="submit_BTN" >
 		<input type="submit" value="Valider mon entrainement">
 	<form>
-		
-	</html>
 EOF
 	cgiheader
 	redirect users:$DokuUser:$dokuName
