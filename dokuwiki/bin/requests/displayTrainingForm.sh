@@ -31,13 +31,14 @@ EOF
     #mkdir $dokuUserQuestionsDir
 
 
-	#for i in $list; do		
-	#	$questionPath="$i.txt"
+	for i in $list; do		
+		$questionPath="$i.txt"
+		echo $questionPath >> $out
 	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
 	#	QUESTIONID=$i
 	#	mainLoadQuestion
 	#	mainShowQuestion >> $out
-	#done
+	done
 
 
 	cgiheader
