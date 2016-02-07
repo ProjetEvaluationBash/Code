@@ -20,7 +20,6 @@ runRequest() {
 ====== Entrainement: $test (module $module) ======
 <html>
 	
-</html>
 EOF
 
 	source "$CODE_DIR/Question.sh"
@@ -32,7 +31,14 @@ EOF
 		mainShowQuestion >> $out
 	done
 
-
+cat << EOF > $out
+	* <form>
+		<input type="hidden" name="submit_BTN" >
+		<input type="submit" value="Valider mon entrainement">
+	<form>
+		
+	</html>
+EOF
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
