@@ -30,8 +30,8 @@ EOF
 		QUESTIONID=$i
 		echo "$QUESTIONPATH/$QUESTIONID.txt" >> $out
 		echo >> $out
-		#mainLoadQuestion
-		#mainShowQuestion >> $out
+		mainLoadQuestion
+		mainShowQuestion >> $out
 	done
 
 
