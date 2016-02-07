@@ -36,10 +36,14 @@ function EvaluateAnswer() {
 	
 }
 
+function dokuwikiAddQuestion() {
+
+}
+
 # Appelé par la fonction "AddQuestion" de Question.sh
 # Permet de récuperé la réponse à une question SimpleCommand lors de l'ajout
-# addQuestion()
-function addQuestion() {
+# cliAddQuestion()
+function cliAddQuestion() {
 	
 	#Saisie de la réponse
 	

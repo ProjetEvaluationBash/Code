@@ -42,19 +42,69 @@ Type:
 <select name="type">
         <option value="mcq">QCM</option>
         <option value="commandname">Nom de commande</option>
-        <option value="compoundcommand">Command composée</option>
+        <option value="simplecommand">Commande simple</option>
+        <option value="compoundcommand">Commande composée</option>
         <option value="freequestion">Question libre</option>
         <option value="script">Script</option>
 </select><br><br>
 
-<h3>QCM</h3>
+<div id="mcq">
+        <h3>QCM</h3>
 
-Reponses possibles:<br>
-1: <input type="text" name="availableAnswers1"> <input type="checkbox" name="availableAnswersTrue1"><br>
-2: <input type="text" name="availableAnswers2"> <input type="checkbox" name="availableAnswersTrue2"><br>
-3: <input type="text" name="availableAnswers3"> <input type="checkbox" name="availableAnswersTrue3"><br>
-4: <input type="text" name="availableAnswers4"> <input type="checkbox" name="availableAnswersTrue4"><br>
-5: <input type="text" name="availableAnswers5"> <input type="checkbox" name="availableAnswersTrue5"><br><br>
+        Reponses possibles:<br>
+        1: <input type="text" name="availableAnswers1"> <input type="checkbox" name="availableAnswersTrue1"><br>
+        2: <input type="text" name="availableAnswers2"> <input type="checkbox" name="availableAnswersTrue2"><br>
+        3: <input type="text" name="availableAnswers3"> <input type="checkbox" name="availableAnswersTrue3"><br>
+        4: <input type="text" name="availableAnswers4"> <input type="checkbox" name="availableAnswersTrue4"><br>
+        5: <input type="text" name="availableAnswers5"> <input type="checkbox" name="availableAnswersTrue5"><br><br>
+</div>
+
+<div id="commandname">
+        <h3>Nom de commande</h3>
+
+        Reponse:<br>
+        <input type="text" name="answer"><br><br>
+</div>
+
+<div id="simplecommand">
+        <h3>Commande simple</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="compoundcommand">
+        <h3>Commande composée</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="freequestion">
+        <h3>Question libre</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="script">
+        <h3>Script</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
 
 <input type="submit" value="Ajouter la question"><br><br>
 </form>
