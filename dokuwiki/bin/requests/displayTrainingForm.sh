@@ -31,7 +31,13 @@ EOF
 		mainLoadQuestion
 		mainShowQuestion >> $out
 	done
-	
+
+	echo "
+	* <form>
+		<input type="submit" value="Valider mon entrainement"
+	</form>
+	" >> $out
+
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
