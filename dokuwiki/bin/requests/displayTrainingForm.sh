@@ -31,8 +31,8 @@ EOF
 		echo "$QUESTIONPATH/$QUESTIONID.txt" >> $out
 		echo >> $out
 		cat "$QUESTIONPATH/$QUESTIONID.txt" >> $out
-		#mainLoadQuestion
-		#mainShowQuestion >> $out
+		mainLoadQuestion
+		mainShowQuestion >> $out
 	done
 
 
