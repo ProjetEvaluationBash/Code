@@ -28,7 +28,8 @@ EOF
 
 	for i in $list; do
 		QUESTIONID=$i
-		echo "$QUESTIONPATH/$QUESTIONID\n" >> $out
+		echo "$QUESTIONPATH/$QUESTIONID.txt" >> $out
+		echo;
 		#mainLoadQuestion
 		#mainShowQuestion >> $out
 	done
