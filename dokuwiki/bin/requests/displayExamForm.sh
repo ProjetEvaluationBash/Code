@@ -16,15 +16,22 @@ runRequest() {
 	list="$(cat $examsDir/$exam/list)"
 
 	cat << EOF > $out
-====== Affichage d'un examen (module $module) ======
-		<html>
-		Liste des question de l entrainement $exam:
-		for i in list; do
-			echo i;
-		done
-		test
-		</html>
+====== Examen: $exam (module $module) ======
+<html>
+</html>
+	
+EOF
 
-		EOF
-		        redirect users:$DokuUser:$dokuName
+	source "$CODE_DIR/Question.sh"
+	QUESTIONPATH="$examsDir/$exam/questions"
+
+	for i in $list; do
+		QUESTIONID=$i
+		mainLoadQuestion
+		mainShowQuestion >> $out
+	done
+	
+	cgiheader
+	redirect users:$DokuUser:$dokuName
 }
+

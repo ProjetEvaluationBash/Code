@@ -31,6 +31,7 @@ EOF
 		mainLoadQuestion
 		mainShowQuestion >> $out
 	done
+	
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
