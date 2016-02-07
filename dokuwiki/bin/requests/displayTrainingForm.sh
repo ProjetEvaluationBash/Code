@@ -34,9 +34,9 @@ EOF
 	for i in $list; do		
 		echo "$i.txt" >> $out
 	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
-		QUESTIONID=$i
-		mainLoadQuestion
-		mainShowQuestion >> $out
+	#	QUESTIONID=$i
+	#	mainLoadQuestion
+	#	mainShowQuestion >> $out
 	done
 
 
