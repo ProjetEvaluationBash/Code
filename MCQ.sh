@@ -8,8 +8,8 @@ PROGDIR=$(readlink -m $(dirname $0))
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
-	local availableAnswers=$(param availableAnswers)
-	local availableAnswersTrue=$(param availableAnswersTrue)
+	local availableAnswers=$(param "availableAnswers[]")
+	local availableAnswersTrue=$(param "availableAnswersTrue[]")
 
 	ISMCQCALLED="YES!"
 	AVAILABLEANSWERS=$availableAnswers
