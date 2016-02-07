@@ -24,7 +24,7 @@ runRequest() {
 EOF
 
 	source "$CODE_DIR/Question.sh"
-	QUESTIONPATH="$testDir/questions"
+	QUESTIONPATH="$testDir/$test/questions"
 
 	for i in $list; do
 		QUESTIONID=$i
