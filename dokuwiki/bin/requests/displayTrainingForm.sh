@@ -32,8 +32,7 @@ EOF
 
 
 	for i in $list; do		
-		$questionPath="$i.txt"
-		echo $questionPath >> $out
+		echo "$i.txt" >> $out
 	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
 	#	QUESTIONID=$i
 	#	mainLoadQuestion
