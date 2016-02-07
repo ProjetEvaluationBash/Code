@@ -27,17 +27,17 @@ EOF
 	#QUESTIONPATH=$testDir
 
 	
-    rm -Rf $dokuUserQuestionsDir
-    mkdir $dokuUserQuestionsDir
+    #rm -Rf $dokuUserQuestionsDir
+    #mkdir $dokuUserQuestionsDir
 
 
-	for i in $list; do		
-		$questionPath="$i.txt"
-		ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
-		QUESTIONID=$i
-		mainLoadQuestion
-		mainShowQuestion >> $out
-	done
+	#for i in $list; do		
+	#	$questionPath="$i.txt"
+	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
+	#	QUESTIONID=$i
+	#	mainLoadQuestion
+	#	mainShowQuestion >> $out
+	#done
 
 
 	cgiheader
