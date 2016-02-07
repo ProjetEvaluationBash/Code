@@ -24,19 +24,13 @@ runRequest() {
 EOF
 
 	source "$CODE_DIR/Question.sh"
-	#QUESTIONPATH=$testDir
+	QUESTIONPATH=$testDir
 
-	
-    #rm -Rf $dokuUserQuestionsDir
-    #mkdir $dokuUserQuestionsDir
-
-
-	for i in $list; do		
-		echo "$i.txt" >> $out
+	for i in $list; do
 	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
-	#	QUESTIONID=$i
-	#	mainLoadQuestion
-	#	mainShowQuestion >> $out
+		QUESTIONID=$i
+		mainLoadQuestion
+		mainShowQuestion >> $out
 	done
 
 
