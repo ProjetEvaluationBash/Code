@@ -19,8 +19,10 @@ runRequest() {
 	cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
+<form name="myForm" action="$DOKU_CGI" method="POST">
+	<input type="submit" value="Valider mon test">
+</form>
 </html>
-	
 EOF
 
 	source "$CODE_DIR/Question.sh"
@@ -31,7 +33,16 @@ EOF
 		mainLoadQuestion
 		mainShowQuestion >> $out
 	done
-	
+
+	echo "
+	<html>
+		<form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\">
+			<center>
+				<input type=\"submit\" value=\"Valider mon test\">
+			</center>
+		</form>
+	</html>" >> $out
+
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
