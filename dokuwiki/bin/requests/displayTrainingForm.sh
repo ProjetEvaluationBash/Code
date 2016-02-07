@@ -19,6 +19,10 @@ runRequest() {
 	cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
+<form name="myForm" action="$DOKU_CGI" method="POST">
+	<input type="submit" value="Valider mon test">
+</form>
+</html>
 </html>
 	
 EOF
