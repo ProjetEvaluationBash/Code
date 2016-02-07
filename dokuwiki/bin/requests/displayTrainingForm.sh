@@ -35,9 +35,8 @@ EOF
 		mainShowQuestion >> $out
 	done
 
-	echo "
-<form name="myForm" action="$DOKU_CGI" method="POST">
-	<input type="submit" value="Valider mon test">
+	echo "<form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\">
+	<input type=\"submit\" value=\"Valider mon test\">
 </form>
 	" >> $out
 
