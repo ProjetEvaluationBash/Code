@@ -1,7 +1,13 @@
 #!/bin/bash
 
+function dokuwikiAddQuestion() {
+	local evaluator=$(param script_evaluator)
+	
+	return 0
+}
+
 # addQuestion()
-function addQuestion {
+function cliAddQuestion {
         return 0
 }
 

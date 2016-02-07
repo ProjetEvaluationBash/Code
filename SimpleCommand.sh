@@ -37,7 +37,9 @@ function EvaluateAnswer() {
 }
 
 function dokuwikiAddQuestion() {
+	local evaluator=$(param simplecommand_evaluator)
 
+	return 0
 }
 
 # Appelé par la fonction "AddQuestion" de Question.sh

@@ -1,6 +1,44 @@
 #!/bin/bash
 
-function addQuestion() {
+function dokuwikiAddQuestion() {
+	local answer=$(param answer)
+
+	validateAnswer $answer
+	returnCode=$?
+
+	if test $returnCode -eq 1; then
+		dokuError "Reponse vide"
+		exit 1
+	fi
+
+	if test $returnCode -eq 2; then
+		dokuError "Reponse trop longue"
+		exit 1
+	fi
+
+	echo "=== answer ==="
+	echo "$answer"
+
+	return 0
+}
+
+function validateAnswer() {
+	local answer=$1
+
+	if test "${#answer}" -eq 0; then
+		# Reponse vide
+		return 1
+	fi
+
+	if test "${#answer}" -gt 30; then
+		# Reponse trop longue
+		return 2
+	fi
+
+	return 0
+}
+
+function cliAddQuestion() {
 	# Saisir la question
 	echo "Question:"
 	read question
