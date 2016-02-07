@@ -8,12 +8,61 @@ PROGDIR=$(readlink -m $(dirname $0))
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
-	local availableAnswers=$(param "availableAnswers[]")
-	local availableAnswersTrue=$(param "availableAnswersTrue[]")
+	declare -A AVAILABLEANSWERS
+	declare -A ANSWERS
 
-	ISMCQCALLED="YES!"
-	AVAILABLEANSWERS=$availableAnswers
-	AVAILABLEANSWERSTRUE=$availableAnswersTrue
+	local availableAnswers1=$(param "availableAnswers1")
+	local availableAnswersTrue1=$(param "availableAnswersTrue1")
+	local availableAnswers2=$(param "availableAnswers2")
+	local availableAnswersTrue2=$(param "availableAnswersTrue2")
+	local availableAnswers3=$(param "availableAnswers3")
+	local availableAnswersTrue3=$(param "availableAnswersTrue3")
+	local availableAnswers4=$(param "availableAnswers4")
+	local availableAnswersTrue4=$(param "availableAnswersTrue4")
+	local availableAnswers5=$(param "availableAnswers5")
+	local availableAnswersTrue5=$(param "availableAnswersTrue5")
+
+	validateAvailableAnswer $availableAnswers1
+	returnCode=$?
+
+	if test $returnCode -eq 1; then
+		dokuError "Première reponse vide."
+	fi
+
+	if test $returnCode -eq 2; then
+		dokuError "Première reponse invalide."
+	fi
+
+	# Ajouter la première reponse possible à la liste definitive
+	AVAILABLEANSWERS[1]=$availableAnswers1 
+
+	validateAvailableAnswer $availableAnswers2
+	returnCode=$?
+
+	if test $returnCode -eq 0; then
+		dokuError "Deuxième reponse vide."
+	fi
+
+	if test $returnCode -eq 2; then
+		dokuError "Deuxième reponse invalide."
+	fi
+
+	# Ajouter la deuxième reponse possible à la liste definitive
+	AVAILABLEANSWERS[2]=$availableAnswers2
+
+	validateAvailableAnswer $availableAnswers3
+	returnCode=$?
+
+	if test $returnCode -ne 0; then
+		dokuError "Première reponse vide."
+	fi
+
+	if test $returnCode -eq 2; then
+		dokuError "Première reponse invalide."
+	fi
+
+	#TODO
+
 
 	return 0
 }
@@ -105,11 +154,18 @@ function cliAddQuestion() {
 	done
 }
 
+# Retourne 1 quand la reponse est vide
+# Retoure 2 quand la reponse est trop courte / longue
+
 function validateAvailableAnswer() {
 	local availableAnswer=$1
 
-	if test "${#question}" -lt 1 -o "${#question}" -gt 512; then
+	if test "${#availableAnswer}" -eq 0; then
 		return 1
+	fi
+
+	if test "${#availableAnswer}" -lt 3 -o "${#availableAnswer}" -gt 512; then
+		return 2
 	fi
 
 	return 0

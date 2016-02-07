@@ -38,9 +38,6 @@ fi
 if [ -n "${QUERY_STRING}" ]; then 
   # name=value params, separated by either '&' or ';'
   if echo ${QUERY_STRING} | grep '=' >/dev/null ; then
-
-    echo "${QUERY_STRING}" > /tmp/test_query_string
-
     for Q in $(/bin/echo ${QUERY_STRING} | /usr/bin/tr ";&" "\012") ; do
       #
       # Clear our local variables

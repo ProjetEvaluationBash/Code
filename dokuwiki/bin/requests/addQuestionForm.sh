@@ -50,13 +50,13 @@ Type:
 <h3>QCM</h3>
 
 Reponses possibles:<br>
-1: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-2: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br> 
-3: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-4: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-5: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br><br>
+1: <input type="text" name="availableAnswers1"> <input type="checkbox" name="availableAnswersTrue1"><br>
+2: <input type="text" name="availableAnswers2"> <input type="checkbox" name="availableAnswersTrue2"><br>
+3: <input type="text" name="availableAnswers3"> <input type="checkbox" name="availableAnswersTrue3"><br>
+4: <input type="text" name="availableAnswers4"> <input type="checkbox" name="availableAnswersTrue4"><br>
+5: <input type="text" name="availableAnswers5"> <input type="checkbox" name="availableAnswersTrue5"><br><br>
 
-<input type="submit" value="Créer"><br><br>
+<input type="submit" value="Ajouter la question"><br><br>
 </form>
 </html>
 EOF
