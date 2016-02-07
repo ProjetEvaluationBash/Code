@@ -17,7 +17,7 @@ runRequest() {
 	list="$(cat $testDir/$test/list)"
 
 	cat << EOF > $out
-====== Affichage d un entrainement (module $module), entrainement: $test ======
+====== Entrainement: $test (module $module) ======
 <html>
 	
 </html>
