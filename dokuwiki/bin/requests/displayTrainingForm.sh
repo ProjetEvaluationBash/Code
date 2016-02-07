@@ -19,7 +19,7 @@ runRequest() {
 	cat << EOF > $out
 ====== Affichage d un examen (module $module) ======
 <html>
-Liste des question de l entestement $exam:
+Liste des question de l entrainement $test:
 </html>
 EOF
 
