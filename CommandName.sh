@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function dokuwikiAddQuestion() {
-	local answer=$(param answer)
+	local answer=$(param commandname_answer)
 
 	validateAnswer $answer
 	returnCode=$?
