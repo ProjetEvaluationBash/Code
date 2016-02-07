@@ -52,18 +52,14 @@ Type:
         <h3>QCM</h3>
 
         Reponses possibles:<br>
-        1: <input type="text" name="availableAnswers1"> <input type="checkbox" name="availableAnswersTrue1"><br>
-        2: <input type="text" name="availableAnswers2"> <input type="checkbox" name="availableAnswersTrue2"><br>
-        3: <input type="text" name="availableAnswers3"> <input type="checkbox" name="availableAnswersTrue3"><br>
-        4: <input type="text" name="availableAnswers4"> <input type="checkbox" name="availableAnswersTrue4"><br>
-        5: <input type="text" name="availableAnswers5"> <input type="checkbox" name="availableAnswersTrue5"><br><br>
+        <input type="text" name="mcq_answers[]"> <input type="checkbox" name="mcq_answersTrue[]"><br><br>
 </div>
 
 <div id="commandname">
         <h3>Nom de commande</h3>
 
         Reponse:<br>
-        <input type="text" name="answer"><br><br>
+        <input type="text" name="commandname_answer"><br><br>
 </div>
 
 <div id="simplecommand">
@@ -71,7 +67,7 @@ Type:
 
         Evaluateur:<br>
 
-        <textarea name="evaluator">
+        <textarea name="simplecommand_evaluator">
         #!/bin/bash
         </textarea>
 </div>
@@ -81,7 +77,7 @@ Type:
 
         Evaluateur:<br>
 
-        <textarea name="evaluator">
+        <textarea name="compoundcommand_evaluator">
         #!/bin/bash
         </textarea>
 </div>
@@ -91,7 +87,7 @@ Type:
 
         Evaluateur:<br>
 
-        <textarea name="evaluator">
+        <textarea name="freequestion_evaluator">
         #!/bin/bash
         </textarea>
 </div>
@@ -101,7 +97,7 @@ Type:
 
         Evaluateur:<br>
 
-        <textarea name="evaluator">
+        <textarea name="script_evaluator">
         #!/bin/bash
         </textarea>
 </div>
