@@ -36,11 +36,11 @@ EOF
 
 	echo "
 	<html>
-		<form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\">
-			<center>
+		<center>
+			<form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\">
 				<input type=\"submit\" value=\"Valider mon test\">
-			</center>
-		</form>
+			</form>
+		</center>
 	</html>" >> $out
 
 	cgiheader
