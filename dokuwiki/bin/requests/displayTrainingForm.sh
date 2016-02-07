@@ -28,7 +28,7 @@ EOF
 
 	for i in $list; do
 		QUESTIONID=$i
-		echo QUESTIONID >> $out
+		echo $QUESTIONID >> $out
 		#mainLoadQuestion
 		#mainShowQuestion >> $out
 	done
