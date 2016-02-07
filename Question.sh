@@ -46,6 +46,11 @@ function mainDokuwikiAddQuestion() {
 
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
+
+    if test $? -ne 0; then
+        dokuError "Problème de chargement du sous-type de la question."
+    fi
+
     dokuwikiAddQuestion
 
     ID=$RANDOM
@@ -264,15 +269,14 @@ function includeSubType() {
         'freequestion')
             source "$CODE_DIR/FreeQuestion.sh"
             ;;
-	'simplecommand')
-	    source "$CODE_DIR/SimpleCommand.sh"
-	    ;;
+        'simplecommand')
+            source "$CODE_DIR/SimpleCommand.sh"
+            ;;
         'script')
             source "$CODE_DIR/Script.sh"
             ;;
         *)
-	       dokuError "TYPE invalide: $TYPE"
-	       ;;
+            return 1
     esac
 
 	return 0
