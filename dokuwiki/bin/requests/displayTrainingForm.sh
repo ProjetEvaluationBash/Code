@@ -27,10 +27,10 @@ EOF
 	QUESTIONPATH=$testDir
 
 	for i in $list; do
-	#	ln -sf $testDir/$i $dokuUserQuestionsDir/$questionPath
 		QUESTIONID=$i
-		mainLoadQuestion
-		mainShowQuestion >> $out
+		echo QUESTIONID >> $out
+		#mainLoadQuestion
+		#mainShowQuestion >> $out
 	done
 
 
