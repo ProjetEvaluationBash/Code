@@ -24,7 +24,7 @@ Tests :
   * [[$DOKU_CGI?module=$module&action=questionsList|Lister les questions]]
   * [[$DOKU_CGI?module=$module&action=executeCommand|Executer une commande]]
   * [[$DOKU_CGI?module=$module&action=executeScript|Executer un script]]
-  * [[$DOKU_CGI?module=$module&action=deleteQuestion|Supprimer une question]]
+  * [[$DOKU_CGI?module=$module&action=deleteQuestionForm|Supprimer une question]]
   * [[$DOKU_CGI?module=$module&action=manageExamTest|Gérer les examens]]
  
 EOF

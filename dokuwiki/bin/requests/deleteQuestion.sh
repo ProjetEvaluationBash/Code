@@ -8,7 +8,7 @@ runRequest() {
 	local list=$(param list)
 
 	if userIsProf;then
-		dokuError"Désolé, fonction réservée aux enseignats !"
+		dokuError"Désolé, fonction réservée aux enseignants !"
 	fi
 
 	name=$DokuUser-$name"
