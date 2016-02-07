@@ -19,7 +19,7 @@ runRequest() {
 	cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
-</html>
+
 	
 EOF
 
@@ -33,9 +33,10 @@ EOF
 	done
 
 	echo "
-	* <form>
+	<form>
 		<input type="submit" value="Valider mon entrainement"
 	</form>
+	</html>
 	" >> $out
 
 	cgiheader
