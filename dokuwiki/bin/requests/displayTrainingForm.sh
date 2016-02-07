@@ -31,7 +31,7 @@ EOF
 		echo "$QUESTIONPATH/$QUESTIONID.txt" >> $out
 		echo >> $out
 		mainLoadQuestion
-		mainShowQuestion >> $out
+		#mainShowQuestion >> $out
 	done
 
 
