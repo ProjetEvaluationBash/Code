@@ -23,7 +23,6 @@ runRequest() {
 	<input type="submit" value="Valider mon test">
 </form>
 </html>
-</html>
 	
 EOF
 
@@ -37,9 +36,9 @@ EOF
 	done
 
 	echo "
-	<form>
-		<input type="submit" value="Valider mon entrainement"
-	</form>
+<form name="myForm" action="$DOKU_CGI" method="POST">
+	<input type="submit" value="Valider mon test">
+</form>
 	" >> $out
 
 	cgiheader
