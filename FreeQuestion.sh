@@ -19,9 +19,15 @@ function evaluateAnswer(){
 	# Récuperation des mots clés 
 
 
+function dokuwikiAddQuestion() {
+	local evaluator=$(param freequestion_evaluator)
+
+	return 0
+}
+
 #Fonction permettant l'ajout du'une question de type FreeQuestion
 
-function addQuestion {
+function cliAddQuestion {
 	nbKeywords=1	
 
 	# Saisir la question

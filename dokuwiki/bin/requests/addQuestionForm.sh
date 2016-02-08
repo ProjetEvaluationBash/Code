@@ -10,10 +10,11 @@ runRequest() {
 	fi
 
 	cat << EOF > $out
+	
 ===== Ajouter une question =====
 
 <html>
-<form name="myForm" action="$DOKU_CGI" method="POST">
+<form action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="addQuestion">
 <p>
@@ -39,24 +40,70 @@ Visibilité de la question:
 
 <p>
 Type:
-<select name="type">
+<select name="type" id="type">
         <option value="mcq">QCM</option>
         <option value="commandname">Nom de commande</option>
-        <option value="compoundcommand">Command composée</option>
+        <option value="simplecommand">Commande simple</option>
+        <option value="compoundcommand">Commande composée</option>
         <option value="freequestion">Question libre</option>
         <option value="script">Script</option>
 </select><br><br>
 
-<h3>QCM</h3>
+<div id="mcq">
+        <h3>QCM</h3>
 
-Reponses possibles:<br>
-1: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-2: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br> 
-3: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-4: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br>
-5: <input type="text" name="availableAnswers[]"> <input type="checkbox" name="availableAnswersTrue[]"><br><br>
+        Reponses possibles:<br>
+        <input type="text" name="mcq_answers[]"> <input type="checkbox" name="mcq_answersTrue[]"><br><br>
+</div>
 
-<input type="submit" value="Créer"><br><br>
+<div id="commandname">
+        <h3>Nom de commande</h3>
+
+        Reponse:<br>
+        <input type="text" name="commandname_answer"><br><br>
+</div>
+
+<div id="simplecommand">
+        <h3>Commande simple</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="simplecommand_evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="compoundcommand">
+        <h3>Commande composée</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="compoundcommand_evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="freequestion">
+        <h3>Question libre</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="freequestion_evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<div id="script">
+        <h3>Script</h3>
+
+        Evaluateur:<br>
+
+        <textarea name="script_evaluator">
+        #!/bin/bash
+        </textarea>
+</div>
+
+<input type="submit" value="Ajouter la question"><br><br>
 </form>
 </html>
 EOF

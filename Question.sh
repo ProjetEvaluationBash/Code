@@ -16,6 +16,7 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
 function mainDokuwikiAddQuestion() {
+    local module=$(param module)
     local question=$(param question)
     local duration=$(param duration)
     local difficulty=$(param difficulty)
@@ -46,16 +47,53 @@ function mainDokuwikiAddQuestion() {
 
     # Inclure le sous-type en question et appeller la methode correspondante
     includeSubType
-    dokuwikiAddQuestion
+
+    if test $? -ne 0; then
+        dokuError "Problème de chargement du sous-type de la question."
+    fi
+
+    extraData=`dokuwikiAddQuestion`
 
     ID=$RANDOM
     QUESTION=$question
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility
-    
 
+    saveQuestionToFile $module "$extraData"
+    
     return 0
+}
+
+function saveQuestionToFile() {
+    local module=$1
+    local extraData=$2
+
+    local moduleDir="$DB_MODULES_DIR/$module"
+    local questionFile="$moduleDir/questions/$ID.txt"
+
+    # Est-ce que le module existe bien ?
+    if test ! -d $moduleDir; then
+        dokuError "Module inexistant."
+    fi
+
+    echo "=== type ===" > $questionFile
+    echo "$TYPE" >> $questionFile
+    echo "" >> $questionFile
+    echo "=== difficulty ===" >> $questionFile
+    echo "$DIFFICULTY" >> $questionFile
+    echo "" >> $questionFile
+    echo "=== visibility ===" >> $questionFile
+    echo "$VISIBILITY" >> $questionFile
+    echo "" >> $questionFile
+    echo "=== duration ===" >> $questionFile
+    echo "$DURATION" >> $questionFile
+    echo "" >> $questionFile
+    echo "=== question ===" >> $questionFile
+    echo "$QUESTION" >> $questionFile
+    echo "" >> $questionFile
+    echo "$extraData" >> $questionFile
+
 }
 
 # Permet d'ajouter une question en ligne de commande
@@ -264,15 +302,14 @@ function includeSubType() {
         'freequestion')
             source "$CODE_DIR/FreeQuestion.sh"
             ;;
-	'simplecommand')
-	    source "$CODE_DIR/SimpleCommand.sh"
-	    ;;
+        'simplecommand')
+            source "$CODE_DIR/SimpleCommand.sh"
+            ;;
         'script')
             source "$CODE_DIR/Script.sh"
             ;;
         *)
-	       dokuError "TYPE invalide: $TYPE"
-	       ;;
+            return 1
     esac
 
 	return 0

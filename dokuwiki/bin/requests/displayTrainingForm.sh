@@ -1,37 +1,37 @@
 #!/bin/bash
 
 runRequest() {
-	local dokuName=display_training_form
+	local dokuName=display_testing_form
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
-	local train=$(param exam)
+	local test=$(param exam)
 
-	local trainsDir=$DB_USERS_DIR/$DokuUser/$module/tests
-    if [ ! -e $trainsDir/$train ]; then
+	local testDir=$DB_USERS_DIR/$DokuUser/$module/tests
+	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
+
+    if [ ! -e $testDir/$test ]; then
             dokuError "L'examen $exam n'existe pas !"
             return 1
     fi
 
-	list="$(cat $trainsDir/$train/list)"
+	list="$(cat $testDir/$test/list)"
 
 	cat << EOF > $out
-====== Affichage d un examen (module $module) ======
+====== Entrainement: $test (module $module) ======
 <html>
-Liste des question de l entrainement $exam:
 </html>
 EOF
 
 	source "$CODE_DIR/Question.sh"
+	QUESTIONPATH="$testDir/$test/questions"
 
-	#QUESTIONPATH=$trainsDir
-	echo "Test2" >> $out
-	for i in $list; do		
-		#QUESTIONID=$i
-		#mainLoadQuestion
-		#mainShowQuestion >> $out
-		echo "$i.txt" >> $out
+	for i in $list; do
+		QUESTIONID=$i
+		mainLoadQuestion
+		mainShowQuestion >> $out
 	done
 
+	echo "<html><center><form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\"><input type=\"submit\" value=\"Valider mon test\"></form></center></html>" >> $out
 
 	cgiheader
 	redirect users:$DokuUser:$dokuName
