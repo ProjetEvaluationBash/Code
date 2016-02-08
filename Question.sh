@@ -294,7 +294,6 @@ function mainLoadQuestion() {
 }
 
 function mainShowQuestion() {
-	echo "=== Question ==="
 	echo "$QUESTION"
 
 	includeSubType

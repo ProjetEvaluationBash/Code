@@ -30,6 +30,7 @@ runRequest() {
     for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
 		QUESTIONID=$i
 		
+		echo "=== Question $i ===" >> $out
 		mainLoadQuestion
 		mainShowQuestion >> $out
     done
