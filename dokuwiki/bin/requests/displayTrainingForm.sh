@@ -24,7 +24,7 @@ runRequest() {
 
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-	J=1
+	j=1
 	for i in $list; do	
 		echo "=== Question $j ==="
 		j=$(($j + 1))
