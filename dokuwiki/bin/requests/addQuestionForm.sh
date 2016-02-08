@@ -14,6 +14,15 @@ runRequest() {
 ===== Ajouter une question =====
 
 <html>
+
+<script type="text/javascript">/*<![CDATA[*/
+jQuery.ready(function() {
+	jQuery("#type").change(function() {
+		console.log("Type de question modifié.");
+	});
+});
+/*!]]>*/</script>
+
 <form action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="addQuestion">
