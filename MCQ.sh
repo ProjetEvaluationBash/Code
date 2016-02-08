@@ -9,60 +9,53 @@ PROGDIR=$(readlink -m $(dirname $0))
 
 function dokuwikiAddQuestion() {
 	declare -A AVAILABLEANSWERS
-	declare -A ANSWERS
-
-	local availableAnswers1=$(param "availableAnswers1")
-	local availableAnswersTrue1=$(param "availableAnswersTrue1")
-	local availableAnswers2=$(param "availableAnswers2")
-	local availableAnswersTrue2=$(param "availableAnswersTrue2")
-	local availableAnswers3=$(param "availableAnswers3")
-	local availableAnswersTrue3=$(param "availableAnswersTrue3")
-	local availableAnswers4=$(param "availableAnswers4")
-	local availableAnswersTrue4=$(param "availableAnswersTrue4")
-	local availableAnswers5=$(param "availableAnswers5")
-	local availableAnswersTrue5=$(param "availableAnswersTrue5")
-
-	validateAvailableAnswer $availableAnswers1
-	returnCode=$?
-
-	if test $returnCode -eq 1; then
-		dokuError "Première reponse vide."
+	ANSWER=""
+	
+	i=1
+	
+	while true; do
+		local availableAnswer=$(param "mcq_availableAnswer$1")
+		
+		if test -z $availableAnswer; do
+			break
+		done
+		
+		errorMessage=`validateAvailableAnswer $availableAnswer`
+		
+		if test $? -ne 0; then
+			dokuError $errorMessage
+			return 1
+		fi
+		
+		AVAILABLEANSWERS[$i]=$availableAnswer
+		
+		if test $(param "mcq_availableAnswerTrue$i") -eq "on"; then
+			ANSWER="$ANSWER $i"
+		fi
+		
+		i=$(($i + 1))
+	done
+	
+	if test ${#AVAILABLEANSWERS[@]} -lt 2; then
+		dokuError "Un QCM doit avoir au moins deux reponses possibles."
+		return 2
 	fi
-
-	if test $returnCode -eq 2; then
-		dokuError "Première reponse invalide."
+	
+	if test -z $ANSWER; then
+		dokuError "Aucune reponse vraie fournie."
+		return 3
 	fi
-
-	# Ajouter la première reponse possible à la liste definitive
-	AVAILABLEANSWERS[1]=$availableAnswers1 
-
-	validateAvailableAnswer $availableAnswers2
-	returnCode=$?
-
-	if test $returnCode -eq 0; then
-		dokuError "Deuxième reponse vide."
-	fi
-
-	if test $returnCode -eq 2; then
-		dokuError "Deuxième reponse invalide."
-	fi
-
-	# Ajouter la deuxième reponse possible à la liste definitive
-	AVAILABLEANSWERS[2]=$availableAnswers2
-
-	validateAvailableAnswer $availableAnswers3
-	returnCode=$?
-
-	if test $returnCode -ne 0; then
-		dokuError "Première reponse vide."
-	fi
-
-	if test $returnCode -eq 2; then
-		dokuError "Première reponse invalide."
-	fi
-
-	#TODO
-
+	
+	echo "=== availableAnswers ==="
+	
+	for j in "${AVAILABLEANSWERS[@]}" do
+		echo "  - $j"
+	done
+	
+	echo ""
+	echo "=== answer ==="
+	echo "$ANSWER"
+	
 	return 0
 }
 
@@ -159,11 +152,13 @@ function cliAddQuestion() {
 function validateAvailableAnswer() {
 	local availableAnswer=$1
 
-	if test "${#availableAnswer}" -eq 0; then
+	if test "${#availableAnswer}" -lt 3; then
+		echo "Reponse trop courte."
 		return 1
 	fi
-
-	if test "${#availableAnswer}" -lt 3 -o "${#availableAnswer}" -gt 512; then
+	
+	if test "${#availableAnswer}" -gt 255; then
+		echo "Reponse trop longue."
 		return 2
 	fi
 
