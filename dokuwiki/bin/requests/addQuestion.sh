@@ -26,10 +26,11 @@ Difficulty: $DIFFICULTY
 Visibility: $VISIBILITY  
 Type: $TYPE  
 
-
 isMcqCalled: $ISMCQCALLED  
 availableAnswers: $AVAILABLEANSWERS  
 availableAnswersTrue: $AVAILABLEANSWERSTRUE  
+
+errorMessage: $ERROR_MESSAGE
 
 EOF
 

@@ -55,8 +55,7 @@ function mainDokuwikiAddQuestion() {
     extraData=`dokuwikiAddQuestion`
     
     if test $? -ne 0; then
-    	# Quitter
-    	return 1
+    	dokuError $ERROR_MESSAGE
     fi
 
     ID=`getNextId $module`
@@ -344,8 +343,3 @@ function mainToString() {
 	toString
 }
 
-function mainSaveUserAnswer() {
-	
-	includeSubType
-	saveUserAnswer
-}
