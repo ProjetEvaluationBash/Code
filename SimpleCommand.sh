@@ -37,7 +37,37 @@ function EvaluateAnswer() {
 }
 
 function dokuwikiAddQuestion() {
-	local evaluator=$(param simplecommand_evaluator)
+	local answer=$(param simplecommand_answer)
+
+	validateAnswer $answer
+	returnCode=$?
+	
+	if test $returnCode -eq 1; then
+		dokuError "Reponse vide."
+	fi
+	
+	if test $returnCode -eq 2; then
+		dokuError "Reponse trop longue."
+	fi
+
+	echo "=== answer ==="
+	echo "$answer"
+
+	return 0
+}
+
+function validateAnswer() {
+	local answer=$1
+
+	if test "${#answer}" -eq 0; then
+		# Reponse vide
+		return 1
+	fi
+
+	if test "${#answer}" -gt 255; then
+		# Reponse trop longue
+		return 2
+	fi
 
 	return 0
 }

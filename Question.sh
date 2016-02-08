@@ -53,8 +53,13 @@ function mainDokuwikiAddQuestion() {
     fi
 
     extraData=`dokuwikiAddQuestion`
+    
+    if test $? -ne 0; then
+    	# Quitter
+    	return 1
+    fi
 
-    ID=$RANDOM
+    ID=`getNextId $module`
     QUESTION=$question
     DIFFICULTY=$difficulty
     DURATION=$duration
@@ -63,6 +68,19 @@ function mainDokuwikiAddQuestion() {
     saveQuestionToFile $module "$extraData"
     
     return 0
+}
+
+function getNextId() {
+	local module=$1
+	local id=$RANDOM
+	
+	local questionsDir="$DB_MODULES_DIR/$module/questions"
+	
+	while test -e "$questionsDir/$id.txt"; do
+		id=$RANDOM
+	done
+	
+	echo $id
 }
 
 function saveQuestionToFile() {

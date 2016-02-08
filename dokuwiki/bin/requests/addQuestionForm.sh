@@ -66,11 +66,9 @@ Type:
 <div id="simplecommand">
         <h3>Commande simple</h3>
 
-        Evaluateur:<br>
+        Reponse:<br>
 
-        <textarea name="simplecommand_evaluator">
-        #!/bin/bash
-        </textarea>
+        <input type="text" name="simplecommand_answer"><br><br>
 </div>
 
 <div id="compoundcommand">
