@@ -21,9 +21,9 @@ function dokuwikiAddQuestion() {
 	while true; do
 		availableAnswer=$(param "mcq_availableAnswer$1")
 		
-		if test -z $availableAnswer; do
+		if test -z $availableAnswer; then
 			break
-		done
+		fi
 		
 		validateAvailableAnswer $availableAnswer
 		
