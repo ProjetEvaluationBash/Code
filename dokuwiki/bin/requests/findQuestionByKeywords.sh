@@ -6,7 +6,7 @@ runRequest() {
 	local module=$(param module)
 	local name=$(param name)
 	local list=$(param list)
-	local keywords=$(param keywords)
+	local keyword=$(param keyword)
 
 	if userIsProf;then
 		dokuError"Désolé, fonction réservée aux enseignants !"
@@ -17,8 +17,8 @@ runRequest() {
 	
 	for i in $list; do 
 		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
-		if ["$keywords" == $keywords ]
-			echo $$DB_MODULES_DIR/$module/questions$i.txt
+		if ["$keywords" == $keyword ]
+			echo $DB_MODULES_DIR/$module/questions/$i.txt
 		fi
 	done
 			
