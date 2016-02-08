@@ -31,6 +31,8 @@ isMcqCalled: $ISMCQCALLED
 availableAnswers: $AVAILABLEANSWERS  
 availableAnswersTrue: $AVAILABLEANSWERSTRUE  
 
+errorMessage: $ERROR_MESSAGE
+
 EOF
 
     redirect users:$DokuUser:$dokuName
