@@ -24,10 +24,10 @@ runRequest() {
 
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-	J=1
+	#j=1
 	for i in $list; do	
-		echo "=== Question $j ==="
-		j=$(($j + 1))
+		#echo "=== Question $j ===" >> $out
+		#j=$(($j + 1))
 		QUESTIONID=$i
 		mainLoadQuestion
 		mainShowQuestion >> $out
