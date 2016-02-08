@@ -7,7 +7,7 @@ runRequest() {
         cat << EOF > $out
 ====== Module ($module) ======
   * [[$DOKU_CGI?module=$module&action=manageTrainingTest| Faire un entraînement]]
-  * Faire un examen
+  * [[$DOKU_CGI?module=$module&action=doExamForm| Faire un examen]]
 EOF
 
 if userIsProf; then
