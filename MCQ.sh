@@ -172,17 +172,22 @@ function validateAvailableAnswer() {
 function showQuestion() {
 	i=1
 
-	echo "<html>"
-	echo "<form name=\"userAnswer\"  method=\"POST\">"
-	echo "<p>"
-	echo "Cocher la bonne réponse : <br>"
+	cat << EOF >> $out
+	<html>
+	<form name="userAnswer"  method="POST">
+	<p>
+	Cocher la bonne réponse : <br>
+EOF
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "<input type=\"radio\" name=\"selectedAnswer\" value=\"$i\"> $answer<br>"
+		echo"<input type=\"radio\" name=\"selectedAnswer\" value=\"$i\"> $answer<br>"
 		i=$(($i + 1))
 	done
-	echo "</p>"
-	echo "</form>"
-	echo "</html>"
+
+	cat << EOF >> $out
+	</p>
+	</form>
+	</html>
+EOF
 
 	return 0	
 }

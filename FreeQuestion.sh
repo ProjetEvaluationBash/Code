@@ -74,14 +74,15 @@ function loadQuestion() {
 
 # fonction generant un formulaire qui permet à l'utilisateur de répondre à une free question
 function showQuestion() {
-	echo "<html>"
-	echo "<form name=\"userAnswer\"  method=\"POST\">"
-	echo "<p>"
-	echo "Votre réponse : <br>"
-	echo "<textarea></textarea><br>"
-	echo "</p>"
-	echo "</form>"
-	echo "</html>"
-
+	cat << EOF >> $out
+	<html>
+	<form name="userAnswer"  method="POST">
+	<p>
+	Votre réponse : <br>
+	<textarea></textarea><br>
+	</p>
+	</form>
+	</html>
+EOF
 	return 0
 }	
