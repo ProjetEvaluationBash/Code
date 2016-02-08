@@ -44,14 +44,9 @@ function dokuwikiAddQuestion() {
 	local answer=$(param simplecommand_answer)
 
 	validateAnswer $answer
-	returnCode=$?
 	
-	if test $returnCode -eq 1; then
-		dokuError "Reponse vide."
-	fi
-	
-	if test $returnCode -eq 2; then
-		dokuError "Reponse trop longue."
+	if test $? -ne 0; then
+		return 1
 	fi
 
 	echo "=== answer ==="
@@ -64,12 +59,12 @@ function validateAnswer() {
 	local answer=$1
 
 	if test "${#answer}" -eq 0; then
-		# Reponse vide
+		ERROR_MESSAGE="Reponse vide."
 		return 1
 	fi
 
 	if test "${#answer}" -gt 255; then
-		# Reponse trop longue
+		ERROR_MESSAGE="Reponse trop longue."
 		return 2
 	fi
 

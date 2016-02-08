@@ -20,10 +20,9 @@ function dokuwikiAddQuestion() {
 			break
 		done
 		
-		errorMessage=`validateAvailableAnswer $availableAnswer`
+		validateAvailableAnswer $availableAnswer
 		
 		if test $? -ne 0; then
-			dokuError $errorMessage
 			return 1
 		fi
 		
@@ -37,14 +36,24 @@ function dokuwikiAddQuestion() {
 	done
 	
 	if test ${#AVAILABLEANSWERS[@]} -lt 2; then
-		dokuError "Un QCM doit avoir au moins deux reponses possibles."
+		ERROR_MESSAGE="Un QCM doit avoir au moins deux reponses possibles."
 		return 2
 	fi
 	
 	if test -z $ANSWER; then
-		dokuError "Aucune reponse vraie fournie."
+		ERROR_MESSAGE="Aucune reponse vraie fournie."
 		return 3
 	fi
+	
+	echo "=== availableAnswers ==="
+	
+	for j in "${AVAILABLEANSWERS[@]}" do
+		echo "  - $j"
+	done
+	
+	echo ""
+	echo "=== answer ==="
+	echo "$ANSWER"
 	
 	return 0
 }
@@ -143,12 +152,12 @@ function validateAvailableAnswer() {
 	local availableAnswer=$1
 
 	if test "${#availableAnswer}" -lt 3; then
-		echo "Reponse trop courte."
+		ERROR_MESSAGE="Reponse trop courte."
 		return 1
 	fi
 	
 	if test "${#availableAnswer}" -gt 255; then
-		echo "Reponse trop longue."
+		ERROR_MESSAGE="Reponse trop longue."
 		return 2
 	fi
 
