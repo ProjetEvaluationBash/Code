@@ -4,7 +4,7 @@ PROGNAME=$(basename $(readlink -f $0))
 
 echo $PROGNAME
 
-exit 0
+
 
 . EvalLib.sh
 
