@@ -249,7 +249,6 @@ function getElement() {
         ' | tail -n +2`
 
         echo "$elementData"
-
 }
 
 # mainLoadQuestion(questionId)
