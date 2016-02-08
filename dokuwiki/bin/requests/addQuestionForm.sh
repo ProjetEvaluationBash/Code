@@ -11,13 +11,6 @@ runRequest() {
 
 	cat << EOF > $out
 	
-<script type="text/javascript">/*<![CDATA[*/
-jQuery.ready(function() {
-	jQuery("#type").change(function() {
-		console.log("Type de question modifié.");
-	});
-});
-/*!]]>*/</script>
 ===== Ajouter une question =====
 
 <html>
