@@ -111,6 +111,8 @@ Type:
 
 <script type="text/javascript">/*<![CDATA[*/
 jQuery.ready(function() {
+	console.log("Test");
+
 	jQuery("#question_type").change(function() {
 		console.log("Type de question modifié.");
 	});

@@ -52,7 +52,7 @@ function dokuwikiAddQuestion() {
 	
 	echo "=== availableAnswers ==="
 	
-	for j in "${AVAILABLEANSWERS[@]}" do
+	for j in "${AVAILABLEANSWERS[@]}"; do
 		echo "  - $j"
 	done
 	
