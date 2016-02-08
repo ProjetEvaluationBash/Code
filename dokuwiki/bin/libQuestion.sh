@@ -102,13 +102,17 @@ findQuestionRandom() {
 	        value=$((RANDOM % $nbDoss + 1))
 	        listeQ+=" "
 	        for question in $listeQ; do
-	                #Si le numéro est déjà dans la liste
+			#Si le numéro est déjà dans la liste
 	                if [ $question = $value ]; then
 	                        i=$(($i-1))
 	                        change="o"
 	                fi
 	        done
-	        #Si la valeur est correcte on l'ajoute dans la liste
+		local visibility=$(getQuestionElement $DB_MODULES_DIR/$MODULE/questions/$value.txt visibility)
+	        if [ "$visibility" != "training" ]; then
+			change="o"
+		fi
+		#Si la valeur est correcte on l'ajoute dans la liste
 	        if [[ "$change" == "n" ]] ; then
 	                listeQ+=$value
 	        fi
