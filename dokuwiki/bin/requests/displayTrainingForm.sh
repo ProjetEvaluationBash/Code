@@ -19,7 +19,6 @@ runRequest() {
 cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
-</html>
 EOF
 
 	source "$CODE_DIR/Question.sh"
@@ -40,6 +39,7 @@ cat << EOF > $out
 <input type="submit" value="Valider mon test">
 </form>
 </center>
+</html>
 EOF
 	cgiheader
 	redirect users:$DokuUser:$dokuName
