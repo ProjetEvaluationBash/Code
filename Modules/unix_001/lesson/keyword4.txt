@@ -1,1 +1,0 @@
-regularExpressions grep sed awk [:alnum:] [:digit:] [:xdigit:] [:lower:] [:upper:] [:alpha:] [:space:] gawk last export grep sed tr 
