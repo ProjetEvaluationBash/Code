@@ -9,8 +9,7 @@ runRequest() {
 	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
 
     if userIsProf; then
-            redirect users:$DokuUser:permissionDenied
-            return 1
+        dokuError "Désolé, fonction réservée aux enseignants !"
     fi
 
 	echo "====== Liste des questions du module $module ======" > $out
