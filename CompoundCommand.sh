@@ -16,14 +16,15 @@ function loadQuestion() {
 }
 
 function showQuestion() {
-
-	echo "<html>"
-	echo "<form name=\"userAnswer\"  method=\"POST\">"
-	echo "<p>"
-	echo "Votre script : <br>"
-	echo "<textarea></textarea><br>"
-	echo "</p>"
-	echo "</form>"
-	echo "</html>"
+	cat << EOF >> $out
+	<html>
+	<form name="userAnswer"  method="POST">
+	<p>
+	Votre script : <br>
+	<textarea></textarea><br>
+	</p>
+	</form>
+	</html>
+EOF
 	return 0
 }
