@@ -53,7 +53,11 @@ Type:
         <h3>QCM</h3>
 
         Reponses possibles:<br>
-        <input type="text" name="mcq_answers[]"> <input type="checkbox" name="mcq_answersTrue[]"><br><br>
+        <input type="text" name="mcq_availableAnswer1"> <input type="checkbox" name="mcq_availableAnswerTrue1"><br>
+        <input type="text" name="mcq_availableAnswer2"> <input type="checkbox" name="mcq_availableAnswerTrue2"><br>
+        <input type="text" name="mcq_availableAnswer3"> <input type="checkbox" name="mcq_availableAnswerTrue3"><br>
+        <input type="text" name="mcq_availableAnswer4"> <input type="checkbox" name="mcq_availableAnswerTrue4"><br>
+        <input type="text" name="mcq_availableAnswer5"> <input type="checkbox" name="mcq_availableAnswerTrue5"><br><br>
 </div>
 
 <div id="commandname">
