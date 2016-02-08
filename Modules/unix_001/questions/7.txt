@@ -1,0 +1,25 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Les variables “exportées” d'un processus sont 
+
+=== availableAnswers ===
+  - les variables d'environnement
+  - les variables globales
+  - les variables locales
+
+=== answer ===
+1
+
+=== keywords ===
+variable_environnement

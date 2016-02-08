@@ -1,0 +1,25 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+La commande permettant de lister TOUS les fichiers du répertoire courant est : 
+
+=== availableAnswers ===
+  - ls -t
+  - ls -a
+  - ls -l
+
+=== answer ===
+2
+
+=== keywords ===
+ls

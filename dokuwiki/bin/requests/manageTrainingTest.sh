@@ -2,7 +2,7 @@
 
 showTestItem() {
         cat << EOF >> $out
-  * [[$DOKU_CGI?module=$module&exam=$1&action=displayTrainingForm|$1]]     
+  * [[$DOKU_CGI?module=$module&exam=$1&action=displayTrainingForm|$1]] ([[$DOKU_CGI?module=$module&test=$1&action=delTest|supprimer]])   
 EOF
 }
 

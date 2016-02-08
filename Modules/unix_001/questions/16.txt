@@ -1,0 +1,25 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+La commande “ls -l [0-9]?x?” affiche des informations sur les fichiers dont les noms
+
+=== availableAnswers ===
+  - commençent par un chiffre OU un 'x'
+  - sont constitués de 4 symboles dont le premier est un chiffre et l'avant dernier un 'x'
+  - contenant un chiffre suivi d'un 'x' suivi de n'importe quel caractère
+
+=== answer ===
+2
+
+=== keywords ===
+ls regex

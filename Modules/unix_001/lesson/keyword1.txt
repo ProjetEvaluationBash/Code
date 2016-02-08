@@ -1,0 +1,3 @@
+generalities man filesystemHierarchy fileTypes path ls cd cp mv chmod chown mkdir mkfifo pwd rm rmdir apropos cat df du file less more locate
+
+

@@ -1,0 +1,21 @@
+=== type ===
+freequestion
+
+=== difficulty ===
+
+
+=== visibility ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== evaluator ===
+
+
+=== keywords ===
+
+
