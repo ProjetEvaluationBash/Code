@@ -256,24 +256,24 @@ function getElement() {
 function mainLoadQuestion() {
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
-        if test -z $QUESTIONPATH; then
+    if test -z $QUESTIONPATH; then
 		fatalError "mainLoadQuestion: QUESTIONPATH non definie !" 1
-        fi
+    fi
 
 	# Si la variable d'environnement "QUESTIONID" n'est pas definie
 
-        if test -z $QUESTIONID; then
-        	fatalError "mainLoadQuestion: QUESTIONID non definie !" 2
+    if test -z $QUESTIONID; then
+    	fatalError "mainLoadQuestion: QUESTIONID non definie !" 2
 	fi 
 
 	# On verifie si le fichier existe et si c'est un fichier ordinaire
-        if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
-        	fatalError "mainLoadQuestion: Le fichier de la question n'existe pas !" 3
+    if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
+    	fatalError "mainLoadQuestion: Le fichier de la question n'existe pas !" 3
 	fi
 
 	# On verifie si le fichier est lisible par l'utilisateur courant
-        if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
-        	fatalError "mainLoadQuestion: Fichier illisible (droits de fichier) !" 4
+    if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
+    	fatalError "mainLoadQuestion: Fichier illisible (droits de fichier) !" 4
 	fi
 
 	# Lecture du fichier de la question
@@ -288,8 +288,6 @@ function mainLoadQuestion() {
 	TYPE=`getElement "$questionFileContents" type`
 
 	includeSubType
-
-	# On appelle la fonction loadQuestion du type de la question
 	loadQuestion
 
 	return 0
@@ -300,7 +298,9 @@ function mainShowQuestion() {
 	echo "$QUESTION"
 
 	includeSubType
-	showQuestion	
+	showQuestion
+	
+	return 0
 }
 
 # Inclut "la classe" du type de question

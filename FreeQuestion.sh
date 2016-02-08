@@ -27,7 +27,7 @@ function dokuwikiAddQuestion() {
 
 #Fonction permettant l'ajout du'une question de type FreeQuestion
 
-function cliAddQuestion {
+function cliAddQuestion() {
 	nbKeywords=1	
 
 	# Saisir la question
@@ -66,6 +66,10 @@ function cliAddQuestion {
 			fi
 		fi
 	done
+}
+
+function loadQuestion() {
+	return 0
 }
 
 # fonction generant un formulaire qui permet à l'utilisateur de répondre à une free question

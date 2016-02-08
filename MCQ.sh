@@ -63,7 +63,6 @@ function dokuwikiAddQuestion() {
 
 	#TODO
 
-
 	return 0
 }
 

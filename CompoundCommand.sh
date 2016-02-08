@@ -11,6 +11,10 @@ function cliAddQuestion {
         return 0
 }
 
+function loadQuestion() {
+	return 0
+}
+
 function showQuestion() {
 
 	echo "<html>"

@@ -6,7 +6,11 @@
 #EvalAnswer QUESTION ID
 
 
-#set -x
+function loadQuestion() {
+	ANSWER=`getElement "$questionFileContents" answer`
+	return 0
+}
+
 function EvaluateAnswer() {
 	
 	# Vérif des paramêtres

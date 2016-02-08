@@ -63,6 +63,12 @@ function cliAddQuestion() {
 	return 0		
 }
 
+function loadQuestion() {
+	ANSWER=`getElement "$questionFileContents" answer`
+	
+	return 0
+}
+
 function showQuestion() {
 
 	echo "<html>"

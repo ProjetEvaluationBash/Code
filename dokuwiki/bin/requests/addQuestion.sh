@@ -19,16 +19,17 @@ runRequest() {
     cat << EOF > $out
 ====== addQuestionForm Debug ======
 
-Id: $ID
-Question: $QUESTION
-Duration: $DURATION
-Difficulty: $DIFFICULTY
-Visibility: $VISIBILITY
-Type: $TYPE
+Id: $ID  
+Question: $QUESTION  
+Duration: $DURATION  
+Difficulty: $DIFFICULTY  
+Visibility: $VISIBILITY  
+Type: $TYPE  
 
-isMcqCalled: $ISMCQCALLED
-availableAnswers: $AVAILABLEANSWERS
-availableAnswersTrue: $AVAILABLEANSWERSTRUE
+
+isMcqCalled: $ISMCQCALLED  
+availableAnswers: $AVAILABLEANSWERS  
+availableAnswersTrue: $AVAILABLEANSWERSTRUE  
 
 EOF
 
