@@ -11,7 +11,7 @@ runRequest() {
 		dokuError"Désolé, fonction réservée aux enseignants !"
 	fi
 
-	name=$DokuUser-$name"
+	name=$DokuUser-$name
 	
 	local notFoundQuestions=""
 	for i in $list; do
