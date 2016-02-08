@@ -24,8 +24,10 @@ EOF
 
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-
+	local j=1
 	for i in $list; do
+		echo "=== Question $j ===" >> $out
+		j=$(($j + 1))
 		QUESTIONID=$i
 		mainLoadQuestion
 		mainShowQuestion >> $out
