@@ -16,13 +16,14 @@ function dokuwikiAddQuestion() {
 	i=1
 	
 	ERROR_MESSAGE="TEST MCQ"
+	return 0
 	
 	while true; do
-		local availableAnswer=$(param "mcq_availableAnswer$1")
+		availableAnswer=$(param "mcq_availableAnswer$1")
 		
-		if test -z $availableAnswer; do
+		if test -z $availableAnswer; then
 			break
-		done
+		fi
 		
 		validateAvailableAnswer $availableAnswer
 		
@@ -169,16 +170,7 @@ function validateAvailableAnswer() {
 }
 
 function showQuestion() {
-	#echo "=== Reponses possibles ==="
-	
-	#for answer in "${AVAILABLEANSWERS[@]}"; do
-	#	echo "  - $answer"
-	#done
 	i=1
-	
-	#echo "<html>"
-	#echo "<h1>Test MCQ showQuestion</h1>"
-	#echo "</html>"
 
 	echo "<html>"
 	echo "<form name=\"userAnswer\"  method=\"POST\">"

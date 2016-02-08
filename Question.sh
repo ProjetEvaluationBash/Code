@@ -52,7 +52,7 @@ function mainDokuwikiAddQuestion() {
         dokuError "Problème de chargement du sous-type de la question."
     fi
 
-    extraData=`dokuwikiAddQuestion`
+    EXTRA_DATA=$(dokuwikiAddQuestion)
     
     if test $? -ne 0; then
     	dokuError $ERROR_MESSAGE
@@ -63,9 +63,8 @@ function mainDokuwikiAddQuestion() {
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility
-    EXTRADATA=$extraData
 
-    saveQuestionToFile $module "$extraData"
+    saveQuestionToFile $module
     
     return 0
 }
@@ -85,7 +84,6 @@ function getNextId() {
 
 function saveQuestionToFile() {
     local module=$1
-    local extraData=$2
 
     local moduleDir="$DB_MODULES_DIR/$module"
     local questionFile="$moduleDir/questions/$ID.txt"
@@ -109,8 +107,11 @@ function saveQuestionToFile() {
     echo "" >> $questionFile
     echo "=== question ===" >> $questionFile
     echo "$QUESTION" >> $questionFile
-    echo "" >> $questionFile
-    echo "$extraData" >> $questionFile
+    
+    if test -n $EXTRA_DATA; then
+		echo "" >> $questionFile
+		echo "$EXTRA_DATA" >> $questionFile
+	fi
 
 }
 
@@ -248,7 +249,6 @@ function getElement() {
         ' | tail -n +2`
 
         echo "$elementData"
-
 }
 
 # mainLoadQuestion(questionId)
