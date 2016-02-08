@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 
 runRequest() {
 	local dokuName=delete_question
@@ -18,6 +18,8 @@ runRequest() {
 		if [ ! -e $DB_MODULES_DIR/$module/questions/$i.txt ]; then
 			notFoundQuestions="$notFoundQuestions $i"
 		fi
+		i =$(getQuestionElement $DB_MODULES_DIR/$module/questions/$i.txt id)
+		rm $DB_MODULES_DIR/$module/questions/$i.txt
 	done
 
 	if [ -n "$notFoundQuestions" ]; then
@@ -25,11 +27,14 @@ runRequest() {
 		return 1
 	fi
 
+	
+	
 	cat << EOF > $out	
+
 
 ======= Suppression de questions (module $module) ======
 
 EOF
-	run "DOKU_CGI?module=$module&action=manageExamTest"
+	run "DOKU_CGI?module=$module&action=mainModule"
 }
 
