@@ -8,6 +8,8 @@ PROGDIR=$(readlink -m $(dirname $0))
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
+	ISMCQCALLED="YES"
+
 	declare -A AVAILABLEANSWERS
 	ANSWER=""
 	
