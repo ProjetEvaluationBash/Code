@@ -1,0 +1,20 @@
+=== type ===
+simplecommand
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Quelle commande permet d'aller dans le repertoire personnel de toto ? 
+
+=== answer ===
+cd ~toto
+
+=== keywords ===
+cd home

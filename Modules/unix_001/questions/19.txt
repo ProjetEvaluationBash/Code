@@ -1,0 +1,25 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Un tube permet de
+
+=== availableAnswers ===
+  - connecter la sortie standard d'un processus vers l'entrée standard d'un autre processus
+  - connecter la sortie sandard d'un processus sur son entrée standard
+  - lancer plusieurs processus indépendants en parallèle
+
+=== answer ===
+1
+
+=== keywords ===
+pipe

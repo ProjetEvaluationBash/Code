@@ -1,0 +1,20 @@
+=== type ===
+compoundcommand
+
+=== difficulty ===
+
+
+=== visibility ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== evaluator ===
+
+
+=== keywords ===
+
