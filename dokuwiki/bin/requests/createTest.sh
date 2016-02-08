@@ -17,6 +17,7 @@ runRequest(){
 	mkdir -p $testsDir/$name
 	echo "$listQ" > $testsDir/$name/list
 	mkdir $testsDir/$name/questions
+	mkdir $testsDir/$name/answers
 	for i in $listQ; do
 
 		cp $DB_MODULES_DIR/$module/questions/$i.txt $testsDir/$name/questions
