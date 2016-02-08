@@ -15,14 +15,6 @@ runRequest() {
 
 <html>
 
-<script type="text/javascript">/*<![CDATA[*/
-jQuery.ready(function() {
-	jQuery("#type").change(function() {
-		console.log("Type de question modifié.");
-	});
-});
-/*!]]>*/</script>
-
 <form action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="addQuestion">
@@ -49,7 +41,7 @@ Visibilité de la question:
 
 <p>
 Type:
-<select name="type" id="type">
+<select name="type" id="question_type">
         <option value="mcq">QCM</option>
         <option value="commandname">Nom de commande</option>
         <option value="simplecommand">Commande simple</option>
@@ -116,6 +108,14 @@ Type:
 
 <input type="submit" value="Ajouter la question"><br><br>
 </form>
+
+<script type="text/javascript">/*<![CDATA[*/
+jQuery.ready(function() {
+	jQuery("#question_type").change(function() {
+		console.log("Type de question modifié.");
+	});
+});
+/*!]]>*/</script>
 </html>
 EOF
         redirect users:$DokuUser:$dokuName
