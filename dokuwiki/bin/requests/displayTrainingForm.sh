@@ -31,8 +31,16 @@ EOF
 		mainShowQuestion >> $out
 	done
 
-	echo "<html><center><form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\"><input type=\"submit\" value=\"Valider mon test\"></form></center></html>" >> $out
-
+	#echo "<html><center><form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\"><input type=\"submit\" value=\"Valider mon test\"></form></center></html>" >> $out
+	cat << EOF > $out
+<html>
+	<center>
+		<form name="myForm" action="$DOKU_CGI" method="POST">
+			<input type="submit" value="Valider mon test">
+		</form>
+	</center>
+</html>
+EOF
 	cgiheader
 	redirect users:$DokuUser:$dokuName
 }
