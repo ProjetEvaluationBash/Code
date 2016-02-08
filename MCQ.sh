@@ -46,6 +46,16 @@ function dokuwikiAddQuestion() {
 		return 3
 	fi
 	
+	echo "=== availableAnswers ==="
+	
+	for j in "${AVAILABLEANSWERS[@]}" do
+		echo "  - $j"
+	done
+	
+	echo ""
+	echo "=== answer ==="
+	echo "$ANSWER"
+	
 	return 0
 }
 
