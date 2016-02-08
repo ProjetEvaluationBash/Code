@@ -32,7 +32,7 @@ EOF
 
 
 	cgiHeader
-	redirect users:$DokuUser:$dokuName
+	run "$DOKU_CGI?module=$module&exam=$name&action=displayTrainingForm"
 }
 
 

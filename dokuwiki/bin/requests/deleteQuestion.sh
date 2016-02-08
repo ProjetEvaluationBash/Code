@@ -35,6 +35,6 @@ runRequest() {
 ======= Suppression de questions (module $module) ======
 
 EOF
-	run "DOKU_CGI?module=$module&action=deleteQuestionForm"
+	redirect users:$DokuUser:modules
 }
 
