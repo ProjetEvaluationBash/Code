@@ -343,8 +343,3 @@ function mainToString() {
 	toString
 }
 
-function mainSaveUserAnswer() {
-	
-	includeSubType
-	saveUserAnswer
-}
