@@ -27,12 +27,15 @@ runRequest() {
 
 	QUESTIONPATH=$dokuUserQuestionsDir
 
+	j=1
+
     for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
 		QUESTIONID=$i
 		
-		echo "=== Question $i ===" >> $out
+		echo "=== Question #$j ===" >> $out
 		mainLoadQuestion
 		mainShowQuestion >> $out
+		j=$(($j + 1))
     done
 
 	redirect users:$DokuUser:$dokuName
