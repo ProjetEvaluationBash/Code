@@ -63,6 +63,7 @@ function mainDokuwikiAddQuestion() {
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility
+    EXTRADATA=$extraData
 
     saveQuestionToFile $module "$extraData"
     

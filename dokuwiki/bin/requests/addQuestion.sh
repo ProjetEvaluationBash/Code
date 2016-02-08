@@ -32,6 +32,8 @@ availableAnswersTrue: $AVAILABLEANSWERSTRUE
 
 errorMessage: $ERROR_MESSAGE
 
+Extradata: $EXTRADATA
+
 EOF
 
     redirect users:$DokuUser:$dokuName
