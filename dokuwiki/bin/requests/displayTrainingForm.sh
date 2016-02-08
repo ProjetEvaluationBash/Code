@@ -16,22 +16,19 @@ runRequest() {
 
 	list="$(cat $testDir/$test/list)"
 
-	cat << EOF > $out
-		====== Entrainement: $test (module $module) ======
-		<html>
-		</html>
-	EOF
+cat << EOF > $out
+====== Entrainement: $test (module $module) ======
+<html>
+</html>
+EOF
 
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-	#j=1
-	for i in $list; do	
-		#echo "=== Question $j ===" >> $out
-		#j=$(($j + 1))
+
+	for i in $list; do
 		QUESTIONID=$i
 		mainLoadQuestion
 		mainShowQuestion >> $out
-		
 	done
 
 	echo "<html><center><form name=\"myForm\" action=\"$DOKU_CGI\" method=\"POST\"><input type=\"submit\" value=\"Valider mon test\"></form></center></html>" >> $out
