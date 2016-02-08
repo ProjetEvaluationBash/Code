@@ -10,10 +10,12 @@ runRequest() {
 	fi
 
 	cat << EOF > $out
+	
+/* DOKUWIKI:include_once addQuestionForm.js */
 ===== Ajouter une question =====
 
 <html>
-<form name="myForm" action="$DOKU_CGI" method="POST">
+<form action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="addQuestion">
 <p>
@@ -39,7 +41,7 @@ Visibilité de la question:
 
 <p>
 Type:
-<select name="type">
+<select name="type" id="type">
         <option value="mcq">QCM</option>
         <option value="commandname">Nom de commande</option>
         <option value="simplecommand">Commande simple</option>
