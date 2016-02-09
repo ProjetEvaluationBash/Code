@@ -6,6 +6,7 @@ function setGitConfig() {
 	git config user.name "$1"
 	git config user.email "$2"
 	git config credential.username "$3"
+	git config credential.helper "store --file=/home/info/.git-credentials-$3"
 }
 
 if test $# -eq 0; then
