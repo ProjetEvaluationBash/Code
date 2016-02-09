@@ -174,12 +174,12 @@ i=1
 
 cat << EOF >> $out
 <html>
-<form name="userAnswer"  method="POST">
+<form name="Question$j"  method="POST">
 <p>
 Cocher la bonne réponse : <br>
 EOF
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo"<input type=\"radio\" name=\"selectedAnswer\" value=\"$i\"> $answer<br>" >> $out
+		echo "<input type=\"radio\" name=\"selectedAnswerQuestion$j\" value=\"$i\"> $answer<br>" >> $out
 		i=$(($i + 1))
 	done
 

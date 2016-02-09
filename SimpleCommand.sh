@@ -92,15 +92,16 @@ function cliAddQuestion() {
 }
 
 function showQuestion() {
-	cat << EOF >> $out
-	<html>
-	<form name="userAnswer"  method="POST">
-	<p>
-	Votre réponse : <br>
-	<input type="text" value=""><br>
-	</p>
-	</form>
-	</html>
+i=12
+cat << EOF >> $out
+<html>
+<form name="Question$j"  method="POST">
+<p>
+Votre réponse : <br>
+<input type="text" value=""><br>
+</p>
+</form>
+</html>
 EOF
 	return 0
 }

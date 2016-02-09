@@ -16,15 +16,15 @@ function loadQuestion() {
 }
 
 function showQuestion() {
-	cat << EOF >> $out
-	<html>
-	<form name="userAnswer"  method="POST">
-	<p>
-	Votre script : <br>
-	<textarea></textarea><br>
-	</p>
-	</form>
-	</html>
+cat << EOF >> $out
+<html>
+<form name="Question$j"  method="POST">
+<p>
+Votre script : <br>
+<textarea></textarea><br>
+</p>
+</form>
+</html>
 EOF
 	return 0
 }
