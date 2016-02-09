@@ -18,7 +18,7 @@ function setGitConfig() {
 		read -n 1 -r
 		echo ""	
 
-		if test $REPLY =~ ^[Oo]$; then
+		if [[ $REPLY =~ ^[Oo]$ ]]; then
 			# L'utilisateur souhaite stocker son token OAuth
 			git config credential.helper "store --file=$credentialsFile"
 		else
