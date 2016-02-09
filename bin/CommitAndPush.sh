@@ -3,10 +3,26 @@
 # setGitConfig(name, email)
 
 function setGitConfig() {
+	local credentialsFile="/home/info/.git-credentials-$3"
+
 	git config user.name "$1"
 	git config user.email "$2"
 	git config credential.username "$3"
-	git config credential.helper "store --file=/home/info/.git-credentials-$3"
+	
+	if test -f $credentialsFile; then
+		# Le fichier existe, l'utilisateur a déjà autorisé le stockage du token OAuth
+		git config credential.helper "store --file=$credentialsFile"
+	else
+		# Le fichier n'existe pas, demander l'autorisation de l'utilisateur
+		echo "Souhaitez-vous stocker votre token OAuth sur info@fraise ? [o/N] "
+		read -n 1 -r
+		echo ""	
+
+		if test $REPLY =~ ^[Oo]$; then
+			# L'utilisateur souhaite stocker son token OAuth
+			git config credential.helper "store --file=$credentialsFile"
+		fi
+	fi
 }
 
 if test $# -eq 0; then
