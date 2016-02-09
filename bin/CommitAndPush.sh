@@ -45,7 +45,7 @@ case $username in
 	'flmousse')
 		setGitConfig "Florian MOUSSE" "florian.mousse@etu.udamail.fr" "Mouuss"
 		;;
-	'mamoulin')
+	'mamoulin11')
 		setGitConfig "Mario MOULIN" "mario.moulin@etu.udamail.fr" "oiraMm"
 		;;
 	'jegrand5')
