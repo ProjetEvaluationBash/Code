@@ -23,7 +23,7 @@ function setGitConfig() {
 			git config credential.helper "store --file=$credentialsFile"
 		else
 			# S'assurer qu'aucun helper stock le mot de passe de l'utilisateur
-			git config credential.helper ""
+			git config --unset-all credential.helper
 		fi
 	fi
 }
