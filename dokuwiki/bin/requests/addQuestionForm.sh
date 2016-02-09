@@ -110,7 +110,7 @@ Type:
 </form>
 
 <script type="text/javascript">/*<![CDATA[*/
-jQuery.ready(function() {
+jQuery(document).ready(function() {
 	console.log("Test");
 
 	jQuery("#question_type").change(function() {
