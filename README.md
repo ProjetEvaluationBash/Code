@@ -1,4 +1,4 @@
-## Documents de reference
+# Documents de reference
 
 #### BASH
 
@@ -7,39 +7,49 @@
 * [Defensive BASH Programming](http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming)
 * [Unofficial BASH Strict Mode](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
 
-## Comment utiliser git
+# Comment faire ses commits depuis le compte info@fraise
 
-#### Depuis le compte info@fraise
+* Faire ses modifications avec son editeur preféré
+* Ajouter seulement les fichiers que vous avez modifiés:  `git add fichier1.sh fichier2.sh`
 
-Ajouter les modification apportés:
+Il y a des alias qui existent pour faciliter le "CommitAndPush" et ainisi maximiser votre productivité. Chaque alias est specifique à un utilisateur.
 
-`git add *`
+* `cap1`: `gudavala`
+* `cap2`: `jegrand5`
+* `cap3`: `lijack`
+* `cap4`: `mamoulin11`
+* `cap5`: `flmousse`
+* `cap6`: `pipic1`
 
-Le script suivant s'occupe de commit et pousse les modifications, à votre nom:
+NB: Si l'alias vous deplait il peut être modifié dans le fichier `/home/info/.bash_aliases`
 
-`~/Code/bin/CommitAndPush.sh [NOM D'UTILISATEUR]`
+Donc, prenons par exemple l'étudiant `lijack` qui vient de modifier le fichier `Question.sh`, il va executer les commandes suivantes:
 
-#### Supprimer un fichier
+* `git add Question.sh`
+* `cap3`
 
-`git rm [FICHIER A SUPPRIMER]`
+Le "CommitAndPush" s'occupe de faire le commit, et vous demande seulement le message de commit. Il peut également s'occuper de l'authentification si vous l'autorisez, mais pour cela je vous conseille avant tout d'obtenir un token OAuth pour votre compte Github (évite de devoiler votre mot de passe à tout le monde)
 
-#### Ajouter ses modifications
+# Token OAuth Github
 
-`git add *`
+* Ouvrir la page suivante: https://github.com/settings/tokens
+* Cliquer sur "Generate new token"
+* Mettre `info@fraise` dans le champ "Token description"
+* Cocher seulement `public_repo`
+* Cliquer sur "Generate token"
+* Copier le token indiqué par la flèche (oui la chaine de 40 caractères) dans le presse papier, ne pas le perdre avant l'avoir ajouté à CommitAndPush
+  ![Imgur](http://i.imgur.com/6oCpj4h.png)
 
-#### Commit ses modifications
+# Ajout du Token OAuth dans CommitAndPush
 
-`git commit -m "[MESSAGE]"`
+* `git add fichier1.sh`
+* `cap3`
 
-#### Pousser ses modifications
+```
+    $ git add fichier1.sh
+    $ cap3
+    Souhaitez-vous stocker votre token OAuth sur info@fraise ? [o/N] o
+    Password for 'https://cuonic@github.com': [COLLER TOKEN OAUTH ICI]
+````
 
-`git push origin master`
-
-#### Recuperer des modifications
-
-`git pull origin master`
-
-#### Annuler un commit
-
-`git reset HEAD^`
-
+C'est ajouté, lors de vos prochains commit vous n'aurez pas à rentrer de nom d'utilisateur, ni de mot de passe. Maintenant, codez.
