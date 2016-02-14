@@ -43,10 +43,8 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
-    TYPE=$type
-
     # Inclure le sous-type en question et appeller la methode correspondante
-    includeSubType
+    source "$type.sh"
 
     if test $? -ne 0; then
         dokuError "Problème de chargement du sous-type de la question."
@@ -58,6 +56,7 @@ function mainDokuwikiAddQuestion() {
     	dokuError $ERROR_MESSAGE
     fi
 
+    TYPE=$type
     ID=`getNextId $module`
     QUESTION=$question
     DIFFICULTY=$difficulty
@@ -287,7 +286,7 @@ function mainLoadQuestion() {
 	DURATION=`getElement "$questionFileContents" duration`		
 	TYPE=`getElement "$questionFileContents" type`
 
-	includeSubType
+	source "$TYPE.sh"	
 	loadQuestion
 
 	return 0
@@ -296,39 +295,9 @@ function mainLoadQuestion() {
 function mainShowQuestion() {
 	echo "$QUESTION"
 
-	includeSubType
+	source "$TYPE.sh"
 	showQuestion
 	
-	return 0
-}
-
-# Inclut "la classe" du type de question
-# Necessite $TYPE
-
-function includeSubType() {
-	case $TYPE in
-        'mcq')
-            source "$CODE_DIR/MCQ.sh"
-            ;;
-        'commandname')
-            source "$CODE_DIR/CommandName.sh"
-            ;;
-        'compoundcommand')
-            source "$CODE_DIR/CompoundCommand.sh"
-            ;;
-        'freequestion')
-            source "$CODE_DIR/FreeQuestion.sh"
-            ;;
-        'simplecommand')
-            source "$CODE_DIR/SimpleCommand.sh"
-            ;;
-        'script')
-            source "$CODE_DIR/Script.sh"
-            ;;
-        *)
-            return 1
-    esac
-
 	return 0
 }
 
@@ -340,7 +309,7 @@ function mainToString() {
 	echo "duration: $DURATION"
 	echo "type: $TYPE"
 
-	includeSubType
+	source "$TYPE.sh"
 	toString
 }
 
