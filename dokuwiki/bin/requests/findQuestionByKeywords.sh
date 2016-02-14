@@ -7,6 +7,7 @@ runRequest() {
 	local name=$(param name)
 	local list=$(param list)
 	local keyword=$(param keyword)
+	local tab=$(param tab)	
 
 	if userIsProf;then
 		dokuError"Désolé, fonction réservée aux enseignants !"
@@ -18,7 +19,7 @@ runRequest() {
 	for i in $list; do 
 		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
 		if ["$keywords" == $keyword ]
-			echo $DB_MODULES_DIR/$module/questions/$i.txt
+			tab[i] = $DB_MODULES_DIR/$module/questions/$i.txt
 		fi
 	done
 			
@@ -26,8 +27,9 @@ runRequest() {
 	cat << EOF > $out	
 
 
-======= Suppression de questions (module $module) ======
+======= Recherche de questions (module $module) ======
 
 EOF
+	* Mots clés : $tab
 	redirect users:$DokuUser:modules
 }
