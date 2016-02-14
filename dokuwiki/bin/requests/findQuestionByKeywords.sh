@@ -1,7 +1,7 @@
 #/bin/bash
 
 runRequest() {
-	local dokuName=delete_question
+	local dokuName=find_question_by_keywords
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local name=$(param name)
