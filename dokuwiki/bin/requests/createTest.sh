@@ -12,7 +12,7 @@ runRequest(){
 	export MODULE="$module"
 	
 	if [ -e $testsDir/$name ]; then
-                dokuError "L'examen $name existe déjà !"
+                dokuError "L'entraînement $name existe déjà !"
                 return 1
         fi
 	

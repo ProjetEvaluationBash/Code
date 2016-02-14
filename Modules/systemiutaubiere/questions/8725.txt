@@ -5,16 +5,13 @@ simplecommand
 1
 
 === visibility ===
-training
+hidden
 
 === duration ===
-0.3
+1
 
 === question ===
-Quelle commande permet de revenir au repertoire précedant ? 
+Test+simpleCommand
 
 === answer ===
-cd ..
-
-=== keywords ===
-cd
+ls+-l

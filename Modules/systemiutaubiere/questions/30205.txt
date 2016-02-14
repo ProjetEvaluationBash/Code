@@ -1,0 +1,16 @@
+=== type ===
+mcq
+
+=== difficulty ===
+1
+
+=== visibility ===
+hidden
+
+=== duration ===
+1
+
+=== question ===
+Test+addquestion+MCQ+5
+
+
