@@ -21,7 +21,7 @@ runRequest() {
 Mot clé recherché :
 <input type="test" name="list" value="">
 <p>
-<input type="submit" value="Rechercher">
+<input type="submit" name="keyword" value="Rechercher">
 </form>
 </html>
 
