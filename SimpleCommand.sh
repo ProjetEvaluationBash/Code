@@ -95,7 +95,7 @@ function showQuestion() {
 i=12
 cat << EOF >> $out
 <html>
-<form name="$QUESTIONID"  method="POST">
+<form name="$j"  method="POST">
 <p>
 Votre réponse : <br>
 <input type="text" value=""><br>

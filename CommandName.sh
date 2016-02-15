@@ -65,9 +65,9 @@ function loadQuestion() {
 function showQuestion() {
 cat << EOF >> $out
 <html>
-<form name="$QUESTIONID"  method="POST">
+<form name="$j"  method="POST">
 <p>
-Votre réponse $TYPE$QUESTIONID : <br>
+Votre réponse : <br>
 <input type="text" value=""><br>
 </p>
 </form>
