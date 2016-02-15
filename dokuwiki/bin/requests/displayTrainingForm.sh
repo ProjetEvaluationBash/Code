@@ -27,7 +27,7 @@ EOF
 	local j=0
 	for i in $list; do
 		j=$(($j + 1))
-		echo "=== Question $j(id:$QUESTIONID) ===" >> $out
+		echo "=== Question $j ===" >> $out
 		QUESTIONID=$i
 		mainLoadQuestion
 		mainShowQuestion >> $out
