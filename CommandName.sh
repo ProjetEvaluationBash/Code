@@ -64,14 +64,10 @@ function loadQuestion() {
 
 function showQuestion() {
 cat << EOF >> $out
-<html>
-<form name="$j"  method="POST">
 <p>
 Votre réponse : <br>
-<input type="text" value=""><br>
+<input type="answer$j" value=""><br>
 </p>
-</form>
-</html>
 EOF
 	return 0
 }

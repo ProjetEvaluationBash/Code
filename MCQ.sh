@@ -173,20 +173,16 @@ function showQuestion() {
 i=1
 
 cat << EOF >> $out
-<html>
-<form name="$j"  method="POST">
 <p>
 Cocher la bonne réponse : <br>
 EOF
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "<input type=\"radio\" name=\"selectedAnswerQuestion$j\" value=\"$i\"> $answer<br>" >> $out
+		echo "<input type=\"radio\" name=\"answer$j\" value=\"$i\"> $answer<br>" >> $out
 		i=$(($i + 1))
 	done
 
 cat << EOF >> $out
 </p>
-</form>
-</html>
 EOF
 
 	return 0	
