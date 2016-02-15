@@ -1,0 +1,16 @@
+=== type ===
+mcq
+
+=== difficulty ===
+3
+
+=== visibility ===
+training
+
+=== duration ===
+3
+
+=== question ===
+Question+de+test
+
+
