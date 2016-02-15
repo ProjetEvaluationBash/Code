@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 
 runRequest() {
 	local dokuName=display_testing_form
@@ -26,8 +26,8 @@ EOF
 	QUESTIONPATH="$testDir/$test/questions"
 	local j=1
 	for i in $list; do
-		echo "=== Question $j ===" >> $out
 		j=$(($j + 1))
+		echo "=== Question $j(id:$QUESTIONID) ===" >> $out
 		QUESTIONID=$i
 		mainLoadQuestion
 		mainShowQuestion >> $out
