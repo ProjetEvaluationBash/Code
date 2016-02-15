@@ -6,7 +6,7 @@ runRequest() {
 	local module=$(param module)
 	local list=$(param list)
 	local name=$(param name)
-		
+	local keyword=$(param keyword)
 
 	if userIsProf; then
 		dokuError"Désolé, fonction réservée aux enseignants !"
