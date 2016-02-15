@@ -4,9 +4,8 @@ runRequest() {
 	local dokuName=find_question_by_keywords
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
-	#local name=$(param name)
 	local list=$(param list)
-	#local keyword=$(param keyword)
+	local name=$(param name)
 		
 
 	if userIsProf; then
@@ -39,7 +38,7 @@ EOF
 		echo "Aucunes questions trouvées !" >> $out
 	else
 		for i in $list; do
-			showQuestionItem $$examsDir/$name/questionsFind/$i >> $out 
+			showQuestionItem $$examsDir/$name/questionsFind/$i.txt >> $out 
 		done
 	fi		
 	redirect users:$DokuUser:$dokuName
