@@ -5,8 +5,11 @@ runRequest() {
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local list=$(param list)
+	local examsDir=$DB_USERS_DIR/$DokuUser/$module/questionsFind
 	local name=$(param name)
 	local keyword=$(param keyword)
+
+
 
 	if userIsProf; then
 		dokuError"Désolé, fonction réservée aux enseignants !"
@@ -15,8 +18,7 @@ runRequest() {
 	name="$DokuUser-$name"
 	
 	
-	mkdir -p "$examsDir/$name"
-	mkdir "$examsDir/$name/questionsFind"	
+ 	mkdir -p $examsDir/$name/questionsFind	
 	
 	for i in $list; do 
 		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
