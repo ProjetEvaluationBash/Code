@@ -294,11 +294,7 @@ function mainLoadQuestion() {
 
 function mainShowQuestion() {
 	echo "$QUESTION"
-	if test $type == "mcq"; then 
-		source "MCQ.sh"
-		showQuestion
-	fi
-	#source "$TYPE.sh"
+	source "$TYPE.sh"
 	showQuestion
 	
 	return 0
