@@ -42,14 +42,5 @@ cat << EOF >> $out
 </center>
 </html>
 EOF
-#<blable>
-#<center>
-#<form name="myForm" action="$DOKU_CGI" method="POST">
-#<input type="submit" value="Valider mon test">
-#</form>
-#</center>
-#</html>
-#EOF
-	#cgiheader
 	redirect users:$DokuUser:$dokuName
 }
