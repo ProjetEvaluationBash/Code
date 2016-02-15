@@ -16,23 +16,34 @@ runRequest() {
 	name="$DokuUser-$name"
 	
 	
- 	mkdir -p $examsDir/questionsFound	
+ 	#mkdir -p $examsDir/questionsFound	
 	
-	nbQuestions = cd $DB_MODULES_DIR/$module/questions/ | wc -l *.txt | tail -n 1 | cut -d " " -f 2
+	#for i in $nbQuestions; do
+	#	#Parcours des mots clés recherchés
+	#	for j in $list; do 
+	#		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions/$i.txt keywords)
+	#		if test "$keywords" == "$j"; then
+	#			cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFound
+	#		fi
+	#	done
+	#done
 
-	
-	for i in $nbQuestions; do
-		#Parcours des mots clés recherchés
-		for j in $list; do 
-			local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
-			if test "$keywords" == "$j"; then
-				cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFound
-			fi
-		done
+	listQuestions=$(ls $DB_MODULES_DIR/$module/questions/)
+
+	echo $listQuestions >> $out
+
+	echo "==== test ===" > $out
+
+	list="aaa bbb ccc"
+	for q in $list; do
+		echo "  * $q" >> $out
 	done
-			
+	echo $list >> $out
 	
-	cat << EOF > $out	
+
+	echo " test blabla" >> $out		
+	
+	cat << EOF >> $out	
 
 
 ======= Questions trouvées (module $module) =======
