@@ -2,7 +2,7 @@
 
 runRequest(){
 
-	local dokuName=do_exam_form
+	local dokuName=do_exam
         local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
         local module=$(param module)
 	local name=$(param name)
@@ -24,7 +24,16 @@ runRequest(){
 		done
 	done
 
-		
+	
+cat << EOF > $out
+
+====== Examen du module : $module ======
+
+EOF
+
+
+        cgiHeader
+        run "$DOKU_CGI?module=$module&exam=$name&action=displayExamForm"
 	
 
 
