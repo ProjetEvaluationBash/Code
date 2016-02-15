@@ -29,7 +29,7 @@ runRequest() {
 	cat << EOF > $out	
 
 
-======= Recherche de questions (module $module) ======
+======= Questions trouvées (module $module) =======
 
 EOF
 
@@ -38,7 +38,7 @@ EOF
 		echo "Aucunes questions trouvées !" >> $out
 	else
 		for i in $list; do
-			showQuestionItem $$examsDir/$name/questionsFind/$i.txt >> $out 
+			showQuestionItem $examsDir/$name/questionsFind/$i.txt >> $out 
 		done
 	fi		
 	redirect users:$DokuUser:$dokuName
