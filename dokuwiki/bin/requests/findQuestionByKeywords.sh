@@ -21,7 +21,7 @@ runRequest() {
 	for i in $list; do 
 		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
 		if test "$keywords" == "$keyword"; then
-			cp "$DB_MODULES_DIR/$module/questions/$i.txt" "$examsDir/$name/questionsFind"
+			cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/$name/questionsFind
 		fi
 	done
 			
