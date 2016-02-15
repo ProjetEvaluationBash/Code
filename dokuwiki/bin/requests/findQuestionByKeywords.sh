@@ -5,7 +5,7 @@ runRequest() {
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local list=$(param list)
-	local examsDir=$DB_USERS_DIR/$DokuUser/$module/questionsFind
+	local examsDir=$DB_USERS_DIR/$DokuUser/$module/questionsFound
 
 
 
@@ -16,18 +16,17 @@ runRequest() {
 	name="$DokuUser-$name"
 	
 	
- 	mkdir -p $examsDir/questionsFind	
+ 	mkdir -p $examsDir/questionsFound	
 	
 	nbQuestions = cd $DB_MODULES_DIR/$module/questions/ | wc -l *.txt | tail -n 1 | cut -d " " -f 2
 
 	
-
 	for i in $nbQuestions; do
 		#Parcours des mots clés recherchés
 		for j in $list; do 
 			local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions$i.txt keywords)
 			if test "$keywords" == "$j"; then
-				cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFind
+				cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFound
 			fi
 		done
 	done
@@ -40,12 +39,12 @@ runRequest() {
 
 EOF
 
-	local list="$(ls $examsDir/$name/questionsFind)"
+	local list="$(ls $examsDir/$name/questionsFound)"
 	if test -z "$list"; then
 		echo "Aucunes questions trouvées !" >> $out
 	else
 		for l in $list; do
-			showQuestionItem $examsDir/questionsFind/$l.txt >> $out 
+			showQuestionItem $examsDir/questionsFound/$l.txt >> $out 
 		done
 	fi		
 	redirect users:$DokuUser:$dokuName
