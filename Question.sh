@@ -16,7 +16,7 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # Appelé après la saisie du formulaire d'ajout d'une question sur Dokuwiki
 function mainDokuwikiAddQuestion() {
-    local module=$(param module)
+	local module=$(param module)
     local question=$(param question)
     local duration=$(param duration)
     local difficulty=$(param difficulty)
@@ -24,36 +24,34 @@ function mainDokuwikiAddQuestion() {
     local type=$(param type)
 
     if test ! validateType $type; then
-        dokuError $ERROR_MESSAGE
+        return 1
     fi
 
     if test ! validateQuestion $question; then
-        dokuError $ERROR_MESSAGE
+        return 1
     fi
 
     if test ! validateDifficulty $difficulty; then
-        dokuError $ERROR_MESSAGE
+        return 1
     fi
 
     if test ! validateVisibility $visibility; then
-        dokuError $ERROR_MESSAGE
+        return 1
     fi
 
     if test ! validateDuration $duration; then
-        dokuError $ERROR_MESSAGE
+        return 1
     fi
 
     # Inclure le sous-type en question et appeller la methode correspondante
     source "$CODE_DIR/$type.sh"
 
-    if test $? -ne 0; then
-        dokuError "Problème de chargement du sous-type de la question."
-    fi
-
     EXTRA_DATA=`dokuwikiAddQuestion`
-    
-    if test $? -ne 0; then
-    	dokuError $ERROR_MESSAGE
+    returnCode=$?
+
+    if test $returnCode -ne 0; then
+       	ERROR_MESSAGE=$returnCode
+        return 1
     fi
 
     TYPE=$type
@@ -64,8 +62,6 @@ function mainDokuwikiAddQuestion() {
     VISIBILITY=$visibility
 
     saveQuestionToFile $module
-    
-    return 0
 }
 
 function getNextId() {
@@ -171,10 +167,12 @@ function mainCliAddQuestion() {
 function validateType() {
     local type=$1
 
-    if test "$type" != "mcq" -a "$type" != "commandname" -a "$type" != "simplecommand" -a "$type" != "compoundcommand" -a "$type" != "script" -a "$type" != "freequestion"; then
+    if test "$type" != "MCQ" -a "$type" != "CommandName" -a "$type" != "SimpleCommand" -a "$type" != "CompoundCommand" -a "$type" != "Script" -a "$type" != "FreeQuestion"; then
         ERROR_MESSAGE="Type invalide."
         return 1
     fi
+
+    return 0
 }
 
 # Verifie la longueur de la question

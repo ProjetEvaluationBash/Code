@@ -57,17 +57,17 @@ runRequest() {
 <td>
 <select name="type" id="question_type">
         <option disabled selected></option>
-        <option value="mcq">QCM</option>
-        <option value="commandname">Nom de commande</option>
-        <option value="simplecommand">Commande simple</option>
-        <option value="compoundcommand">Commande composée</option>
-        <option value="freequestion">Question libre</option>
-        <option value="script">Script</option>
+        <option value="MCQ">QCM</option>
+        <option value="CommandName">Nom de commande</option>
+        <option value="SimpleCommand">Commande simple</option>
+        <option value="CompoundCommand">Commande composée</option>
+        <option value="FreeQuestion">Question libre</option>
+        <option value="Script">Script</option>
 </select>
 </td>
 </tr>
 
-<tr id="mcq" class="question_type">
+<tr id="MCQ" class="question_type">
 <td>Reponses possibles:</td>
 <td>
 <div id="mcq_availableAnswers">
@@ -77,17 +77,17 @@ runRequest() {
 <br><button type="button" id="mcq_addAvailableAnswer">+ Ajouter</button>
 </tr>
 
-<tr id="commandname" class="question_type">
+<tr id="CommandName" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="commandname_answer"></td>
 </tr>
 
-<tr id="simplecommand" class="question_type">
+<tr id="SimpleCommand" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="simplecommand_answer"></td>
 </tr>
 
-<tr id="compoundcommand" class="question_type">
+<tr id="CompoundCommand" class="question_type">
 <td>Evaluateur:</td>
 <td>
 <textarea name="compoundcommand_evaluator">
@@ -96,7 +96,7 @@ runRequest() {
 </td>
 </tr>
 
-<tr id="freequestion" class="question_type">
+<tr id="FreeQuestion" class="question_type">
 <td>Evaluateur:</td>
 <td>
 <textarea name="freequestion_evaluator">
@@ -105,7 +105,7 @@ runRequest() {
 </td>
 </tr>
 
-<tr id="script" class="question_type">
+<tr id="Script" class="question_type">
 <td>Evaluateur:</td>
 <td>
 <textarea name="script_evaluator">

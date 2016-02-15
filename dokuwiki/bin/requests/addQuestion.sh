@@ -8,30 +8,27 @@ runRequest() {
     local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
     local module=$(param module)
 
-    if userIsProf; then
-        dokuError "Désolé, fonction réservée aux enseignants !"
-    fi
+    #if userIsProf; then
+    #    dokuError "Désolé, fonction réservée aux enseignants !"
+    #fi
 
     source "$CODE_DIR/Question.sh"
 
     mainDokuwikiAddQuestion
 
+    if test $? -ne 0; then
+        dokuError $ERROR_MESSAGE
+        return 1
+    fi
+
     cat << EOF > $out
-====== addQuestionForm Debug ======
+====== Ajouter une question ======
 
-Id: $ID  
-Question: $QUESTION  
-Duration: $DURATION  
-Difficulty: $DIFFICULTY  
-Visibility: $VISIBILITY  
-Type: $TYPE  
+Question ajoutée !
 
-availableAnswers: $AVAILABLEANSWERS  
-availableAnswersTrue: $AVAILABLEANSWERSTRUE  
-
-errorMessage: $ERROR_MESSAGE
-
-Extradata: $EXTRADATA
+<code>
+ID: $ID
+</code>  
 
 EOF
 

@@ -1,39 +1,34 @@
 #!/bin/bash
 
-PROGNAME=$(basename $0)
-PROGDIR=$(readlink -m $(dirname $0))
-
 # AVAILABLEANSWERS (string[])
 
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
-	ISMCQCALLED="YES"
-
 	declare -A AVAILABLEANSWERS
 	ANSWER=""
 	
 	i=1
-	
-	ERROR_MESSAGE="TEST MCQ"
-	return 0
-	
+
 	while true; do
-		availableAnswer=$(param "mcq_availableAnswer$1")
-		
+		local availableAnswer=`param mcq_availableAnswer$i`
+
 		if test -z $availableAnswer; then
 			break
 		fi
+
+		echo "$availableAnswer" >> /tmp/availableAnswers
 		
+		# Validation de la reponse
 		validateAvailableAnswer $availableAnswer
 		
 		if test $? -ne 0; then
-			return 1
+			return 2
 		fi
 		
 		AVAILABLEANSWERS[$i]=$availableAnswer
 		
-		if test $(param "mcq_availableAnswerTrue$i") -eq "on"; then
+		if test "$(param mcq_availableAnswerTrue$i)" == "on"; then
 			ANSWER="$ANSWER $i"
 		fi
 		
@@ -42,12 +37,17 @@ function dokuwikiAddQuestion() {
 	
 	if test ${#AVAILABLEANSWERS[@]} -lt 2; then
 		ERROR_MESSAGE="Un QCM doit avoir au moins deux reponses possibles."
-		return 2
+		return 3
+	fi
+
+	if test ${#AVAILABLEANSWERS[@]} -gt 10; then
+		ERROR_MESSAGE="Un QCM ne peut pas avoir plus de 10 reponses possibles."
+		return 4
 	fi
 	
 	if test -z $ANSWER; then
 		ERROR_MESSAGE="Aucune reponse vraie fournie."
-		return 3
+		return 5
 	fi
 	
 	echo "=== availableAnswers ==="
@@ -82,7 +82,6 @@ function loadQuestion() {
 #Fonction permettant d'évaluer la réponse à une question du type QCM
 
 # EvalAnswer QUESTIONID
-
 function evaluateAnswer() {
 
 	# $1
