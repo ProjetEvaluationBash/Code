@@ -39,7 +39,7 @@ EOF
 		echo "Aucunes questions trouvées !" >> $out
 	else
 		for i in $list; do
-			echo $examsDir/$name/questionsFind >> $out 
+			showQuestionItem $$examsDir/$name/questionsFind/$i >> $out 
 		done
 	fi		
 	redirect users:$DokuUser:$dokuName
