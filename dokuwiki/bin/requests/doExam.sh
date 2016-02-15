@@ -13,15 +13,16 @@ runRequest(){
 	local profs="`cd $profsDir; ls | grep prof`"
 
 	for prof in $profs; do
-		curentProfExamDir=$profsDir/$prof/$module/exams
-		listExams="`cd $curentProfExamDir; ls -d */`"
-		for exam in $listExams; do
-			if [ "$exam" == "$name" ]; then
-				cp -r  $currentProfExamDir/$exam  $examsDir
-				$listExams=""
-				$profs=""
-			fi
-		done
+		if [ -e $profsDir/$prof/$module/exams ]; then	
+			curentProfExamDir=$profsDir/$prof/$module/exams
+			listExams="`cd $curentProfExamDir; ls -d */`"
+			tmpName="$name/"
+			for exam in $listExams; do
+				if [ "$exam" == "$tmpName" ]; then
+					cp -r  $curentProfExamDir/$exam $examsDir
+				fi
+			done
+		fi
 	done
 
 	
@@ -29,6 +30,12 @@ cat << EOF > $out
 
 ====== Examen du module : $module ======
 
+exam : $exam
+name : $name
+tmpname : $tmpName
+profs :$profs
+list exam : $listExams
+current prof exam dir : $curentProfExamDir
 EOF
 
 
