@@ -176,7 +176,7 @@ cat << EOF >> $out
 <html>
 <form name="$j"  method="POST">
 <p>
-Cocher la bonne réponse: <br>
+Cocher la bonne réponse : <br>
 EOF
 	for answer in "${AVAILABLEANSWERS[@]}"; do
 		echo "<input type=\"radio\" name=\"selectedAnswerQuestion$j\" value=\"$i\"> $answer<br>" >> $out

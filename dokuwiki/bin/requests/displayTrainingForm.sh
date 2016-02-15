@@ -24,7 +24,7 @@ EOF
 
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-	local j=1
+	local j=0
 	for i in $list; do
 		j=$(($j + 1))
 		echo "=== Question $j(id:$QUESTIONID) ===" >> $out
