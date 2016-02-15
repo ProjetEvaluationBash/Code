@@ -10,7 +10,7 @@ runRequest() {
 	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
 
  	if [ ! -e $testDir/$test ]; then
-		    dokuError "L'examen $exam n'existe pas !"
+		    dokuError "L'entrainement $test n'existe pas !"
 		    return 1
     	fi
 
