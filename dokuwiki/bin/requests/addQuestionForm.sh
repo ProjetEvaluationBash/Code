@@ -18,94 +18,105 @@ runRequest() {
 <form action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="addQuestion">
-<p>
-Question:
-<input type="text" name="question" value=""><br>
+<table>
+<tbody>
+<tr>
+<td>Question:</td>
+<td><input type="text" name="question" value=""></td>
+</tr>
 
-Durée (en minutes):
-<input type="number" name="duration"><br>
+<tr>
+<td>Durée (en secondes):</td>
+<td><input type="number" name="duration"></td>
+</tr>
 
-Difficulté:
+<tr>
+<td>Difficulté:</td>
+<td>
 <select name="difficulty">
         <option value="1">Novice</option>
         <option value="2">Intermediaire</option>
         <option value="3">Expert</option>
-</select><br>
+</select>
+</td>
+</tr>
 
-Visibilité de la question:
+<tr>
+<td>Visibilité de la question:</td>
+<td>
 <select name="visibility">
         <option value="hidden">Caché</option>
         <option value="training">Entrainement</option>
         <option value="exam">Examen</option>
-</select><br>
+</select>
+</td>
+</tr>
 
-<p>
-Type:
+<tr>
+<td>Type:</td>
+<td>
 <select name="type" id="question_type">
         <option disabled selected></option>
-	<option value="mcq">QCM</option>
+        <option value="mcq">QCM</option>
         <option value="commandname">Nom de commande</option>
         <option value="simplecommand">Commande simple</option>
         <option value="compoundcommand">Commande composée</option>
         <option value="freequestion">Question libre</option>
         <option value="script">Script</option>
-</select><br><br>
+</select>
+</td>
+</tr>
 
-<div id="mcq" class="question_type">
-        <h3>QCM</h3>
-
-        Reponses possibles:<br>
-	<div id="mcq_availableAnswers">
-        	<input type="text" name="mcq_availableAnswer1"> <input type="checkbox" name="mcq_availableAnswerTrue1"><br>
-        	<input type="text" name="mcq_availableAnswer2"> <input type="checkbox" name="mcq_availableAnswerTrue2"><br>
-	</div>
-	<br><a id="mcq_addAvailableAnswer">Ajouter une autre reponse possible</a>
+<tr id="mcq" class="question_type">
+<td>Reponses possibles:</td>
+<td>
+<div id="mcq_availableAnswers">
+<input type="text" name="mcq_availableAnswer1"> <input type="checkbox" name="mcq_availableAnswerTrue1"><br>
+<input type="text" name="mcq_availableAnswer2"> <input type="checkbox" name="mcq_availableAnswerTrue2"><br>
 </div>
+<br><button type="button" id="mcq_addAvailableAnswer">+ Ajouter</button>
+</tr>
 
-<div id="commandname" class="question_type">
-        <h3>Nom de commande</h3>
+<tr id="commandname" class="question_type">
+<td>Reponse:</td>
+<td><input type="text" name="commandname_answer"></td>
+</tr>
 
-        Reponse:<br>
-        <input type="text" name="commandname_answer"><br><br>
-</div>
+<tr id="simplecommand" class="question_type">
+<td>Reponse:</td>
+<td><input type="text" name="simplecommand_answer"></td>
+</tr>
 
-<div id="simplecommand" class="question_type">
-        <h3>Commande simple</h3>
+<tr id="compoundcommand" class="question_type">
+<td>Evaluateur:</td>
+<td>
+<textarea name="compoundcommand_evaluator">
+#!/bin/bash
+</textarea>
+</td>
+</tr>
 
-        Reponse:<br>
+<tr id="freequestion" class="question_type">
+<td>Evaluateur:</td>
+<td>
+<textarea name="freequestion_evaluator">
+#!/bin/bash
+</textarea>
+</td>
+</tr>
 
-        <input type="text" name="simplecommand_answer"><br><br>
-</div>
+<tr id="script" class="question_type">
+<td>Evaluateur:</td>
+<td>
+<textarea name="script_evaluator">
+#!/bin/bash
+</textarea>
+</td>
+</tr>
 
-<div id="compoundcommand" class="question_type">
-        <h3>Commande composée</h3>
+</tbody>
+</table>
 
-        Evaluateur:<br>
-
-        <textarea name="compoundcommand_evaluator">
-        #!/bin/bash
-        </textarea>
-</div>
-
-<div id="freequestion" class="question_type">
-        <h3>Question libre</h3>
-
-        Evaluateur:<br>
-
-        <textarea name="freequestion_evaluator">
-        #!/bin/bash
-        </textarea>
-</div>
-
-<div id="script" class="question_type">
-        <h3>Script</h3>
-
-        Evaluateur:<br>
-
-        <textarea name="script_evaluator">
-        #!/bin/bash
-        </textarea>
-</div>
 <br><br>
 <input type="submit" value="Ajouter la question"><br><br>
 </form>

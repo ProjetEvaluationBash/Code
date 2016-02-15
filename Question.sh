@@ -43,6 +43,8 @@ function mainDokuwikiAddQuestion() {
         dokuError $ERROR_MESSAGE
     fi
 
+    TYPE=$type
+
     # Inclure le sous-type en question et appeller la methode correspondante
     source "$CODE_DIR/$(getClassFromType).sh"
 
@@ -50,13 +52,12 @@ function mainDokuwikiAddQuestion() {
         dokuError "Problème de chargement du sous-type de la question."
     fi
 
-    EXTRA_DATA=$(dokuwikiAddQuestion)
+    EXTRA_DATA=`dokuwikiAddQuestion`
     
     if test $? -ne 0; then
     	dokuError $ERROR_MESSAGE
     fi
 
-    TYPE=$type
     ID=`getNextId $module`
     QUESTION=$question
     DIFFICULTY=$difficulty
@@ -92,25 +93,24 @@ function saveQuestionToFile() {
         dokuError "Module inexistant."
     fi
 
-    echo "=== type ===" > $questionFile
-    echo "$TYPE" >> $questionFile
-    echo "" >> $questionFile
-    echo "=== difficulty ===" >> $questionFile
-    echo "$DIFFICULTY" >> $questionFile
-    echo "" >> $questionFile
-    echo "=== visibility ===" >> $questionFile
-    echo "$VISIBILITY" >> $questionFile
-    echo "" >> $questionFile
-    echo "=== duration ===" >> $questionFile
-    echo "$DURATION" >> $questionFile
-    echo "" >> $questionFile
-    echo "=== question ===" >> $questionFile
-    echo "$QUESTION" >> $questionFile
+    cat << EOF > $questionFile
+=== type ===
+$TYPE
+
+=== difficulty ===
+$DIFFICULTY
+
+=== visibility ===
+$VISIBILITY
+
+=== duration ===
+$DURATION
     
-    if test -n $EXTRA_DATA; then
-		echo "" >> $questionFile
-		echo "$EXTRA_DATA" >> $questionFile
-	fi
+=== question ===
+$QUESTION
+
+$EXTRA_DATA
+EOF
 
 }
 
