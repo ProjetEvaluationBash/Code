@@ -174,7 +174,7 @@ i=1
 
 cat << EOF >> $out
 <html>
-<form name="Question$j"  method="POST">
+<form name="$QUESTIONID"  method="POST">
 <p>
 Cocher la bonne réponse : <br>
 EOF
