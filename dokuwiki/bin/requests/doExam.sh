@@ -17,7 +17,7 @@ runRequest(){
 		listExams="`cd $curentProfExamDir; ls -d */`"
 		for exam in $listExams; do
 			if [ "$exam" == "$name" ]; then
-				cp $currentProfExamDir/$exam  $examsDir
+				cp -r  $currentProfExamDir/$exam  $examsDir
 				$listExams=""
 				$profs=""
 			fi
