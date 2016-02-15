@@ -79,7 +79,7 @@ function loadQuestion() {
 	done <<< "$tempAvailableAnswers"
 }
 
-#Fonction permettant d'évaluer la réponse à une question de type QCM
+#Fonction permettant d'évaluer la réponse à une question du type QCM
 
 # EvalAnswer QUESTIONID
 
