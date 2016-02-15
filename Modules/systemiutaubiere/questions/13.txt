@@ -1,5 +1,5 @@
 === type ===
-compoundcommand
+CompoundCommand
 
 === difficulty ===
 1

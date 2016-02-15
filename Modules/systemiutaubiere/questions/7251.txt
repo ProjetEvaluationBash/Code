@@ -1,21 +1,16 @@
 === type ===
-FreeQuestion
+MCQ
 
 === difficulty ===
-
+1
 
 === visibility ===
-
+hidden
 
 === duration ===
-
-
+1
+    
 === question ===
-
-
-=== evaluator ===
-
-
-=== keywords ===
+hgfhggf
 
 
