@@ -15,31 +15,32 @@ runRequest() {
     	fi
 
 	list="$(cat $testDir/$test/list)"
-
+	tempdir=`mktemp`
 cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 <html>
-</html>
-EOF
+<form name="TrainingFormulaire" action="$DOKU_CGI" method="POST">
+<input type="hidden" name="tempNameTest" value="$tempdir">
 
+EOF
+	
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
 	local j=0
 	for i in $list; do
 		j=$(($j + 1))
 		echo "=== Question $j ===" >> $out
-		QUESTIONID=$i
+		#QUESTIONID=$i
 		mainLoadQuestion
+		echo "$j : $QUESTIONID" >> $tempdir
 		mainShowQuestion >> $out
 	done
 
 cat << EOF >> $out
-<html>
 <center>
-<form name="myForm" action="$DOKU_CGI" method="POST">
 <input type="submit" value="Valider mon test">
-</form>
 </center>
+</form>
 </html>
 EOF
 	redirect users:$DokuUser:$dokuName
