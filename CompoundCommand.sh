@@ -18,7 +18,7 @@ function loadQuestion() {
 function showQuestion() {
 cat << EOF >> $out
 <html>
-<form name="$QUESTIONID"  method="POST">
+<form name="$j"  method="POST">
 <p>
 Votre script : <br>
 <textarea></textarea><br>
