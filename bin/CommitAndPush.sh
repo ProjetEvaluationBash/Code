@@ -1,5 +1,8 @@
 #!/bin/bash
 
+lockFile="/tmp/commitAndPush.lock"
+pid=`$$`
+
 # setGitConfig(name, email)
 
 function setGitConfig() {
@@ -27,6 +30,36 @@ function setGitConfig() {
 		fi
 	fi
 }
+
+function deleteLockFile() {
+	rm $lockFile
+
+	if test $? -ne 0; then
+		echo "[ERROR] Problème rencontré lors de la suppression du fichier lock"
+		exit 1
+	fi
+}
+
+# Est ce que le fichier lock existe ?
+if test -f $lockFile; then
+	# Extraire le PID du processus derrière le lock
+	lockPid=`cat $lockFile`
+	
+	# Est ce que ce PID est encore en cours d'execution ?
+	kill -0 $lockPid > /dev/null 2>&1
+
+	if test $? -eq 0; then
+		# Processus toujours en cours d'execution
+		echo "[ERROR] CommitAndPush est en cours d'utilisation (PID: $lockPid)" >&2
+		exit 1
+	fi
+
+	# Processus arrêté, on supprime le lock
+	deleteLockFile
+fi
+
+# Mettre le PID du processus actuel dans le lockfile
+echo $pid > $lockFile
 
 if test $# -eq 0; then
 	echo "[ERROR] Aucun nom d'utilisateur fourni." >&2
@@ -75,3 +108,6 @@ fi
 
 # Push les modifications
 git push origin master
+
+# Supprimer le fichier de lock
+deleteLockFile
