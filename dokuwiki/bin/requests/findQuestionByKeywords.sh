@@ -5,7 +5,7 @@ runRequest() {
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local list=$(param list)
-	local examsDir=$DB_USERS_DIR/$DokuUser/$module/questionsFound
+	local quesionsDir=$DB_USERS_DIR/$DokuUser/$module/questionsFound
 
 
 
@@ -14,25 +14,30 @@ runRequest() {
 	fi
 
 	name="$DokuUser-$name"
+
+	# Inclure Question.sh
+	source "$CODE_DIR/Question.sh"	
 	
+	QUESTIONPATH=$dokuUserQuestionsDir
 	
+
  	#mkdir -p $examsDir/questionsFound	
 	
 	#for i in $nbQuestions; do
-	#	#Parcours des mots clés recherchés
-	#	for j in $list; do 
-	#		local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions/$i.txt keywords)
-	#		if test "$keywords" == "$j"; then
-	#			cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFound
-	#		fi
-	#	done
+		#Parcours des mots clés recherchés
+		#for j in $list; do 
+			#local keywords=$(getQuestionElement $DB_MODULES_DIR/$module/questions/$i.txt keywords)
+			#if test "$keywords" == "$j"; then
+				#cp $DB_MODULES_DIR/$module/questions/$i.txt $examsDir/questionsFound
+			#fi
+		#done
 	#done
 
-	listQuestions=$(ls $DB_MODULES_DIR/$module/questions/)
-
-	echo $listQuestions >> $out
 
 	echo "==== test ===" > $out
+	
+	i=$(getQuestionElement $DB_MODULES_DIR/$module/questions/10.txt duration)
+        echo $i >> $out
 
 	list="aaa bbb ccc"
 	for q in $list; do
