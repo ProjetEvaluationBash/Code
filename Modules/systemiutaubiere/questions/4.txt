@@ -1,5 +1,5 @@
 === type ===
-CommandName
+MCQ
 
 === difficulty ===
 1
@@ -11,10 +11,16 @@ training
 0.3
 
 === question ===
-Quelle commande permet d'afficher le nom du repertoire de travail en cours ? 
+Quelle commande permet de supprimer un repertoire vide ? 
+
+=== availableAnswers ===
+  - rmdir
+  - rm
+  - mv
+  - pwd
 
 === answer ===
-pwd
+1
 
 === keywords ===
-pwd
+rmdir
