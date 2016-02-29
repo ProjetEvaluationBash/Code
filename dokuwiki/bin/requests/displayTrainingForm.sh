@@ -12,27 +12,31 @@ runRequest() {
  	if [ ! -e $testDir/$test ]; then
 		    dokuError "L'entrainement $test n'existe pas !"
 		    return 1
-    	fi
-
+	fi
 	list="$(cat $testDir/$test/list)"
+
 	tempdir=`mktemp`
 cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
+
 <html>
 <form name="TrainingFormulaire" action="$DOKU_CGI" method="POST">
-<input type="hidden" name="tempNameTest" value="$tempdir">
+<input type="hidden" name="tempNameTest" value="$tempdir"></input>
 
 EOF
 	
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
+	
 	local j=0
 	for i in $list; do
 		j=$(($j + 1))
 		echo "=== Question $j ===" >> $out
-		#QUESTIONID=$i
+		QUESTIONID=$i
+
 		mainLoadQuestion
-		echo "$j : $QUESTIONID" >> $tempdir
+		
+		echo "$j:$QUESTIONID" >> $tempdir
 		mainShowQuestion >> $out
 	done
 
