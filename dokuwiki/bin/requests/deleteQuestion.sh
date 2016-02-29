@@ -19,7 +19,8 @@ runRequest() {
 			notFoundQuestions="$notFoundQuestions $i"
 		fi
 		i =$(getQuestionElement $DB_MODULES_DIR/$module/questions/$i.txt id)
-		rm $DB_MODULES_DIR/$module/questions/$i.txt
+		nbquest=`cd $DB_MODULES_DIR/$module/questions; ls -l | grep .txt  | wc -l`
+		mv $DB_MODULES_DIR/$module/questions/$nbquest.txt $DB_MODULES_DIR/$module/questions/$i.txt
 	done
 
 	if [ -n "$notFoundQuestions" ]; then
