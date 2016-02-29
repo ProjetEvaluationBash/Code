@@ -8,9 +8,9 @@ source "$CODEROOT/other/EvalLib.sh"
 
 # DIFFICULTY (integer)
 
-# ISEXAMQUESTION (boolean)
-
 # DURATION (float)
+
+# KEYWORDS (array)
 
 # TYPE (string)
 
@@ -285,7 +285,15 @@ function mainLoadQuestion() {
 	QUESTION=`getElement "$questionFileContents" question`
 	DIFFICULTY=`getElement "$questionFileContents" difficulty`
 	VISIBILITY=`getElement "$questionFileContents" visibility`
-	DURATION=`getElement "$questionFileContents" duration`		
+	DURATION=`getElement "$questionFileContents" duration`
+	KEYWORDS=()
+	
+	local temporaryKeywords=`getElement "$questionFileContents" keywords`
+	
+	for keyword in $temporaryKeywords; do
+		KEYWORDS+=("$keyword")
+	done
+	
 	TYPE=`getElement "$questionFileContents" type`
 	
 	if test ! -f "$CODE_DIR/$TYPE.sh"; then
@@ -298,7 +306,13 @@ function mainLoadQuestion() {
 }
 
 function mainShowQuestion() {
-	#echo "$QUESTION"
+	echo "Question: $QUESTION"
+	echo "Type: $TYPE"
+	
+	echo "Keywords:"
+	for keyword in "${KEYWORDS[@]}"; do
+		echo "  * $keyword"
+	done
 
 	source "$CODE_DIR/$TYPE.sh"
 	showQuestion
@@ -307,14 +321,18 @@ function mainShowQuestion() {
 }
 
 function mainToString() {
-	echo "id: $ID"
-	echo "question: $QUESTION"
-	echo "difficulty: $DIFFICULTY"
-	echo "isExamQuestion: $ISEXAMQUESTION"
-	echo "duration: $DURATION"
-	echo "type: $TYPE"
+	echo "<html>"
+	echo "id: $ID <br>"
+	echo "question: $QUESTION <br>"
+	echo "difficulty: $DIFFICULTY <br>"
+	echo "visibility: $VISIBILITY <br>"
+	echo "duration: $DURATION <br>"
+	echo "type: $TYPE <br>"
+	echo "keywords: ${KEYWORDS[@]} <br>"
 
 	source "$CODE_DIR/$TYPE.sh"
 	toString
+	
+	echo "</html>"
 }
 

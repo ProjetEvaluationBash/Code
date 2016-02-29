@@ -190,6 +190,7 @@ function showQuestion() {
 i=1
 
 cat << EOF >> $out
+<html>
 <p>
 Cocher la bonne réponse : <br>
 EOF
@@ -200,6 +201,7 @@ EOF
 
 cat << EOF >> $out
 </p>
+</html>
 EOF
 
 	return 0	
