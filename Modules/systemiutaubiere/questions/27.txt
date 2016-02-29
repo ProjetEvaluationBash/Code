@@ -5,22 +5,18 @@ MCQ
 1
 
 === visibility ===
-training
+hidden
 
 === duration ===
-0.3
-
+10
+    
 === question ===
-Comment appelle ton le repertoire personnel d'un utilisateur ? 
+Test addquestion MCQ 3
 
 === availableAnswers ===
-  - house
-  - home
-  - usr
-  - bash
+  - Test reponse 1
+  - Test reponse 2
+  - Test reponse 3
 
 === answer ===
 2
-
-=== keywords ===
-home

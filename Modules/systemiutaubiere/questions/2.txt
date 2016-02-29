@@ -1,5 +1,5 @@
 === type ===
-MCQ
+SimpleCommand
 
 === difficulty ===
 1
@@ -11,16 +11,10 @@ training
 0.3
 
 === question ===
-Dans quelle variable est mémorisé le code de retour du dernier processus terminé ?
-
-=== availableAnswers ===
-  - ?
-  - $
-  - !
+Quelle commande permet de créer un le repertoire “pere” composé du repertoire “fils” en une seule commande ? 
 
 === answer ===
-1
+mkdir -p pere/fils
 
 === keywords ===
-
-variable 
+mkdir

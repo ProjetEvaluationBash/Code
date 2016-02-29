@@ -11,16 +11,16 @@ training
 0.3
 
 === question ===
-Une seule des commandes suivantes est correcte (fichier étant un fichier régulier): 
+Comment appelle ton le repertoire personnel d'un utilisateur ? 
 
 === availableAnswers ===
-  - ls < fichier
-  - cat | fichier
-  - cat < fichier
-  - fichier | cat
+  - house
+  - home
+  - usr
+  - bash
 
 === answer ===
-3
+2
 
 === keywords ===
-cat
+home

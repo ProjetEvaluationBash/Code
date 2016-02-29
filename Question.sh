@@ -66,15 +66,16 @@ function mainDokuwikiAddQuestion() {
 
 function getNextId() {
 	local module=$1
-	local id=$RANDOM
 	
 	local questionsDir="$DB_MODULES_DIR/$module/questions"
 	
-	while test -e "$questionsDir/$id.txt"; do
-		id=$RANDOM
-	done
+	# Trouver l'id de la question la plus recente
+	local latestId=`find $questionsDir -maxdepth 1 -name '*.txt' -exec basename {} \; | sort -rn | head -n 1 | cut -d . -f 1`
 	
-	echo $id
+	# Calculer l'id de la question suivante (+1)
+	local nextId=$(($latestId + 1))
+
+	echo $nextId
 }
 
 function saveQuestionToFile() {

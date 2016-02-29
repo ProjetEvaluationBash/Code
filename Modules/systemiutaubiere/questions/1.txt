@@ -5,22 +5,18 @@ MCQ
 1
 
 === visibility ===
-training
+hidden
 
 === duration ===
-0.3
-
+10
+    
 === question ===
-Quelle est la commande permettant d'afficher le manuel d'une commande ?
+Test addQuestion MCQ 1
 
 === availableAnswers ===
-  - help
-  - man
-  - describe
-  - pwd
+  - Test reponse 1
+  - Test reponse 2
+  - Test reponse 3
 
 === answer ===
 2
-
-=== keywords ===
-man 
