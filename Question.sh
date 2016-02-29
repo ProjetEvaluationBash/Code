@@ -253,23 +253,27 @@ function mainLoadQuestion() {
 	# Si la variable d'environnement "QUESTIONPATH" n'est pas definie
 
     if test -z $QUESTIONPATH; then
-		fatalError "mainLoadQuestion: QUESTIONPATH non definie !" 1
+    	ERROR_MESSAGE="mainLoadQuestion: QUESTIONPATH non definie !"
+		return 1
     fi
 
 	# Si la variable d'environnement "QUESTIONID" n'est pas definie
 
     if test -z $QUESTIONID; then
-    	fatalError "mainLoadQuestion: QUESTIONID non definie !" 2
+    	ERROR_MESSAGE="mainLoadQuestion: QUESTIONID non definie !"
+		return 1
 	fi 
-
+	
 	# On verifie si le fichier existe et si c'est un fichier ordinaire
     if test ! -f "$QUESTIONPATH/$QUESTIONID.txt"; then
-    	fatalError "mainLoadQuestion: Le fichier de la question n'existe pas !" 3
+    	ERROR_MESSAGE="mainLoadQuestion: Le fichier de la question n'existe pas !"
+		return 1
 	fi
 
 	# On verifie si le fichier est lisible par l'utilisateur courant
     if test ! -r "$QUESTIONPATH/$QUESTIONID.txt"; then
-    	fatalError "mainLoadQuestion: Fichier illisible (droits de fichier) !" 4
+    	ERROR_MESSAGE="mainLoadQuestion: Fichier illisible (droits de fichier) !"
+		return 1
 	fi
 
 	# Lecture du fichier de la question
@@ -282,15 +286,18 @@ function mainLoadQuestion() {
 	VISIBILITY=`getElement "$questionFileContents" visibility`
 	DURATION=`getElement "$questionFileContents" duration`		
 	TYPE=`getElement "$questionFileContents" type`
-
+	
+	if test ! -f "$CODE_DIR/$TYPE.sh"; then
+		ERROR_MESSAGE="mainLoadQuestion: Type incorrect !"
+		return 1
+	fi
+	
 	source "$CODE_DIR/$TYPE.sh"
 	loadQuestion
-
-	return 0
 }
 
 function mainShowQuestion() {
-	echo "$QUESTION"
+	#echo "$QUESTION"
 
 	source "$CODE_DIR/$TYPE.sh"
 	showQuestion

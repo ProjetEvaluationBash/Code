@@ -36,6 +36,11 @@ EOF
 
 		mainLoadQuestion
 		
+		if test $? -ne 0; then
+			dokuError $ERROR_MESSAGE
+			return 1
+		fi
+		
 		echo "$j:$QUESTIONID" >> $tempdir
 		mainShowQuestion >> $out
 	done
