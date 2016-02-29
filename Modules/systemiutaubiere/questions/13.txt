@@ -13,8 +13,14 @@ training
 === question ===
 Comment afficher tous les processus de l'utilisateur root
 
-=== answer ===
-ps aux | grep root
-
 === keywords ===
 ps grep
+
+=== evaluator ===
+#!/bin/bash
+
+if test "$ANSWER" = "ps aux | grep root"; then
+	return 0
+fi
+
+return 1

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function dokuwikiAddQuestion() {
-	local evaluator=$(param script_evaluator)
+	local evaluator=$(param compoundcommand_evaluator)
 	
 	return 0
 }
@@ -12,7 +12,7 @@ function cliAddQuestion {
 }
 
 function loadQuestion() {
-	return 0
+	EVALUATOR=`getElement "$questionFileContents" evaluator`
 }
 
 function showQuestion() {
@@ -23,4 +23,13 @@ Votre script : <br>
 </p>
 EOF
 	return 0
+}
+
+function toString() {
+    cat << EOF
+<strong>EVALUATOR: </strong><br>
+<code>
+$EVALUATOR
+</code>
+EOF
 }

@@ -321,18 +321,29 @@ function mainShowQuestion() {
 }
 
 function mainToString() {
-	echo "<html>"
-	echo "id: $ID <br>"
-	echo "question: $QUESTION <br>"
-	echo "difficulty: $DIFFICULTY <br>"
-	echo "visibility: $VISIBILITY <br>"
-	echo "duration: $DURATION <br>"
-	echo "type: $TYPE <br>"
-	echo "keywords: ${KEYWORDS[@]} <br>"
+    cat << EOF
 
-	source "$CODE_DIR/$TYPE.sh"
-	toString
-	
-	echo "</html>"
+<html>
+<strong>ID: </strong> $ID<br>
+<strong>TYPE: </strong> $TYPE<br>
+<strong>QUESTION: </strong> $QUESTION<br>
+<strong>DIFFICULTY: </strong> $DIFFICULTY<br>
+<strong>VISIBILITY: </strong> $VISIBILITY<br>
+<strong>DURATION: </strong> $DURATION<br>
+<strong>KEYWORDS: </strong><br>
+<ul>
+EOF
+
+    for keyword in "${KEYWORDS[@]}"; do
+        echo "<li>$keyword</li>"
+    done
+
+echo "</ul>"
+
+source "$CODE_DIR/$TYPE.sh"
+echo `toString`
+
+echo "</html>"
+
 }
 

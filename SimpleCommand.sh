@@ -121,3 +121,9 @@ Votre réponse : <br>
 EOF
 	return 0
 }
+
+function toString() {
+	cat << EOF
+<strong>ANSWER: </strong> $ANSWER<br>
+EOF
+}

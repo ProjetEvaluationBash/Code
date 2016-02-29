@@ -73,13 +73,11 @@ function loadQuestion() {
 	AVAILABLEANSWERS=()
 
 	local tempAvailableAnswers=`getElement "$questionFileContents" availableAnswers`
-	local i=1
 	
 	while read line; do
 		line=`echo $line | cut -c 3-`
 		
-		AVAILABLEANSWERS+=("$i. $line")
-		i=$(($i + 1))	
+		AVAILABLEANSWERS+=("$line")
 	done <<< "$tempAvailableAnswers"
 }
 
@@ -208,13 +206,20 @@ EOF
 }
 
 function toString() {
-	echo "availableAnswers:"
+	cat << EOF
+
+<strong>AVAILABLEANSWERS: </strong><br>
+<ol>
+EOF
 	
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo $answer
+		echo "<li>$answer</li>"
 	done
 
-	echo "answer: $ANSWER"
 
-	return 0
+cat << EOF
+</ol>
+<strong>ANSWER: </strong> $ANSWER
+EOF
+
 }

@@ -72,7 +72,7 @@ reportScriptSsh() {
 	cat /tmp/params-$suffixe
 	echo "STDIN  :"
 	cat /tmp/stdin-$suffixe
-        echo "STDOUT :"
+    echo "STDOUT :"
 	cat /tmp/stdout-$suffixe
 	echo "STDERR :"
 	cat /tmp/stderr-$suffixe

@@ -1,22 +1,20 @@
 === type ===
-MCQ
+SimpleCommand
 
 === difficulty ===
 1
 
 === visibility ===
-hidden
+training
 
 === duration ===
-10
-    
-=== question ===
-Test addQuestion MCQ 1
+0.3
 
-=== availableAnswers ===
-  - Test reponse 1
-  - Test reponse 2
-  - Test reponse 3
+=== question ===
+Quelle commande permet d'afficher tous les fichiers d'un répertoire ainsi que leurs caractéristiques ? 
 
 === answer ===
-2
+ls -l
+
+=== keywords ===
+ls
