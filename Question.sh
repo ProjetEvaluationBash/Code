@@ -306,18 +306,11 @@ function mainLoadQuestion() {
 }
 
 function mainShowQuestion() {
-	echo "Question: $QUESTION"
-	echo "Type: $TYPE"
-	
-	echo "Keywords:"
-	for keyword in "${KEYWORDS[@]}"; do
-		echo "  * $keyword"
-	done
+	echo "$QUESTION<br><br>"
 
 	source "$CODE_DIR/$TYPE.sh"
 	showQuestion
-	
-	return 0
+    echo "<br>"
 }
 
 function mainToString() {

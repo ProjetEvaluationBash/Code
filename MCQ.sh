@@ -185,24 +185,12 @@ function validateAvailableAnswer() {
 }
 
 function showQuestion() {
-i=1
+	i=1
 
-cat << EOF >> $out
-<html>
-<p>
-Cocher la bonne réponse : <br>
-EOF
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "<input type=\"radio\" name=\"answer$j\" value=\"$i\"> $answer<br>" >> $out
+		echo "<input type=\"radio\" name=\"answer$j\" value=\"$i\"> $answer<br>"
 		i=$(($i + 1))
 	done
-
-cat << EOF >> $out
-</p>
-</html>
-EOF
-
-	return 0	
 }
 
 function toString() {

@@ -1,7 +1,7 @@
 #/bin/bash
 
 runRequest() {
-	local dokuName=display_testing_form
+	local dokuName=display_training_form
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local test=$(param exam)
@@ -31,7 +31,7 @@ EOF
 	local j=0
 	for i in $list; do
 		j=$(($j + 1))
-		echo "=== Question $j ===" >> $out
+		echo "<h3>Question #$j</h3>" >> $out
 		QUESTIONID=$i
 
 		mainLoadQuestion
