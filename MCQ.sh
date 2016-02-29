@@ -5,51 +5,55 @@
 # ANSWER (integer)
 
 function dokuwikiAddQuestion() {
+	# Declarer un tableau de reponses possibles
 	declare -A AVAILABLEANSWERS
-	ANSWER=""
 	
 	i=1
 
-	while true; do
+	while test $i -lt 10; do
 		local availableAnswer=`param mcq_availableAnswer$i`
 
+		# Est ce que la chaine de la reponse possible est vide
 		if test -z $availableAnswer; then
+			# Mettre fin à la boucle, on a lu toutes les reponses possibles
 			break
 		fi
-
-		echo "$availableAnswer" >> /tmp/availableAnswers
 		
-		# Validation de la reponse
+		# Validation de la reponse possible
 		validateAvailableAnswer $availableAnswer
 		
 		if test $? -ne 0; then
 			return 2
 		fi
 		
-		AVAILABLEANSWERS[$i]=$availableAnswer
+		# Mettre la reponse possible dans le tableau des reponses possibles
+		AVAILABLEANSWERS[$i]=`urlDecode $availableAnswer`
 		
-		if test "$(param mcq_availableAnswerTrue$i)" == "on"; then
-			ANSWER="$ANSWER $i"
-		fi
-		
+		# Incrementer i
 		i=$(($i + 1))
 	done
 	
+	# Est ce que le QCM a au moins deux reponses possible
 	if test ${#AVAILABLEANSWERS[@]} -lt 2; then
 		ERROR_MESSAGE="Un QCM doit avoir au moins deux reponses possibles."
 		return 3
 	fi
-
-	if test ${#AVAILABLEANSWERS[@]} -gt 10; then
-		ERROR_MESSAGE="Un QCM ne peut pas avoir plus de 10 reponses possibles."
-		return 4
-	fi
 	
+	# Recuperer la reponse vraie selectionnée
+	ANSWER=$(param mcq_answer)
+	
+	# Est ce que une reponse vraie a été selectionnée
 	if test -z $ANSWER; then
 		ERROR_MESSAGE="Aucune reponse vraie fournie."
-		return 5
+		return 1
 	fi
 	
+	# Est ce que la reponse selectionnée vraie se trouve entre 1 et le nombre de questions total
+	if test $ANSWER -lt 1 -o $ANSWER -gt $i; then
+		ERROR_MESSAGE="Reponse vraie invalide"
+		return 2
+	fi
+
 	echo "=== availableAnswers ==="
 	
 	for j in "${AVAILABLEANSWERS[@]}"; do
@@ -81,14 +85,28 @@ function loadQuestion() {
 
 #Fonction permettant d'évaluer la réponse à une question du type QCM
 
+function dokuwikiEvaluateAnswer() {
+	if test $# -ne 1; then
+		echo "Usage: MCQ : EvalAnswer ANSWER" >&2
+		return 1
+	fi
+
+	local userAnswer=$1
+	
+	if test $userAnswer -eq $ANSWER; then
+		# Reponse vraie
+		return 0
+	fi
+	
+	# Reponse fausse
+	return 1
+}
+
 # EvalAnswer QUESTIONID
 function evaluateAnswer() {
-
-	# $1
-	# Verification des paramêtres
 	
 	if test $# -ne 1; then
-		echo "Usage: MCQ : EvalAnswer QUESTIONID" >&2
+		echo "Usage: MCQ : EvalAnswer ANSWER" >&2
 		return 1
 	fi
 

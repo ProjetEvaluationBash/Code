@@ -71,8 +71,8 @@ runRequest() {
 <td>Reponses possibles:</td>
 <td>
 <div id="mcq_availableAnswers">
-<input type="text" name="mcq_availableAnswer1"> <input type="checkbox" name="mcq_availableAnswerTrue1"><br>
-<input type="text" name="mcq_availableAnswer2"> <input type="checkbox" name="mcq_availableAnswerTrue2"><br>
+<input type="text" name="mcq_availableAnswer1"> <input type="radio" name="mcq_answer" value="1"><br>
+<input type="text" name="mcq_availableAnswer2"> <input type="radio" name="mcq_answer" value="2"><br>
 </div>
 <br><button type="button" id="mcq_addAvailableAnswer">+ Ajouter</button>
 </tr>
@@ -140,7 +140,7 @@ jQuery(document).ready(function() {
 			jQuery("#mcq_addAvailableAnswer").hide();
 		}
 
-		jQuery("#mcq_availableAnswers").append('<input type="text" name="mcq_availableAnswer' + nbAvailableAnswers + '"> <input type="checkbox" name="mcq_availableAnswerTrue' +  nbAvailableAnswers + '"><br>');
+		jQuery("#mcq_availableAnswers").append('<input type="text" name="mcq_availableAnswer' + nbAvailableAnswers + '"> <input type="radio" name="mcq_answer" value="' +  nbAvailableAnswers + '"><br>');
 	});
 });
 /*!]]>*/</script>

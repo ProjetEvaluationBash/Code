@@ -56,7 +56,7 @@ function mainDokuwikiAddQuestion() {
 
     TYPE=$type
     ID=`getNextId $module`
-    QUESTION=$question
+    QUESTION=`urlDecode $question`
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility

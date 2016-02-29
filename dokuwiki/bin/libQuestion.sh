@@ -1,4 +1,7 @@
 
+function urlDecode() {
+	echo $1 | php -r 'echo urldecode(fgets(STDIN));' | tr -d '\r'
+}
 
 # Affiche un condensé d'une question
 # $1 : numéro de la question
