@@ -11,6 +11,26 @@ function loadQuestion() {
 	return 0
 }
 
+function dokuwikiEvaluateAnswer() {
+	if test $# -ne 1; then
+                echo "Usage: SimpleCommand : EvalAnswer ANSWER" >&2
+                return 1
+        fi
+
+        local userAnswer=$1
+
+        if test $userAnswer -eq $ANSWER; then
+                # Reponse vraie
+                return 0
+        fi
+
+        # Reponse fausse
+        return 1
+
+	
+
+}
+
 function EvaluateAnswer() {
 	
 	# Vérif des paramêtres

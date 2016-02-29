@@ -15,6 +15,29 @@ function dokuwikiAddQuestion() {
 	return 0
 }
 
+# Fonction permettant l'évaluation à une question du type CommandName
+
+function dokuwikiEvaluateAnswer() {
+
+	if test $# -ne 1; then
+                echo "Usage: CommandName : EvalAnswer ANSWER" >&2
+                return 1
+        fi
+
+	local userAnswer=$1
+
+        if test $userAnswer -eq $ANSWER; then
+                # Reponse vraie
+                return 0
+        fi
+
+        # Reponse fausse
+        return 1
+
+
+}
+
+
 function validateAnswer() {
 	local answer=$1
 
