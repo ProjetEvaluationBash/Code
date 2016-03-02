@@ -8,11 +8,7 @@
 
 PROGNAME=$(basename $(readlink -f $0))
 
-
-
-
-
-#Permet de fixé le nombre de question souhaité
+#Permet de fixer le nombre de questions souhaité
 if [ "$1" == "" ] ; then
 	nbQS=10
 else 
@@ -34,8 +30,8 @@ if test -z $HOME; then
 	exit 1	
 fi
 
-#Calcule le nombre de questions présentent dans le dossier questions
-nbDoss=`cd $HOME/Code/Modules/systemiutaubiere/questions; ls -l | grep .txt  | wc -l`
+#Calcule le nombre de questions présentes dans le dossier questions
+nbDoss=`cd $HOME/Code/Modules/$MODULE/questions; ls -l | grep .txt  | wc -l`
 
 
 #Boucle permettant l'ajout dans la liste
