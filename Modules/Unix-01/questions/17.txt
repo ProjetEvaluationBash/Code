@@ -1,0 +1,26 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Que signifie le droit x sur un répertoire ? 
+
+=== availableAnswers ===
+  - On a le droit d'éxécuter les fichiers
+  - Le répertoire ne peut contenir que des fichiers compilés
+  - On peut lister le contenu du répertoire
+  - On peut accéder à un fichier à l'intérieur du répertoire
+
+=== answer ===
+4
+
+=== keywords ===
+droit_fichier

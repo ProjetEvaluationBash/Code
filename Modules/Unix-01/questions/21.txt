@@ -1,0 +1,25 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Où est défini le répertoire de connexion d'un utilisateur 
+
+=== availableAnswers ===
+  - /home
+  - ~/public_html
+  - /etc/passwd
+
+=== answer ===
+3
+
+=== keywords ===
+home

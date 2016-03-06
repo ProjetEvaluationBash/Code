@@ -1,0 +1,1 @@
+vi chmod chown rights jockers redirections pipes cat column cut grep ehad join less more paste printf sed sort tail tr uniq find 

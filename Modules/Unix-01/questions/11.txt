@@ -1,0 +1,25 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+L'identifiant du processus PERE d'un processus est appelé le ...
+
+=== availableAnswers ===
+  - IID
+  - PID
+  - PPID
+
+=== answer ===
+3
+
+=== keywords ===
+ppid

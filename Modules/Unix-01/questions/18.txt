@@ -1,0 +1,25 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Vi est un éditeur de texte qui présente l'avantage de 		
+
+=== availableAnswers ===
+  - compléter les mots automatiquement
+  - fonctionner sans mode graphique
+  - sauver automatiquement le texte
+
+=== answer ===
+2
+
+=== keywords ===
+vi

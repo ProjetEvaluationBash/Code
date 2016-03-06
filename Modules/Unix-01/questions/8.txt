@@ -1,0 +1,25 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+Quelle option passer à ls pour qu'il n'affiche pas le contenu des répertoires
+
+=== availableAnswers ===
+  - -v
+  - -r
+  - -d
+
+=== answer ===
+3
+
+=== keywords ===
+ls
