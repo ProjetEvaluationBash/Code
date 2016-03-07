@@ -89,7 +89,7 @@ function showQuestion() {
 cat << EOF >> $out
 <p>
 Votre réponse : <br>
-<input type="answer$j" value=""><br>
+<input type="answer$ID" value=""><br>
 </p>
 EOF
 	return 0

@@ -116,7 +116,7 @@ i=12
 cat << EOF >> $out
 <p>
 Votre réponse : <br>
-<input name="answer$j" type="text"><br>
+<input name="answer$ID" type="text"><br>
 </p>
 EOF
 	return 0

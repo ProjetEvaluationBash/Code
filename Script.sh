@@ -19,7 +19,7 @@ function showQuestion() {
 cat << EOF >> $out
 <p>
 Votre script : <br>
-<textarea name="answer$j"></textarea><br>
+<textarea name="answer$ID"></textarea><br>
 </p>
 EOF
 	return 0
