@@ -22,6 +22,7 @@ function mainDokuwikiAddQuestion() {
     local difficulty=$(param difficulty)
     local visibility=$(param visibility)
     local type=$(param type)
+    local keywords=()
 
     if test ! validateType $type; then
         return 1
@@ -41,6 +42,35 @@ function mainDokuwikiAddQuestion() {
 
     if test ! validateDuration $duration; then
         return 1
+    fi
+    
+    i=1
+    
+    while test $i -lt 10; do
+    	local tempKeyword=`param keyword$i`
+    	
+    	if test -z $tempKeyword; then
+    		# Mettre fin à la boucle, on a lu tous les mots clés
+    		break
+    	fi
+    	
+    	errorMessage=`validateKeyword $tempKeyword`
+    	
+    	if test $? -ne 0; then
+    		echo $errorMessage
+			return 1
+    	fi
+    	
+    	# Mettre le mot clé dans le tableau de mots clés
+    	KEYWORDS[$i]=`urlDecode $tempKeyword`
+    	
+    	# Incrementer i
+		i=$(($i + 1))
+    done
+    
+    if test $i -eq 1; then
+    	echo "Aucun mot clé fourni."
+    	return 1
     fi
 
     # Inclure le sous-type en question et appeller la methode correspondante
@@ -62,6 +92,7 @@ function mainDokuwikiAddQuestion() {
     DURATION=$duration
     VISIBILITY=$visibility
     EXTRA_DATA=$result
+    KEYWORDS=$keywords
 
     result=`saveQuestionToFile $module`
     
@@ -117,6 +148,9 @@ $DURATION
     
 === question ===
 $QUESTION
+
+=== keywords ===
+${KEYWORDS[@]}
 
 $EXTRA_DATA
 EOF
@@ -175,6 +209,15 @@ function mainCliAddQuestion() {
         echo "Saisir la durée de la question (en minutes) (float): "
         read duration
     done
+}
+
+function validateKeyword() {
+	local keyword=$1
+	
+	if test ${#keyword} -lt 2; then
+		echo "Mot clé trop court."
+		return 1
+	fi
 }
 
 # Verifie que le type de la question est correct

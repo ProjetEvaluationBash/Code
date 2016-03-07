@@ -118,6 +118,17 @@ runRequest() {
 </td>
 </tr>
 
+<tr id="Keywords">
+	<td>Mots clés:</td>
+	<td>
+		<div id="keywords">
+			<input type="text" name="keyword1"><br>
+			<input type="text" name="keyword2"><br>
+		</div>
+		<br><button type="button" id="addKeywordButton">+ Ajouter</button>
+	</td>
+</tr>
+
 </tbody>
 </table>
 
@@ -129,6 +140,7 @@ runRequest() {
 jQuery(document).ready(function() {
 	jQuery(".question_type").hide();
 	var nbAvailableAnswers = 2;
+	var nbKeywords = 2;
 
 	jQuery("#question_type").change(function() {
 		jQuery(".question_type").hide();
@@ -140,11 +152,23 @@ jQuery(document).ready(function() {
 	jQuery("#mcq_addAvailableAnswer").click(function() {
 		nbAvailableAnswers++;
 
-		if(nbAvailableAnswers == 10) {
+		if(nbAvailableAnswers >= 10) {
 			jQuery("#mcq_addAvailableAnswer").hide();
+			return;
 		}
 
 		jQuery("#mcq_availableAnswers").append('<input type="text" name="mcq_availableAnswer' + nbAvailableAnswers + '"> <input type="radio" name="mcq_answer" value="' +  nbAvailableAnswers + '"><br>');
+	});
+	
+	jQuery("#addKeywordButton").click(function() {
+		nbKeywords++;
+		
+		if(nbKeywords >= 10) {
+			jQuery("#addKeywordButton").hide();
+			return
+		}
+		
+		jQuery("#keywords").append('<input type="text" name="keyword' + nbKeywords + '"><br>');
 	});
 });
 /*!]]>*/</script>
