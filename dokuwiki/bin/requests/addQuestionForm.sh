@@ -2,12 +2,16 @@
 
 runRequest() {
 	local dokuName=add_question_form
-        local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+    local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 
-	if userIsProf; then
-		dokuError "Désolé, fonction réservée aux enseignants !"
-	fi
+	# Est ce que l'utilisateur est professeur ?
+	userIsProf
+    
+    if test $? -ne 0; then
+    	dokuError "Vous n'êtes pas professeur"
+    	exit 1
+    fi
 
 	cat << EOF > $out
 	
