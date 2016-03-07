@@ -1,0 +1,48 @@
+#/bin/bash
+
+runRequest() {
+	local dokuName=display_answerTest_form
+	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+	local module=$(param module)
+	local test=$(param exam)
+
+	local testDir=$DB_USERS_DIR/$DokuUser/$module/tests
+	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
+
+ 	if [ ! -e $testDir/$test ]; then
+		    dokuError "L'entrainement $test n'existe pas !"
+		    return 1
+	fi
+	list="$(cat $testDir/$test/list)"
+
+cat << EOF > $out
+====== Entrainement: $test (module $module) ======
+
+<html>
+
+EOF
+	
+	source "$CODE_DIR/Question.sh"
+	QUESTIONPATH="$testDir/$test/questions"
+	ANSWERPATH="$testDir/$test/answers"	
+	local j=0
+	for i in $list; do
+		j=$(($j + 1))
+		echo "<h3>Question #$j</h3>" >> $out
+		QUESTIONID=$i
+
+		mainLoadQuestion
+		
+		if test $? -ne 0; then
+			dokuError $ERROR_MESSAGE
+			return 1
+		fi
+		
+		mainShowQuestion >> $out
+	done
+
+cat << EOF >> $out
+</html>
+EOF
+	redirect users:$DokuUser:$dokuName
+}
