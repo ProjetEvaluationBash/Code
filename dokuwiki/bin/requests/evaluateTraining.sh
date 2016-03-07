@@ -6,7 +6,7 @@ runRequest(){
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
         local module=$(param module)
 	local temp=$(param tempNameTest)
-	local list="/tmp/$temp"
+	local list="$temp"
 	echo $list
 	test_to_print=" "
 	for i in $list; do
@@ -23,7 +23,8 @@ runRequest(){
 cat << EOF > $out
 	==== $temp ====
 	$test_to_print
+	$list
 EOF
-	cgiHeader	
+		
 	redirect users:$DokuUser:$dokuName
 }

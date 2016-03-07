@@ -7,67 +7,41 @@ runRequest() {
 	local keywordSearch=$(param keywordSearch)
 	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
 
+	local dbQuestionsDir=$DB_MODULES_DIR/$module/questions
 
+	userIsProf
 
-	if userIsProf; then
-		dokuError"Désolé, fonction réservée aux enseignants !"
+	if test $? -ne 0; then
+		dokuError "Reservé aux professeurs."
+		exit 1
 	fi
 
 	name="$DokuUser-$name"
 
+	echo "===== Questions trouvées =====" > $out
 	
 	# Inclure Question.sh
 	source "$CODE_DIR/Question.sh"	
 
-	
- 	#mkdir -p $examsDir/questionsFound/
-
-	
-#	echo "==== test ===" > $out
-	
-#	i=$(getQuestionElement $DB_MODULES_DIR/$module/questions/10.txt duration)
-#        echo $i >> $out
-
-#	list="aaa bbb ccc"
-#	for q in $list; do
-#		echo "  * $q" >> $out
-#	done
-#	echo $list >> $out
-	
-
-#	echo " test blabla" >> $out		
+    	QUESTIONPATH=$dbQuestionsDir
     
-    	QUESTIONPATH=$dokuUserQuestionsDir
-    
-    	for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
+    	for i in $(cd $QUESTIONPATH; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
 		QUESTIONID=$i
 		
 		# Charger la question
 		mainLoadQuestion
 		
-		local temporaryKeywords=`getElement "$questionFileContents" keywords`
-	
 		for keyword in $KEYWORDS; do
-				if test "$keyword" = "$keywordSearch"
-					echo "===== Question #$i =====" >> $out
-				fi
+			if test "$keyword" = "$keywordSearch"; then
+				echo "* $i" >> $out
+			fi
 		done
+		
    	done	
 	
 #	cat << EOF >> $out	
-
-
-#======= Questions trouvées (module $module) =======
-
+# ====== Questions trouvées (module $module) =======
 #EOF
 
-#	local list="$(ls $examsDir/$name/questionsFound)"
-#	if test -z "$list"; then
-#		echo "Aucunes questions trouvées !" >> $out
-#	else
-#		for l in $list; do
-#			showQuestionItem $examsDir/questionsFound/$l.txt >> $out 
-#		done
-#	fi		
 	redirect users:$DokuUser:$dokuName
 }
