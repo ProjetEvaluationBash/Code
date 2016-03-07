@@ -7,9 +7,10 @@ runRequest(){
         local module=$(param module)
 	local temp=$(param tempNameTest)
 	local list=`cat $temp`
-	local testsDir=$DB_USERS_DIR/$DokuUser/$module/tests
+	local testid=$(param testid)
+	local testsDir=$DB_USERS_DIR/$DokuUser/$module/tests/$testid
 	local answerDir=$testsDir/answers
-	
+		
 	test_to_print=" "
 
 	for i in $list; do
@@ -17,7 +18,7 @@ runRequest(){
 		local questionNum=`echo $i | cut -d: -f2`
 		local answerName="answer$answerNum"
 		answer=$(param $answerName)
-		echo $answer >> $anwerDir/$questionNum.txt
+		echo $answer >> $answerDir/$questionNum.txt
 		test_to_print+=$answer
 		test_to_print+=" "
 

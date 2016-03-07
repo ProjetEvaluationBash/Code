@@ -22,6 +22,7 @@ cat << EOF > $out
 <html>
 <form name="TrainingFormulaire" action="$DOKU_CGI" method="POST">
 <input type="hidden" name="module" value="$module">
+<input tpy=""hidden" name="testid" value="$test">
 <input type="hidden" name="action" value="evaluateTraining">
 <input type="hidden" name="tempNameTest" value="$tempdir"></input>
 
