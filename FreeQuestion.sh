@@ -77,7 +77,7 @@ function showQuestion() {
 cat << EOF >> $out
 <p>
 Votre réponse : <br>
-<textarea name="answer$j"></textarea><br>
+<textarea name="answer$ID"></textarea><br>
 </p>
 EOF
 	return 0
