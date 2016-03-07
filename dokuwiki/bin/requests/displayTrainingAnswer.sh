@@ -32,13 +32,11 @@ EOF
 		QUESTIONID=$i
 
 		mainLoadQuestion
-		
+		echo "$QUESTION ==> `cat $ANSWERPATH/$ID`<br>" >> $out	
 		if test $? -ne 0; then
 			dokuError $ERROR_MESSAGE
 			return 1
 		fi
-		
-		mainShowQuestion >> $out
 	done
 
 cat << EOF >> $out
