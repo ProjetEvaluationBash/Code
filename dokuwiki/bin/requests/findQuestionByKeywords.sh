@@ -33,15 +33,11 @@ runRequest() {
 		
 		for keyword in $KEYWORDS; do
 			if test "$keyword" = "$keywordSearch"; then
-				echo "* $i" >> $out
+				echo "*   $i  " >> $out
 			fi
 		done
 		
-   	done	
-	
-#	cat << EOF >> $out	
-# ====== Questions trouvées (module $module) =======
-#EOF
+   	done
 
 	redirect users:$DokuUser:$dokuName
 }
