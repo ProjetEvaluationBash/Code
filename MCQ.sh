@@ -188,7 +188,7 @@ function showQuestion() {
 	i=1
 
 	for answer in "${AVAILABLEANSWERS[@]}"; do
-		echo "<input type=\"radio\" name=\"answer$j\" value=\"$i\"> $answer<br>"
+		echo "<input type=\"radio\" name=\"answer$ID\" value=\"$i\"> $answer<br>"
 		i=$(($i + 1))
 	done
 }
