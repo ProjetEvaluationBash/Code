@@ -1,0 +1,22 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+
+
+=== visibility ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== availableAnswers ===
+
+
+=== answer ===
+
+
+=== keywords ===

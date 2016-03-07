@@ -1,0 +1,20 @@
+=== type ===
+SimpleCommand
+
+=== difficulty ===
+
+
+=== visibility ===
+
+
+=== duration ===
+
+
+=== question ===
+
+
+=== answer ===
+
+
+=== keywords ===
+

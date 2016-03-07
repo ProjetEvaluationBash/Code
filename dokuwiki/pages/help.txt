@@ -1,9 +1,0 @@
-====== Plate-forme de tests ======
-
-Ce logiciel intégré à Dokuwiki vous permet de vous entraînez dans différents modules (Unix, C, ...).
-
-Vous générez des "entraînements" de la longueur et de la difficulté de votre choix puis vous y répondez.
-
-Le système évalue vos réponses et vous attribue les points.
-
-

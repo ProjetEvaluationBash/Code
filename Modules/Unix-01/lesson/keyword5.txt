@@ -1,0 +1,1 @@
+set quote scriptShell find argumentsScript if then fi while until do done for done read 

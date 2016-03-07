@@ -1,0 +1,25 @@
+=== type ===
+MCQ
+
+=== difficulty ===
+1
+
+=== visibility ===
+training
+
+=== duration ===
+0.3
+
+=== question ===
+La commande “chmod 741 fic” est équivalente à : 
+
+=== availableAnswers ===
+  - chmod u=rwx,g=r,o=x fic
+  - chmod u+rwx,g=r,a+x fic
+  - chmod u=rwx,g=r,a=x fic
+
+=== answer ===
+1
+
+=== keywords ===
+chmod droit_fichier
