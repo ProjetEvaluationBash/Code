@@ -22,6 +22,7 @@ function mainDokuwikiAddQuestion() {
     local difficulty=$(param difficulty)
     local visibility=$(param visibility)
     local type=$(param type)
+    local keywords=()
 
     if test ! validateType $type; then
         return 1
@@ -42,15 +43,45 @@ function mainDokuwikiAddQuestion() {
     if test ! validateDuration $duration; then
         return 1
     fi
+    
+    i=1
+    
+    while test $i -lt 10; do
+    	local tempKeyword=`param keyword$i`
+    	
+    	if test -z $tempKeyword; then
+    		# Mettre fin à la boucle, on a lu tous les mots clés
+    		break
+    	fi
+    	
+    	errorMessage=`validateKeyword $tempKeyword`
+    	
+    	if test $? -ne 0; then
+    		echo $errorMessage
+			return 1
+    	fi
+    	
+    	# Mettre le mot clé dans le tableau de mots clés
+    	KEYWORDS[$i]=`urlDecode $tempKeyword`
+    	
+    	# Incrementer i
+		i=$(($i + 1))
+    done
+    
+    if test $i -eq 1; then
+    	echo "Aucun mot clé fourni."
+    	return 1
+    fi
 
     # Inclure le sous-type en question et appeller la methode correspondante
     source "$CODE_DIR/$type.sh"
 
-    EXTRA_DATA=`dokuwikiAddQuestion`
-    returnCode=$?
+    result=`dokuwikiAddQuestion`
 
-    if test $returnCode -ne 0; then
-       	ERROR_MESSAGE=$returnCode
+    if test $? -ne 0; then
+    	# Erreur rencontrée
+    
+    	echo $result
         return 1
     fi
 
@@ -60,8 +91,20 @@ function mainDokuwikiAddQuestion() {
     DIFFICULTY=$difficulty
     DURATION=$duration
     VISIBILITY=$visibility
+    EXTRA_DATA=$result
+    KEYWORDS=$keywords
 
-    saveQuestionToFile $module
+    result=`saveQuestionToFile $module`
+    
+    if test $? -ne 0; then
+    	# Erreur rencontrée
+    	
+    	echo $result
+    	return 1
+    fi
+    
+    echo $ID
+    return 0
 }
 
 function getNextId() {
@@ -86,7 +129,8 @@ function saveQuestionToFile() {
 
     # Est-ce que le module existe bien ?
     if test ! -d $moduleDir; then
-        dokuError "Module inexistant."
+        echo "Module inexistant."
+        return 1
     fi
 
     cat << EOF > $questionFile
@@ -104,6 +148,9 @@ $DURATION
     
 === question ===
 $QUESTION
+
+=== keywords ===
+${KEYWORDS[@]}
 
 $EXTRA_DATA
 EOF
@@ -164,12 +211,21 @@ function mainCliAddQuestion() {
     done
 }
 
+function validateKeyword() {
+	local keyword=$1
+	
+	if test ${#keyword} -lt 2; then
+		echo "Mot clé trop court."
+		return 1
+	fi
+}
+
 # Verifie que le type de la question est correct
 function validateType() {
     local type=$1
 
     if test "$type" != "MCQ" -a "$type" != "CommandName" -a "$type" != "SimpleCommand" -a "$type" != "CompoundCommand" -a "$type" != "Script" -a "$type" != "FreeQuestion"; then
-        ERROR_MESSAGE="Type invalide."
+        echo "Type invalide."
         return 1
     fi
 
@@ -181,7 +237,7 @@ function validateQuestion() {
     local question=$1
 
     if test ${#question} -le 5; then
-        ERROR_MESSAGE="Question trop court."
+        echo "Question trop court."
         return 1
     fi
 
@@ -193,7 +249,7 @@ function validateDifficulty() {
     local difficulty=$1
 
     if test $difficulty -lt 1 -o $difficulty -gt 3; then
-        ERROR_MESSAGE="Difficulté invalide."
+        echo "Difficulté invalide."
         return 1
     fi
 
@@ -205,7 +261,7 @@ function validateVisibility() {
     local visibility=$1
 
     if test "$visibility" != "hidden" -a "$visibility" != "training" -a "$visibility" != "exam"; then
-        ERROR_MESSAGE="Visibilité invalide."
+        echo "Visibilité invalide."
         return 1
     fi
 
@@ -217,7 +273,7 @@ function validateDuration() {
     local duration=$1
 
     if test $duration -lt 0 -o $duration -gt 120; then
-        ERROR_MESSAGE="Durée invalide."
+        echo "Durée invalide."
         return 1
     fi
 

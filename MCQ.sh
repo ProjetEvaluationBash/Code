@@ -20,10 +20,11 @@ function dokuwikiAddQuestion() {
 		fi
 		
 		# Validation de la reponse possible
-		validateAvailableAnswer $availableAnswer
+		errorMessage=`validateAvailableAnswer $availableAnswer`
 		
 		if test $? -ne 0; then
-			return 2
+			echo $errorMessage
+			return 1
 		fi
 		
 		# Mettre la reponse possible dans le tableau des reponses possibles
@@ -35,8 +36,8 @@ function dokuwikiAddQuestion() {
 	
 	# Est ce que le QCM a au moins deux reponses possible
 	if test ${#AVAILABLEANSWERS[@]} -lt 2; then
-		ERROR_MESSAGE="Un QCM doit avoir au moins deux reponses possibles."
-		return 3
+		echo "Un QCM doit avoir au moins deux reponses possibles."
+		return 1
 	fi
 	
 	# Recuperer la reponse vraie selectionnée
@@ -44,14 +45,14 @@ function dokuwikiAddQuestion() {
 	
 	# Est ce que une reponse vraie a été selectionnée
 	if test -z $ANSWER; then
-		ERROR_MESSAGE="Aucune reponse vraie fournie."
+		echo "Aucune reponse vraie fournie."
 		return 1
 	fi
 	
 	# Est ce que la reponse selectionnée vraie se trouve entre 1 et le nombre de questions total
 	if test $ANSWER -lt 1 -o $ANSWER -gt $i; then
-		ERROR_MESSAGE="Reponse vraie invalide"
-		return 2
+		echo "Reponse vraie invalide."
+		return 1
 	fi
 
 	echo "=== availableAnswers ==="
@@ -172,13 +173,13 @@ function validateAvailableAnswer() {
 	local availableAnswer=$1
 
 	if test "${#availableAnswer}" -lt 3; then
-		ERROR_MESSAGE="Reponse trop courte."
+		echo "Reponse trop courte."
 		return 1
 	fi
 	
 	if test "${#availableAnswer}" -gt 255; then
-		ERROR_MESSAGE="Reponse trop longue."
-		return 2
+		echo "Reponse trop longue."
+		return 1
 	fi
 
 	return 0

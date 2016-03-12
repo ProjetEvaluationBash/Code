@@ -1,7 +1,7 @@
 #/bin/bash
 
 runRequest() {
-	local dokuName=display_training_form
+	local dokuName=display_answerTest_form
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local test=$(param exam)
@@ -15,22 +15,16 @@ runRequest() {
 	fi
 	list="$(cat $testDir/$test/list)"
 
-	tempdir=`mktemp`
 cat << EOF > $out
 ====== Entrainement: $test (module $module) ======
 
 <html>
-<form name="TrainingFormulaire" action="$DOKU_CGI" method="POST">
-<input type="hidden" name="module" value="$module">
-<input tpy=""hidden" name="testid" value="$test">
-<input type="hidden" name="action" value="evaluateTraining">
-<input type="hidden" name="tempNameTest" value="$tempdir"></input>
 
 EOF
 	
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
-	
+	ANSWERPATH="$testDir/$test/answers"	
 	local j=0
 	for i in $list; do
 		j=$(($j + 1))
@@ -38,21 +32,14 @@ EOF
 		QUESTIONID=$i
 
 		mainLoadQuestion
-		
+		echo "$QUESTION ==> `cat $ANSWERPATH/$ID`<br>" >> $out	
 		if test $? -ne 0; then
 			dokuError $ERROR_MESSAGE
 			return 1
 		fi
-		
-		echo "$j:$QUESTIONID" >> $tempdir
-		mainShowQuestion >> $out
 	done
 
 cat << EOF >> $out
-<center>
-<input type="submit" value="Valider mon test">
-</center>
-</form>
 </html>
 EOF
 	redirect users:$DokuUser:$dokuName

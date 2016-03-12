@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "$CODE_DIR/dokuwiki/bin/requests/script.sh"
+
 function dokuwikiAddQuestion() {
 	local evaluator=$(param compoundcommand_evaluator)
 	
@@ -32,4 +34,22 @@ function toString() {
 $EVALUATOR
 </code>
 EOF
+}
+
+function dokuwikiEvaluateAnswer() {
+	if test $# -ne 1; then
+                echo "Usage: MCQ : EvalAnswer ANSWER" >&2
+                return 1
+        fi
+
+        local userAnswer=$1
+
+			
+	evaluateScript $userAnswer      	   
+        
+       
+
+        # Reponse fausse
+        return 1
+
 }

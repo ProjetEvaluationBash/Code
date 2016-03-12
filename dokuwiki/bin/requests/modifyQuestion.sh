@@ -1,9 +1,11 @@
-#!/bin/bash
+#/bin/bash
 
 runRequest() {
-	local dokuName=add_question_form
-    local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
+	local dokuName=delete_question
+	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
+	
+	local id=$(param id)
 
 	# Est ce que l'utilisateur est professeur ?
 	userIsProf
@@ -13,9 +15,24 @@ runRequest() {
     	exit 1
     fi
 
+	# Validation de l'identifiant
+	if test -z $id; then
+		dokuError "Aucun ID fourni."
+		exit 1
+	fi
+
+	local questionFile="$DB_MODULES_DIR/$module/questions/$id.txt"
+
+	# La question existe-t-elle ?
+	if test ! -f $questionFile; then
+		dokuError "ID incorrect."
+		exit 1
+	fi
+
 	cat << EOF > $out
-	
-===== Ajouter une question =====
+==== Modification de la question ====
+
+Modification de la question $id
 
 <html>
 
@@ -44,7 +61,6 @@ runRequest() {
 </select>
 </td>
 </tr>
-
 <tr>
 <td>Visibilité de la question:</td>
 <td>
@@ -55,7 +71,6 @@ runRequest() {
 </select>
 </td>
 </tr>
-
 <tr>
 <td>Type:</td>
 <td>
@@ -70,7 +85,6 @@ runRequest() {
 </select>
 </td>
 </tr>
-
 <tr id="MCQ" class="question_type">
 <td>Reponses possibles:</td>
 <td>
@@ -80,17 +94,14 @@ runRequest() {
 </div>
 <br><button type="button" id="mcq_addAvailableAnswer">+ Ajouter</button>
 </tr>
-
 <tr id="CommandName" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="commandname_answer"></td>
 </tr>
-
 <tr id="SimpleCommand" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="simplecommand_answer"></td>
 </tr>
-
 <tr id="CompoundCommand" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -99,7 +110,6 @@ runRequest() {
 </textarea>
 </td>
 </tr>
-
 <tr id="FreeQuestion" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -108,7 +118,6 @@ runRequest() {
 </textarea>
 </td>
 </tr>
-
 <tr id="Script" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -117,7 +126,6 @@ runRequest() {
 </textarea>
 </td>
 </tr>
-
 <tr id="Keywords">
 	<td>Mots clés:</td>
 	<td>
@@ -128,14 +136,11 @@ runRequest() {
 		<br><button type="button" id="addKeywordButton">+ Ajouter</button>
 	</td>
 </tr>
-
 </tbody>
 </table>
-
 <br><br>
-<input type="submit" value="Ajouter la question"><br><br>
+<input type="submit" value="Valider la modification de la question"><br><br>
 </form>
-
 <script type="text/javascript">/*<![CDATA[*/
 jQuery(document).ready(function() {
 	jQuery(".question_type").hide();
@@ -173,7 +178,11 @@ jQuery(document).ready(function() {
 });
 /*!]]>*/</script>
 </html>
-EOF
-        redirect users:$DokuUser:$dokuName
-}
 
+
+[[$DOKU_CGI?module=$module&action=manageQuestions|Retourner à la gestion des questions]]
+
+EOF
+	redirect users:$DokuUser:$dokuName
+
+}

@@ -3,22 +3,24 @@
 runRequest() {
 	local dokuName=debug_list_questions
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
-    local module=$(param module)
+	local module=$(param module)
 
 	local dbQuestionsDir=$DB_MODULES_DIR/$module/questions
-	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
 
-    if userIsProf; then
-        dokuError "Désolé, fonction réservée aux enseignants !"
-    fi
-    
+	userIsProf
+
+	if test $? -ne 0; then
+		dokuError "Reservé aux professeurs."
+		exit 1
+	fi
+
     echo "====== Debug - Liste de questions =====" > $out
     
     source "$CODE_DIR/Question.sh"
     
-    QUESTIONPATH=$dokuUserQuestionsDir
+    QUESTIONPATH=$dbQuestionsDir
     
-    for i in $(cd $dokuUserQuestionsDir; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
+    for i in $(cd $QUESTIONPATH; ls *.txt | sed -re 's/\.txt$//' | sort -n); do	
 		QUESTIONID=$i
 		
 		# Charger la question

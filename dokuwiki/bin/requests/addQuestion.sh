@@ -8,27 +8,31 @@ runRequest() {
     local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
     local module=$(param module)
 
-    #if userIsProf; then
-    #    dokuError "Désolé, fonction réservée aux enseignants !"
-    #fi
+    # Est ce que l'utilisateur est professeur ?
+	userIsProf
+    
+    if test $? -ne 0; then
+    	dokuError "Vous n'êtes pas professeur"
+    	exit 1
+    fi
 
     source "$CODE_DIR/Question.sh"
 
-    mainDokuwikiAddQuestion
+    result=`mainDokuwikiAddQuestion`
 
     if test $? -ne 0; then
-        dokuError $ERROR_MESSAGE
-        return 1
+    	# Erreur rencontrée lors de l'ajout de la question
+    
+        dokuError $result
+        exit 1
     fi
 
     cat << EOF > $out
 ====== Ajouter une question ======
 
-Question ajoutée !
+Question #$result ajoutée au module !
 
-<code>
-ID: $ID
-</code>  
+[[$DOKU_CGI?module=$module&action=manageQuestions|Retourner à la gestion des questions]]
 
 EOF
 
