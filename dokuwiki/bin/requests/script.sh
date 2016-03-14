@@ -100,7 +100,7 @@ runRequest() {
 }
 
 evaluateScript() {
-	echo $1 >> /tmp/query-$$	
+	echo $1 >> /tmp/script-$$	
 	cgiHeader
 	executeScriptSsh
 		
