@@ -4,7 +4,7 @@ runRequest() {
 	local dokuName=display_answertest_form
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
-	local test=$(param exam)
+	local test=$(param testid)
 
 	local testDir=$DB_USERS_DIR/$DokuUser/$module/tests
 	local dokuUserQuestionsDir=$DOKU_USERS_DIR/$DokuUser/questions
