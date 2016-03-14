@@ -1,7 +1,7 @@
 #/bin/bash
 
 runRequest() {
-	local dokuName=delete_question
+	local dokuName=modify_question
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	
@@ -71,20 +71,11 @@ Modification de la question $id
 </select>
 </td>
 </tr>
-<tr>
-<td>Type:</td>
-<td>
-<select name="type" id="question_type">
-        <option disabled selected></option>
-        <option value="MCQ">QCM</option>
-        <option value="CommandName">Nom de commande</option>
-        <option value="SimpleCommand">Commande simple</option>
-        <option value="CompoundCommand">Commande composée</option>
-        <option value="FreeQuestion">Question libre</option>
-        <option value="Script">Script</option>
-</select>
-</td>
-</tr>
+EOF
+
+if test "$TYPE" = "MCQ"; then
+
+cat << EOF >> $out
 <tr id="MCQ" class="question_type">
 <td>Reponses possibles:</td>
 <td>
@@ -94,14 +85,38 @@ Modification de la question $id
 </div>
 <br><button type="button" id="mcq_addAvailableAnswer">+ Ajouter</button>
 </tr>
+EOF
+fi
+
+if test "$TYPE" = "CommandName"; then
+
+
+cat << EOF >> $out
+
 <tr id="CommandName" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="commandname_answer"></td>
 </tr>
+EOF
+fi
+
+if  test "$TYPE" = "SimpleCommand" ; then
+
+
+cat << EOF >> $out
+
+
 <tr id="SimpleCommand" class="question_type">
 <td>Reponse:</td>
 <td><input type="text" name="simplecommand_answer"></td>
 </tr>
+EOF
+fi
+
+if test "$TYPE" ="CompoundCommand" ; then
+
+cat << EOF >> $out
+
 <tr id="CompoundCommand" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -110,6 +125,13 @@ Modification de la question $id
 </textarea>
 </td>
 </tr>
+EOF
+fi
+
+if test "$TYPE" ="FreeQuestion" ; then
+
+cat << EOF >> $out
+
 <tr id="FreeQuestion" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -118,6 +140,14 @@ Modification de la question $id
 </textarea>
 </td>
 </tr>
+
+EOF
+fi
+
+if test "$TYPE" ="Script" ; then
+
+cat << EOF >> $out
+
 <tr id="Script" class="question_type">
 <td>Evaluateur:</td>
 <td>
@@ -126,6 +156,11 @@ Modification de la question $id
 </textarea>
 </td>
 </tr>
+EOF
+fi
+
+cat << EOF >> $out
+
 <tr id="Keywords">
 	<td>Mots clés:</td>
 	<td>
