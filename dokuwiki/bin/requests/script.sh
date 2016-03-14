@@ -91,7 +91,7 @@ executeScriptSsh() {
 
 	reportScriptSsh $$
 
-	cleanScriptSsh	$$
+	
 }
 
 runRequest() {
@@ -103,5 +103,6 @@ evaluateScript() {
 	echo $1 >> /tmp/query-$$	
 	cgiHeader
 	executeScriptSsh
-	
+		
 }
+

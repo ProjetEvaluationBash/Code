@@ -15,11 +15,11 @@ runRequest() {
 
 <html>
 <form name="myForm" action="$DOKU_CGI" method="POST">
-<iinput type="hidden" name="module" value="$module">
+<input type="hidden" name="module" value="$module">
 <input type="hidden" name="action" value="findQuestionByKeywords">
 <p>
 Mot clé recherché :
-<input type="test" name="list" value="">
+<input type="test" name="keywordSearch" value="">
 <p>
 <input type="submit" value="Rechercher">
 </form>

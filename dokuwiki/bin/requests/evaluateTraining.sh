@@ -16,8 +16,7 @@ evaluateAnswer(){
 		
 	isCorrect=`dokuwikiEvaluateAnswer $3`	
 	if test $isCorrect -eq 0 ; then
-		echo 1
-		return 1	
+		echo 1	
 	fi
 	echo 0
 	return 0
@@ -39,25 +38,29 @@ runRequest(){
 	test_to_print=" "
 	
 	for i in $list; do
+		echo "--- $i ---" >> $out
 		local answerNum=`echo $i | cut -d: -f1`
+		echo $answerNum >> $out
 		local questionNum=`echo $i | cut -d: -f2`
+		echo $questionNum >> $out
 		local answerName="answer$answerNum"
+		echo $answerName >> $out
 		answer=$(param $answerName)
+		echo $answer >> $out
 		rm $answerDir/$questionNum.txt
 		echo $answer >> $answerDir/$questionNum.txt
-		test_to_print+=$answer
-		test_to_print+=" retour eval $i --  "
-		testPute="`evaluateAnswer $questiondir $questionNum $answer`"
-		test_to_print+=" fin $i "
-		score=$((score + 2 ))
+		testPute=`evaluateAnswer $questiondir $questionNum $answer`
+		echo $testPute >> $out
+		score=$(($score + $testPute ))
+		echo $score >> $out
+		echo "--- --- ---" >> $out
 	done
 
-cat << EOF > $out
+cat << EOF >> $out
 	==== $temp ====
 	$test_to_print
 	$answerDir
 	$score
-	$testPute
 EOF
 	#run "$DOKU_CGI?module=$module&action=displayTrainingAnswer"	
 	redirect users:$DokuUser:$dokuName

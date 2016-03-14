@@ -21,10 +21,12 @@ function dokuwikiEvaluateAnswer() {
 
         if test $userAnswer -eq $ANSWER; then
                 # Reponse vraie
+		echo 0
                 return 0
         fi
 
         # Reponse fausse
+	echo 1
         return 1
 
 	
