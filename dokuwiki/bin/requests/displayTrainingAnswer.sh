@@ -1,7 +1,7 @@
 #/bin/bash
 
 runRequest() {
-	local dokuName=display_answerTest_form
+	local dokuName=display_answertest_form
 	local out=$DOKU_USERS_DIR/$DokuUser/$dokuName.txt
 	local module=$(param module)
 	local test=$(param exam)
@@ -11,36 +11,24 @@ runRequest() {
 
  	if [ ! -e $testDir/$test ]; then
 		    dokuError "L'entrainement $test n'existe pas !"
-		    return 1
+		    exit 1
 	fi
 	list="$(cat $testDir/$test/list)"
-
 cat << EOF > $out
-====== Entrainement: $test (module $module) ======
-
-<html>
-
+====== Resultat de l'entrainement: $test (module $module) ======
 EOF
 	
 	source "$CODE_DIR/Question.sh"
 	QUESTIONPATH="$testDir/$test/questions"
 	ANSWERPATH="$testDir/$test/answers"	
 	local j=0
+	echo "$list" >> $out
 	for i in $list; do
 		j=$(($j + 1))
-		echo "<h3>Question #$j</h3>" >> $out
+		echo "=== Question $j ===" >> $out
 		QUESTIONID=$i
-
 		mainLoadQuestion
-		echo "$QUESTION ==> `cat $ANSWERPATH/$ID`<br>" >> $out	
-		if test $? -ne 0; then
-			dokuError $ERROR_MESSAGE
-			return 1
-		fi
+		echo "<p>$QUESTION (difficulté: $DIFFICULTY): `cat $ANSWERPATH/$i.txt`<br><br></p>" >> $out
 	done
-
-cat << EOF >> $out
-</html>
-EOF
 	redirect users:$DokuUser:$dokuName
 }
